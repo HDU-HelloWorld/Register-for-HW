@@ -1,6 +1,10 @@
 # 招新网站任务清单
 > 基于Webpack + Vue2开发的招新网站
 
+<div align=center>
+<img src="./logo1.jpg" width="500"/>
+</div>
+
 ## 开发任务
 - [ ] 报名表单前端页面
 - [ ] 表单前端验证功能
@@ -38,5 +42,5 @@
 + CCF界面 - 王磊😱
 
 ## 参考网站
-- <a href="https://www.monyun.cn/">短信API接口</a>
-- <a href="https://developer.mozilla.org/zh-CN/docs/Web">MDN</a>
+- <a href="https://www.monyun.cn/">💬短信API接口</a>
+- <a href="https://developer.mozilla.org/zh-CN/docs/Web">💗MDN</a>
