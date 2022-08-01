@@ -1,22 +1,30 @@
 <template>
   <div class="body">
-    <img src="../assets/pic.png" style="width:800px">
     <div class="text">
-      <h1>Hello World</h1>
-      <p>This is a simple Vue.js component.</p>
-      <p>{{xz}}</p>
-      <p>{{jym}}</p>
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="人工智能部门" name="first"><peoplesmart></peoplesmart></el-tab-pane>
+        <el-tab-pane label="行政部门" name="second"><admin></admin></el-tab-pane>
+        <el-tab-pane label="后端部门" name="third"><back></back></el-tab-pane>
+      </el-tabs>
     </div>
   </div>
 </template>
 
 <script>
+import Admin from './DepartIntro/Admin.vue'
+import Back from './DepartIntro/back.vue'
+import Peoplesmart from './DepartIntro/peoplesmart.vue'
 export default {
+  components: { Admin, Back, Peoplesmart },
   name: 'HelloWorld',
   data () {
     return {
-      xz: '嗨嗨嗨，我是徐壮',
-      jym: '嗨嗨嗨，我是徐壮父亲'
+      activeName: 'second'
+    }
+  },
+  methodes: {
+    handleClick (tab, event) {
+      console.log(tab, event)
     }
   }
 }
