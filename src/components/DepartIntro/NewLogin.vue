@@ -2,16 +2,16 @@
   <div class="login">
     <div class="wrapper">
       <h1 align="center">Hello World 22级招新信息收集表</h1>
-      <el-form :model="form" :rules="rules" ref="form" label-width="80px" >
+      <el-form :model="form" :rules="rules" ref="form" label-width="80px">
         <el-row>
           <el-col :span="6" :offset="5">
             <el-form-item label="姓名" prop="name" id="m">
-              <el-input v-model="form.name" @change="change()"></el-input>
+              <el-input v-model="form.name"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6" :offset="1">
             <el-form-item label="性别">
-              <el-select v-model="form.gender" >
+              <el-select v-model="form.gender">
                 <el-option
                   v-for="item in options1"
                   :key="item.value"
@@ -22,6 +22,7 @@
               </el-select>
             </el-form-item>
           </el-col>
+        </el-row>
         <el-row>
           <el-col :span="6" :offset="5">
             <el-form-item label="学号" prop="stuNum">
@@ -29,11 +30,12 @@
             </el-form-item>
           </el-col>
           <el-col :span="6" :offset="1">
-            <el-form-item label="所在学院" prop="college" >
+            <el-form-item label="所在学院" prop="college">
               <el-input v-model="form.college"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
+        <el-row>
           <el-col :span="6" :offset="5">
             <el-form-item label="志愿部门">
               <el-select v-model="form.department">
@@ -61,20 +63,18 @@
           </el-col>
         </el-row>
         <el-row>
-            <el-form-item>
-              <el-col :span="1" :offset="9">
-              <el-button
-                type="primary"
-                @click="submitForm('form')"
+          <el-form-item>
+            <el-col :span="1" :offset="9">
+              <el-button type="primary" @click="submitForm('form')"
                 >提交</el-button
               >
-              </el-col>
-              <el-col :span="4" :offset="1">
+            </el-col>
+            <el-col :span="4" :offset="1">
               <el-button type="secondary" @click="resetForm('form')"
                 >清空</el-button
               >
-              </el-col>
-            </el-form-item>
+            </el-col>
+          </el-form-item>
         </el-row>
       </el-form>
     </div>
@@ -107,7 +107,11 @@ export default {
         ],
         phone: [
           { required: true, message: '请输入电话', trigger: 'blur' },
-          { pattern: /^1[3-9][0-9]\d{8}$/, message: '请输入正确的电话号码', trigger: 'blur' },
+          {
+            pattern: /^1[3-9][0-9]\d{8}$/,
+            message: '请输入正确的电话号码',
+            trigger: 'blur'
+          },
           { min: 0, max: 15, message: '长度在 0 到 15 个字符', trigger: 'blur' }
         ],
         qqnumber: [
@@ -117,31 +121,43 @@ export default {
         ],
         college: [
           { required: true, message: '请输入学院', trigger: 'blur' },
-          { pattern: /^[\u0391-\uFFE5A-Za-z]+$/, message: '请输入学院', trigger: 'blur' },
+          {
+            pattern: /^[\u0391-\uFFE5A-Za-z]+$/,
+            message: '请输入学院',
+            trigger: 'blur'
+          },
           { min: 0, max: 15, message: '长度在 0 到 15 个字符', trigger: 'blur' }
         ]
       },
-      options1: [{
-        value: 'man',
-        label: '男'
-      }, {
-        value: 'woman',
-        label: '女'
-      }],
+      options1: [
+        {
+          value: 'man',
+          label: '男'
+        },
+        {
+          value: 'woman',
+          label: '女'
+        }
+      ],
 
-      options2: [{
-        value: '选项1',
-        label: '人工智能部门'
-      }, {
-        value: '选项2',
-        label: '行政部门'
-      }, {
-        value: '选项3',
-        label: '前端部门'
-      }, {
-        value: '选项4',
-        label: '后端部门'
-      }]
+      options2: [
+        {
+          value: '选项1',
+          label: '人工智能部门'
+        },
+        {
+          value: '选项2',
+          label: '行政部门'
+        },
+        {
+          value: '选项3',
+          label: '前端部门'
+        },
+        {
+          value: '选项4',
+          label: '后端部门'
+        }
+      ]
     }
   },
   change () {
