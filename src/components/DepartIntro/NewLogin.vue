@@ -1,30 +1,19 @@
 <template>
   <div class="login">
     <div class="wrapper">
-      <el-form :model="form" :rules="rules" ref="form" label-width="80px">
+      <h1 align="center">Hello World 22级招新信息收集表</h1>
+      <el-form :model="form" :rules="rules" ref="form" label-width="80px" >
         <el-row>
-          <el-col :span="6" :offset="4">
+          <el-col :span="6" :offset="5">
             <el-form-item label="姓名" prop="name" id="m">
-              <el-input v-model="form.name"></el-input>
+              <el-input v-model="form.name" @change="change()"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="6" :offset="1">
-            <el-form-item label="学号" prop="stuNum">
-              <el-input v-model="form.stuNum"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="6" :offset="4">
-            <el-form-item label="所在学院" prop="college" >
-              <el-input v-model="form.college"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6" :offset="1">
-            <el-form-item label="志愿部门">
-              <el-select v-model="form.department">
+            <el-form-item label="性别">
+              <el-select v-model="form.gender" >
                 <el-option
-                  v-for="item in options"
+                  v-for="item in options1"
                   :key="item.value"
                   :label="item.label"
                   :value="item.label"
@@ -33,16 +22,39 @@
               </el-select>
             </el-form-item>
           </el-col>
-        </el-row>
         <el-row>
-          <el-col :span="6" :offset="4">
+          <el-col :span="6" :offset="5">
+            <el-form-item label="学号" prop="stuNum">
+              <el-input v-model="form.stuNum"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6" :offset="1">
+            <el-form-item label="所在学院" prop="college" >
+              <el-input v-model="form.college"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+          <el-col :span="6" :offset="5">
+            <el-form-item label="志愿部门">
+              <el-select v-model="form.department">
+                <el-option
+                  v-for="item in options2"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.label"
+                >
+                </el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6" :offset="1">
             <el-form-item label="电话" prop="phone">
               <el-input v-model="form.phone"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="6" :offset="4">
+          <el-col :span="6" :offset="5">
             <el-form-item label="qq号" prop="qqnumber">
               <el-input v-model="form.qqnumber"></el-input>
             </el-form-item>
@@ -76,6 +88,7 @@ export default {
     return {
       form: {
         name: '',
+        gender: '',
         stuNum: '',
         phone: '',
         qqnumber: '',
@@ -108,7 +121,15 @@ export default {
           { min: 0, max: 15, message: '长度在 0 到 15 个字符', trigger: 'blur' }
         ]
       },
-      options: [{
+      options1: [{
+        value: 'man',
+        label: '男'
+      }, {
+        value: 'woman',
+        label: '女'
+      }],
+
+      options2: [{
         value: '选项1',
         label: '人工智能部门'
       }, {
@@ -122,6 +143,9 @@ export default {
         label: '后端部门'
       }]
     }
+  },
+  change(){
+	  this.$forceUpdate();  //强制刷新
   },
   methods: {
     submitForm (formName) {
