@@ -32,4 +32,7 @@ export default {
 }
 </script>
 <style scoped>
+#pane-fouth{
+  height: 100ch;
+}
 </style>

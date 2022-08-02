@@ -1,82 +1,84 @@
 <template>
   <div class="login">
     <div class="wrapper">
-      <h1 align="center">Hello World 22级招新信息收集表</h1>
-      <el-form :model="form" :rules="rules" ref="form" label-width="80px">
-        <el-row>
-          <el-col :span="6" :offset="5">
-            <el-form-item label="姓名" prop="name" id="m">
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6" :offset="1">
-            <el-form-item label="性别">
-              <el-select v-model="form.gender">
-                <el-option
-                  v-for="item in options1"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.label"
-                >
-                </el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="6" :offset="5">
-            <el-form-item label="学号" prop="stuNum">
-              <el-input v-model="form.stuNum"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6" :offset="1">
-            <el-form-item label="所在学院" prop="college">
-              <el-input v-model="form.college"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="6" :offset="5">
-            <el-form-item label="志愿部门">
-              <el-select v-model="form.department">
-                <el-option
-                  v-for="item in options2"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.label"
-                >
-                </el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="6" :offset="1">
-            <el-form-item label="电话" prop="phone">
-              <el-input v-model="form.phone"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="6" :offset="5">
-            <el-form-item label="qq号" prop="qqnumber">
-              <el-input v-model="form.qqnumber"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-form-item>
-            <el-col :span="1" :offset="9">
-              <el-button type="primary" @click="submitForm('form')"
-                >提交</el-button
-              >
+      <div class="form">
+        <h1 align="center" class="title">Hello World 22级招新信息收集表</h1>
+        <el-form :model="form" :rules="rules" ref="form" label-width="80px">
+          <el-row>
+            <el-col :span="6" :offset="5">
+              <el-form-item label="姓名" prop="name">
+                <el-input v-model="form.name"></el-input>
+              </el-form-item>
             </el-col>
-            <el-col :span="4" :offset="1">
-              <el-button type="secondary" @click="resetForm('form')"
-                >清空</el-button
-              >
+            <el-col :span="6" :offset="1">
+              <el-form-item label="性别">
+                <el-select v-model="form.gender">
+                  <el-option
+                    v-for="item in options1"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.label"
+                  >
+                  </el-option>
+                </el-select>
+              </el-form-item>
             </el-col>
-          </el-form-item>
-        </el-row>
-      </el-form>
+          </el-row>
+          <el-row>
+            <el-col :span="6" :offset="5">
+              <el-form-item label="学号" prop="stuNum">
+                <el-input v-model="form.stuNum"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6" :offset="1">
+              <el-form-item label="所在学院" prop="college">
+                <el-input v-model="form.college"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6" :offset="5">
+              <el-form-item label="志愿部门">
+                <el-select v-model="form.department">
+                  <el-option
+                    v-for="item in options2"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.label"
+                  >
+                  </el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6" :offset="1">
+              <el-form-item label="电话" prop="phone">
+                <el-input v-model="form.phone"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="6" :offset="5">
+              <el-form-item label="qq号" prop="qqnumber">
+                <el-input v-model="form.qqnumber"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-form-item>
+              <el-col :span="1" :offset="9">
+                <el-button type="primary" @click="submitForm('form')"
+                  >提交</el-button
+                >
+              </el-col>
+              <el-col :span="4" :offset="1">
+                <el-button type="secondary" @click="resetForm('form')"
+                  >清空</el-button
+                >
+              </el-col>
+            </el-form-item>
+          </el-row>
+        </el-form>
+      </div>
     </div>
   </div>
 </template>
@@ -183,4 +185,20 @@ export default {
 </script>
 
 <style scoped>
+  .login{
+    position: relative;
+    top: 120px;
+    left: 20%;
+    width: 60%;
+    height: 100%;
+  }
+  .wrapper{
+    border: #fff 10px solid;
+    background-color: rgb(120,140,200);
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+  /* .form{
+  } */
 </style>
