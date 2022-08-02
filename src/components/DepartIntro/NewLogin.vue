@@ -144,8 +144,8 @@ export default {
       }]
     }
   },
-  change(){
-	  this.$forceUpdate();  //强制刷新
+  change () {
+    this.$forceUpdate() // 强制刷新
   },
   methods: {
     submitForm (formName) {
