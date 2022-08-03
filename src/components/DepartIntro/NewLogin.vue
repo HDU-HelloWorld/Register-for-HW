@@ -1,6 +1,10 @@
 <template>
   <div class="login">
     <div class="wrapper">
+      <div class="card">
+        <div class="text-1">Welcome to</div>
+        <div class="text-2">Hello World</div>
+      </div>
       <div class="form">
         <h1 align="center" class="title">Hello World 22级招新信息收集表</h1>
         <el-form :model="form" :rules="rules" ref="form" label-width="80px" >
@@ -206,30 +210,57 @@ export default {
     margin-top: 20px;
   }
   .form{
-    position: relative;
-    height: 100%;
+    bottom: 20%;
+    border-radius: 25px;
+    position: fixed;
     width: 50%;
-    background-color: bisque;
-    left: 25%;
+    background-color: rgba(239,239,239);
+    margin-left: 100%;
     transition: all 1s;
-    z-index: -1;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   }
   .login{
     height: 100vh;
-    overflow: scroll;
-    scroll-snap-type: y mandatory;
   }
   .wrapper{
-    background-color: aqua;
-    scroll-snap-align: start;
+    background-color: rgba(239,239,239);
+    width: 100%;
+    height: 100vh;
   }
   .wrapper:hover>.form{
-    border-radius: 25px;
-    z-index: 1;
+    margin-left: 25%;
   }
-  @keyframes mymove
-{
-from {top:0px;}
-to {top:200px;}
+  .card{
+    position: relative;
+    top: 20vh;
+    left: 20vh;
+    width: 100%;
+    height: 60vh;
+    background-color:aliceblue;
+    text-align: center;
+    font-size: 10rem;
+    line-height: 16rem;
+    letter-spacing: .1em;
+    font-weight: lighter;
+    color: #4ea1d9;
+    background-image: linear-gradient(-135deg, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0);
+    -webkit-text-fill-color: rgba(0,0,0,0);
+    -webkit-background-clip: text;
+    user-select: none;
+  }
+  .text-1{
+    margin-right: 80vh;
+  }
+  .text-2{
+    margin-left: 10vh;
+  }
+  .card::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    right: 0;
+    bottom: 0;
+    /* background-image: url(@/assets/before.png); */
 }
 </style>
