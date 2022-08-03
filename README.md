@@ -48,3 +48,6 @@
 - <a href="https://www.tencent.com/zh-cn/about.html#about-con-1">⚽腾讯关于页面</a>
 - <a href="https://www.mihoyo.com/">🖥米哈游介绍</a>
 - <a href="https://www.ubisoft.com/en-us/company/about-us">⌨关于Ubisoft</a>
+- <a href="https://www.midjourney.com/home/?callbackUrl=https%3A%2F%2Fwww.midjourney.com%2Faccount%2F%3FcallbackUrl%3D%252Fpub%252Ffeed%252F%253FcallbackUrl%253D%25252Fapp%25252F">
+    ⌨Midjourney
+  </a>
