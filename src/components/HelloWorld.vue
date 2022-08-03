@@ -7,6 +7,7 @@
         <el-tab-pane label="后端部门" name="third"><back></back></el-tab-pane>
         <el-tab-pane label="报名表单" name="fouth"><NewLogin></NewLogin></el-tab-pane>
         <el-tab-pane label="ccf介绍" name="five"><ccfintro></ccfintro></el-tab-pane>
+        <el-tab-pane label="前端部门" name="sixth"><front></front></el-tab-pane>
       </el-tabs>
     </div>
   </div>
@@ -18,8 +19,9 @@ import Back from './DepartIntro/Back'
 import Peoplesmart from './DepartIntro/Peoplesmart'
 import NewLogin from './DepartIntro/NewLogin'
 import Ccfintro from './DepartIntro/Ccfintro'
+import Front from './DepartIntro/Front'
 export default {
-  components: { Admin, Back, Peoplesmart, NewLogin, Ccfintro },
+  components: { Admin, Back, Peoplesmart, NewLogin, Ccfintro, Front },
   name: 'HelloWorld',
   data () {
     return {
