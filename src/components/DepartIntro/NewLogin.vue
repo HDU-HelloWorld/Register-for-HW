@@ -245,6 +245,7 @@ export default {
     color: #4ea1d9;
     background-image: linear-gradient(-135deg, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0);
     -webkit-text-fill-color: rgba(0,0,0,0);
+    background-clip: border-box;
     -webkit-background-clip: text;
     user-select: none;
   }
@@ -261,6 +262,6 @@ export default {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     right: 0;
     bottom: 0;
-    /* background-image: url(@/assets/before.png); */
+    background-image: url('../../assets/before.png');
 }
 </style>
