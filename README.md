@@ -45,3 +45,6 @@
 - <a href="https://www.monyun.cn/">💬短信API接口</a>
 - <a href="https://developer.mozilla.org/zh-CN/docs/Web">💗MDN</a>
 - <a href="https://element.eleme.cn/#/zh-CN">📕Element UI</a>
+- <a href="https://www.tencent.com/zh-cn/about.html#about-con-1">⚽腾讯关于页面</a>
+- <a href="https://www.mihoyo.com/">🖥米哈游介绍</a>
+- <a href="https://www.ubisoft.com/en-us/company/about-us">⌨关于Ubisoft</a>
