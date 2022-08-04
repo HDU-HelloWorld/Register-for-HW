@@ -18,10 +18,7 @@
         </p>
       </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
+    <br><br><br><br>
     <div>
       <div class="title" id="2">发展历程</div>
       <div class="text">
@@ -80,15 +77,13 @@ p {
 .nav ul {
   width: 960px;
   margin: 0 auto;
-  overflow: hidden; /*注意因为ul设置为了li设置为了float，为了ul能显示，需要加这句话*/
-  /* background-color: gray; */
+  overflow: hidden;
   list-style: none;
 }
 .nav ul li {
   float: left;
   font-weight: 600;
   font-size: 20px;
-  /* list-style: none; */
 }
 .nav ul li a {
   color: rgb(0, 0, 0);
