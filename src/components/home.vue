@@ -1,5 +1,6 @@
 <template>
 <div>
+  <!-- 顶部展示 -->
   <div class="home">
     <!-- 顶部导航条 -->
     <div class="top-barrer">
@@ -13,14 +14,21 @@
       </div>
     </div>
   </div>
+  <!-- 部门介绍展示 -->
   <dep-intro></dep-intro>
+  <!-- CCF界面展示 -->
+  <ccfintro></ccfintro>
+  <!-- 报名页面展示 -->
+  <new-login></new-login>
 </div>
 </template>
 
 <script>
+import Ccfintro from './Ccfintro.vue'
 import DepIntro from './DepIntro.vue'
+import NewLogin from './NewLogin.vue'
 export default {
-  components: { DepIntro },
+  components: { DepIntro, Ccfintro, NewLogin },
   name: 'Home',
   data () {
     return {

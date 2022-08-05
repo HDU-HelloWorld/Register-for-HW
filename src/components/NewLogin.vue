@@ -234,7 +234,7 @@ export default {
     position: relative;
     top: 20vh;
     left: 20vh;
-    width: 100%;
+    width: 90%;
     height: 60vh;
     background-color:aliceblue;
     text-align: center;
@@ -262,6 +262,6 @@ export default {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     right: 0;
     bottom: 0;
-    background-image: url('../../assets/before.png');
+    background-image: url('../assets/before.png');
 }
 </style>

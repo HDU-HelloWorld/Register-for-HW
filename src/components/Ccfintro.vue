@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="showinfo">
     <img src="@/assets/ccflogo.jpg" alt="" width="100%" height="500px" />
     <div class="nav">
       <ul>
@@ -39,7 +39,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.showinfo{
+  margin-top: 600px;
+}
 .first {
   height: 1000px;
 }

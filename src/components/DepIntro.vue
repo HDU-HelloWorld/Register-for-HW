@@ -1,39 +1,56 @@
 <template>
   <div class="content">
-    <div class="imgs">
+    <div class="contro">
       <div class="imgs-icon">
-        <li><a><img src="@/assets/front.png"></a></li>
-        <li><a><img src="@/assets/back.jpg"></a></li>
-        <li><a><img src="@/assets/peoplesmart.png"></a></li>
-        <li><a><img src="@/assets/admin.png"></a></li>
+        <li><router-link to="/"><img src="@/assets/front.png"></router-link></li>
+        <li><router-link to="/Back"><img src="@/assets/back.jpg"></router-link></li>
+        <li><router-link to="/Peoplesmart"><img src="@/assets/peoplesmart.png"></router-link></li>
+        <li><router-link to="/Admin"><img src="@/assets/admin.png"></router-link></li>
       </div>
+    </div>
+    <div class="showinfo">
+      <!-- 指定组件的呈现位置 -->
+      <router-view></router-view>
     </div>
   </div>
 </template>
 <script>
 export default {
-
+  name: 'DepIntro',
+  data () {
+    return {
+    }
+  },
+  methods: {
+    replaceshow () {
+      this.$router.push({
+        name: 'Back'
+      })
+    }
+  }
 }
 </script>
 <style scoped lang="less">
   .content{
     width: 100%;
-    .imgs{
+    position: absolute;
+    .contro{
+      position: relative;
+      z-index: 999;
       width:55%;
-      height: 500px;
-      position: absolute;
+      height: 80px;
+      top: 450px;
       .imgs-icon{
+        margin-left: 40%;
+        z-index: 999;
         height: 80px;
-        position: relative;
-        left: 55%;
-        top: 450px;
-        width:40%;
+        width:60%;
         display: flex;
         justify-content: space-between;
         align-content: center;
         text-align: center;
         li{
-          width: 20%;
+          width: 15%;
           border-radius: 8px;
           a{
             display: block;
@@ -55,6 +72,11 @@ export default {
           }
         }
       }
+    }
+    .showinfo{
+      top: -80px;
+      width: 100%;
+      position: relative;
     }
   }
 </style>
