@@ -1,11 +1,12 @@
 <template>
   <div class="content">
     <div class="contro">
+      <!-- 部门介绍导航栏 -->
       <div class="imgs-icon">
-        <li><router-link to="/"><img src="@/assets/front.png"></router-link></li>
-        <li><router-link to="/Back"><img src="@/assets/back.jpg"></router-link></li>
-        <li><router-link to="/Peoplesmart"><img src="@/assets/peoplesmart.png"></router-link></li>
-        <li><router-link to="/Admin"><img src="@/assets/admin.png"></router-link></li>
+        <li><router-link @click="changeColor" class="navlist" to="/"><img src="@/assets/front.png"></router-link></li>
+        <li><router-link @click="changeColor" class="navlist" to="/Back"><img src="@/assets/back.jpg"></router-link></li>
+        <li><router-link @click="changeColor" class="navlist" to="/Peoplesmart"><img src="@/assets/peoplesmart.png"></router-link></li>
+        <li><router-link @click="changeColor" class="navlist" to="/Admin"><img src="@/assets/admin.png"></router-link></li>
       </div>
     </div>
     <div class="showinfo">
@@ -22,10 +23,18 @@ export default {
     }
   },
   methods: {
-    replaceshow () {
-      this.$router.push({
-        name: 'Back'
-      })
+    changeColor () {
+      let navlists = document.querySelectorAll('.navlist')
+      for (let i = 0; i < navlists.length; i++) {
+        navlists[i].onclick = function () {
+          // 恢复成默认样式
+          for (let i = 0; i < navlists.length; i++) {
+            navlists[i].style.borderColor = '#fff'
+          }
+          // 添加点击样式
+          this.style.borderColor = 'rgba(117, 159, 231, 0.98)'
+        }
+      }
     }
   }
 }
