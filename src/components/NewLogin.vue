@@ -1,11 +1,13 @@
 <template>
   <div class="login">
     <div class="wrapper">
-      <div class="card">
-        <div class="text-1">Welcome to</div>
-        <div class="text-2">Hello World</div>
+      <div class="outcard">
+        <div class="incard">
+          <div class="text-1">Welcome to</div>
+          <div class="text-2">Hello World</div>
+        </div>
       </div>
-      <div class="form">
+      <div class="form" :style="obj">
         <h1 align="center" class="title">Hello World 22级招新信息收集表</h1>
         <el-form :model="form" :rules="rules" ref="form" label-width="80px" >
           <el-row>
@@ -104,6 +106,11 @@
           </el-row>
         </el-form>
       </div>
+      <div class="button" @click="showForm">
+        <div class="text-3">Are You Ready?
+          <div class="showtext-3">Npm Run Dev!</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -113,6 +120,9 @@ export default {
   name: 'NewLogin',
   data () {
     return {
+      obj: {
+        marginLeft: '100%'
+      },
       form: {
         name: '',
         gender: '',
@@ -195,51 +205,55 @@ export default {
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()
+    },
+    showForm () {
+
     }
   }
 }
 </script>
 
 <style scoped>
-  .title{
+@keyframes mymove
+{
+  from {left: 0;}
+  to {left:500px;}
+}
+.title{
     margin-top: 30px;
     margin-bottom: 40px;
     font-size:35px;
   }
-  #check{
+#check{
     margin-top: 20px;
-  }
-  .form{
+}
+.form{
     bottom: 20%;
     border-radius: 25px;
     position: fixed;
     width: 50%;
     background-color: rgba(239,239,239);
-    margin-left: 100%;
     transition: all 1s;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
-  .login{
+}
+.login{
     height: 100vh;
-  }
-  .wrapper{
+}
+.wrapper{
     background-color: rgba(239,239,239);
     width: 100%;
     height: 100vh;
-  }
-  .wrapper:hover>.form{
-    margin-left: 25%;
-  }
-  .card{
+}
+.incard{
     position: relative;
     top: 20vh;
-    left: 20vh;
-    width: 90%;
+    left: 30vh;
+    width: 120vh;
     height: 60vh;
     background-color:aliceblue;
     text-align: center;
-    font-size: 10rem;
-    line-height: 16rem;
+    font-size: 8rem;
+    line-height: 12rem;
     letter-spacing: .1em;
     font-weight: lighter;
     color: #4ea1d9;
@@ -248,20 +262,66 @@ export default {
     background-clip: border-box;
     -webkit-background-clip: text;
     user-select: none;
-  }
-  .text-1{
-    margin-right: 80vh;
-  }
-  .text-2{
-    margin-left: 10vh;
-  }
-  .card::before{
+    /* animation: mymove 3s infinite linear; */
+}
+.text-1{
+  display: block;
+    text-align: left;
+    margin-left: 20px;
+}
+.text-2{
+    text-align: right;
+}
+.outcard::before{
+    position: absolute;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    left: 0;
+    content: url('../assets/before.png');
+    transform:scale(1.5,1.5);
+}
+.outcard::after{
+    position: absolute;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     right: 0;
-    bottom: 0;
-    background-image: url('../assets/before.png');
+    content: url('../assets/after.png');
+    transform:scale(1.5,1.5);
+}
+.button{
+  color: rgb(103,107,115);
+  width: 300px;
+  height: 30px;
+  left: 800px;
+  text-align: center;
+  position: relative;
+  top: 20px;
+  font-size: 1.6rem;
+  line-height: 1.1em;
+  font-family: "Brandon Text",serif;
+  user-select: none;
+  overflow: hidden;
+  letter-spacing: .1em;
+}
+.text-3{
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .5s;
+}
+.text-3:hover{
+  background-image: linear-gradient(-135deg, #418ae0, #56a0d8,  #56a0d8, #418ae0, #56a0d8,  #56a0d8, #418ae0);
+  padding-top: 30px;
+  background-position: left bottom;
+}
+.text-3:hover .showtext-3{
+  background-image: linear-gradient(-135deg, #418ae0, #56a0d8,  #56a0d8, #418ae0, #56a0d8,  #56a0d8, #418ae0);
+  margin-top: -60px;
+  background-position: left bottom;
+  color:white;
 }
 </style>
