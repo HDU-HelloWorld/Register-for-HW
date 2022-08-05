@@ -4,22 +4,22 @@
       <!-- 部门介绍导航栏 -->
       <div class="imgs-icon">
         <li @click="changeColor">
-          <router-link class="navList" ref="navlist" to="/"
+          <router-link class="navList" to="/"
             ><img src="@/assets/front.png"
           /></router-link>
         </li>
         <li @click="changeColor">
-          <router-link class="navList" ref="navlist" to="/Back"
+          <router-link class="navList" to="/Back"
             ><img src="@/assets/back.jpg"
           /></router-link>
         </li>
         <li @click="changeColor">
-          <router-link class="navList" ref="navlist" to="/Peoplesmart"
+          <router-link class="navList" to="/Peoplesmart"
             ><img src="@/assets/peoplesmart.png"
           /></router-link>
         </li>
         <li @click="changeColor">
-          <router-link class="navList" ref="navlist" to="/Admin"
+          <router-link class="navList" to="/Admin"
             ><img src="@/assets/admin.png"
           /></router-link>
         </li>
@@ -44,6 +44,27 @@ export default {
       // 给target的父级元素添加class
       index.target.parentNode.classList.add('borderBlue')
     }
+  },
+  mounted () {
+    // 根据路由的参数，改变导航栏的颜色
+    this.$nextTick(() => {
+      let path = this.$route.path
+      let navList = document.querySelectorAll('.navList')
+      switch (path) {
+        case '/':
+          navList[0].classList.add('borderBlue')
+          break
+        case '/Back':
+          navList[1].classList.add('borderBlue')
+          break
+        case '/Peoplesmart':
+          navList[2].classList.add('borderBlue')
+          break
+        case '/Admin':
+          navList[3].classList.add('borderBlue')
+          break
+      }
+    })
   }
 }
 </script>
