@@ -3,10 +3,10 @@
     <div class="contro">
       <!-- 部门介绍导航栏 -->
       <div class="imgs-icon">
-        <li><router-link @click="changeColor" class="navlist" to="/"><img src="@/assets/front.png"></router-link></li>
-        <li><router-link @click="changeColor" class="navlist" to="/Back"><img src="@/assets/back.jpg"></router-link></li>
-        <li><router-link @click="changeColor" class="navlist" to="/Peoplesmart"><img src="@/assets/peoplesmart.png"></router-link></li>
-        <li><router-link @click="changeColor" class="navlist" to="/Admin"><img src="@/assets/admin.png"></router-link></li>
+        <li @click="changeColor"><router-link  class="navlist" to="/"><img src="@/assets/front.png"></router-link></li>
+        <li @click="changeColor"><router-link  class="navlist" to="/Back"><img src="@/assets/back.jpg"></router-link></li>
+        <li @click="changeColor"><router-link  class="navlist" to="/Peoplesmart"><img src="@/assets/peoplesmart.png"></router-link></li>
+        <li @click="changeColor"><router-link  class="navlist" to="/Admin"><img src="@/assets/admin.png"></router-link></li>
       </div>
     </div>
     <div class="showinfo">
@@ -28,11 +28,11 @@ export default {
       for (let i = 0; i < navlists.length; i++) {
         navlists[i].onclick = function () {
           // 恢复成默认样式
-          for (let i = 0; i < navlists.length; i++) {
-            navlists[i].style.borderColor = '#fff'
+          for (let j = 0; j < navlists.length; j++) {
+            navlists[j].style.outlineColor = '#fff'
           }
           // 添加点击样式
-          this.style.borderColor = 'rgba(117, 159, 231, 0.98)'
+          this.style.outlineColor = 'rgba(117, 159, 231, 0.98)'
         }
       }
     }
