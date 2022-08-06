@@ -1,0 +1,12 @@
+@font-face {
+  font-family: bigtitle;
+  src: url('./文道现代体.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: descrip;
+  src: url('./猫国物语.ttf');
+  font-weight: normal;
+  font-style: normal;
+}

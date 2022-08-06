@@ -37,12 +37,13 @@ export default {
     .desc{
       width: 35%;
       h1{
-        width: 100%;
+        font-family: 'bigtitle';
         margin-bottom: 30px;
       }
       pre{
-        width: 100%;
+        font-family: 'descrip';
         font-size: 20px;
+        font-weight: 600;
       }
     }
   }
