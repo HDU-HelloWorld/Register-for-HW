@@ -7,7 +7,7 @@
           <div class="text-2">Hello World</div>
         </div>
       </div>
-      <div class="form" :style="obj">
+      <div class="form" :style= "obj">
         <h1 align="center" class="title">Hello World 22级招新信息收集表</h1>
         <el-form :model="form" :rules="rules" ref="form" label-width="80px" >
           <el-row>
@@ -90,7 +90,7 @@
           </el-row>
           <el-row id="check">
               <el-form-item>
-                <el-col :span="1" :offset="8">
+                <el-col :span="1" :offset="6">
                 <el-button
                   type="primary"
                   @click="submitForm('form')"
@@ -100,6 +100,11 @@
                 <el-col :span="4" :offset="3">
                 <el-button type="secondary" @click="resetForm('form')"
                   >清空</el-button
+                >
+                </el-col>
+                <el-col :span="4" :offset="0">
+                <el-button type="secondary" @click="missForm()"
+                  >返回</el-button
                 >
                 </el-col>
               </el-form-item>
@@ -207,7 +212,10 @@ export default {
       this.$refs[formName].resetFields()
     },
     showForm () {
-
+      this.obj.marginLeft = '25%'
+    },
+    missForm () {
+      this.obj.marginLeft = '100%'
     }
   }
 }
@@ -216,8 +224,8 @@ export default {
 <style scoped>
 @keyframes mymove
 {
-  from {left: 0;}
-  to {left:500px;}
+  from {background-position:120% 120%;}
+  to {background-position:0% 0%;}
 }
 .title{
     margin-top: 30px;
@@ -235,6 +243,7 @@ export default {
     background-color: rgba(239,239,239);
     transition: all 1s;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    z-index: 2;
 }
 .login{
     height: 100vh;
@@ -245,32 +254,36 @@ export default {
     height: 100vh;
 }
 .incard{
-    position: relative;
-    top: 20vh;
-    left: 30vh;
-    width: 120vh;
-    height: 60vh;
-    background-color:aliceblue;
-    text-align: center;
-    font-size: 8rem;
-    line-height: 12rem;
-    letter-spacing: .1em;
-    font-weight: lighter;
-    color: #4ea1d9;
-    background-image: linear-gradient(-135deg, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0);
-    -webkit-text-fill-color: rgba(0,0,0,0);
-    background-clip: border-box;
-    -webkit-background-clip: text;
-    user-select: none;
-    /* animation: mymove 3s infinite linear; */
+  position: relative;
+  display: block;
+  top: 20vh;
+  margin-left: 30vh;
+  width: 120vh;
+  height: 60vh;
+  background-color:aliceblue;
+  text-align: center;
+  font-size: 8rem;
+  line-height: 12rem;
+  letter-spacing: .1em;
+  font-weight: lighter;
+  color: #4ea1d9;
+  background-image: linear-gradient(-135deg, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0);
+  -webkit-text-fill-color: rgba(0,0,0,0);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  user-select: none;
+  animation: mymove 3s infinite linear;
+  background-size: 200% 100%;
+}
+.outcard{
+  position: relative;
 }
 .text-1{
-  display: block;
-    text-align: left;
-    margin-left: 20px;
+  text-align: left;
+  margin-left: 20px;
 }
 .text-2{
-    text-align: right;
+  text-align: right;
 }
 .outcard::before{
     position: absolute;
@@ -278,7 +291,8 @@ export default {
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    left: 0;
+    left: 300px;
+    top: 240px;
     content: url('../assets/before.png');
     transform:scale(1.5,1.5);
 }
@@ -288,7 +302,8 @@ export default {
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    right: 0;
+    right: 355px;
+    bottom: 45px;
     content: url('../assets/after.png');
     transform:scale(1.5,1.5);
 }
@@ -306,6 +321,7 @@ export default {
   user-select: none;
   overflow: hidden;
   letter-spacing: .1em;
+  z-index: 1;
 }
 .text-3{
   text-decoration: none;
