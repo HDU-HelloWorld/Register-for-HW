@@ -1,26 +1,54 @@
 <template>
-<div>
-  <!-- 顶部展示 -->
-  <div class="home">
+  <div class="showhome">
     <!-- 顶部导航条 -->
-    <div class="top-barrer">
-      <div class="icon-hw">
-        <img src="@/assets/logo.jpg">
-      </div>
-      <div class="right-info">
-        <li><a href="">部门介绍</a></li>
-        <li><a href="">CCF介绍</a></li>
-        <li><a href="">加入我们</a></li>
+    <div class="home">
+      <div class="top-barrer">
+        <div class="icon-hw">
+          <img src="@/assets/logo.jpg">
+        </div>
+        <div class="right-info">
+          <li><a href="">部门介绍</a></li>
+          <li><a href="">CCF介绍</a></li>
+          <li><a href="">加入我们</a></li>
+        </div>
       </div>
     </div>
+    <!-- 使用fullpage制作 -->
+    <mv-full-page
+    :isPointer='true'
+    pointerPos='right'
+    :isV='isV'
+    :pages='3'
+    :page.sync='currentPage'
+    :bgArr='bgArr'
+    :isCache='false'
+    :transition="{
+        duration: '700ms', // 动画时长
+        timingFun: 'ease', // 动画速度曲线
+        delay: '0s', // 动画延迟
+      }"
+    >
+      <template #page1>
+        <!-- 部门介绍展示 -->
+        <div class="page1">
+          <dep-intro></dep-intro>
+        </div>
+      </template>
+
+      <template #page2>
+        <div class="page2">
+        <!-- CCF介绍展示 -->
+          <ccfintro></ccfintro>
+        </div>
+      </template>
+      <template #page3>
+        <div class="page3">
+          <!-- 报名页面展示 -->
+          <new-login></new-login>
+        </div>
+      </template>
+    </mv-full-page>
   </div>
-  <!-- 部门介绍展示 -->
-  <dep-intro></dep-intro>
-  <!-- CCF界面展示 -->
-  <ccfintro></ccfintro>
-  <!-- 报名页面展示 -->
-  <new-login></new-login>
-</div>
 </template>
 
 <script>
@@ -32,6 +60,9 @@ export default {
   name: 'Home',
   data () {
     return {
+      isV: true,
+      currentPage: 1
+      // bgArr: ['#fff', '#fff', 'pink', 'green']
     }
   },
   methodes: {
@@ -41,16 +72,19 @@ export default {
 <style scoped lang="less">
   .home{
     width: 100%;
+    position: absolute;
+    z-index: 999;
     display: flex;
     justify-content: space-evenly;
     align-content: center;
-    border-bottom: 1px rgba(0,0,0,0.3) solid;
+    box-shadow: 5px 0px 5px rgba(0,0,0,0.3);
     min-width: 80%;
     .top-barrer{
+      z-index: 99;
+      background-color: #fff;
       min-width: 50%;
       width: 90%;
       height: 70px;
-      background-color: #fff;
       display: flex;
       justify-content: space-between;
       align-content: center;
@@ -83,6 +117,16 @@ export default {
           }
         }
       }
+    }
+  }
+  .page1{
+    width: 100%;
+    margin-top: 80px;
+  }
+  .page2{
+    width: 100%;
+    .test{
+      width: 100%;
     }
   }
 </style>

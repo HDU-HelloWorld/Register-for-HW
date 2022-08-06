@@ -40,9 +40,6 @@ export default {
 </script>
 
 <style scoped>
-.showinfo{
-  margin-top: 600px;
-}
 .first {
   height: 1000px;
 }
