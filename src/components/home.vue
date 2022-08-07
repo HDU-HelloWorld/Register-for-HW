@@ -84,7 +84,7 @@ export default {
       background-color: #fff;
       min-width: 50%;
       width: 90%;
-      height: 70px;
+      height: 50px;
       display: flex;
       justify-content: space-between;
       align-content: center;
@@ -98,7 +98,7 @@ export default {
       }
       .right-info{
         height: 100%;
-        line-height: 70px;
+        align-items: center;
         display: flex;
         width: 40%;
         justify-content: space-between;
@@ -106,6 +106,9 @@ export default {
           min-width: 150px;
           width: 80%;
           height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           a{
             width: 100%;
             min-width: 40%;

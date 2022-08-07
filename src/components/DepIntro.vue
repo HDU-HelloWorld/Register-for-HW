@@ -72,16 +72,17 @@ export default {
 .content {
   width: 100%;
   position: absolute;
+  height: 100%;
   .contro {
     position: relative;
     z-index: 999;
     width: 55%;
-    height: 80px;
-    top: 450px;
+    height: 15%;
+    top: 75%;
     .imgs-icon {
       margin-left: 40%;
       z-index: 999;
-      height: 80px;
+      height: 100%;
       width: 60%;
       display: flex;
       justify-content: space-between;
@@ -117,7 +118,7 @@ export default {
     }
   }
   .showinfo {
-    top: -80px;
+    top: -100px;
     width: 100%;
     position: relative;
   }

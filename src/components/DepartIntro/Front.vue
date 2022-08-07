@@ -34,6 +34,7 @@ export default {
     .desc{
       width: 35%;
       h1{
+        font-size: 40px;
         font-family: 'bigtitle';
         margin-bottom: 30px;
       }
