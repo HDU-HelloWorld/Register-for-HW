@@ -218,12 +218,12 @@ export default {
       this.obj.marginLeft = '100%'
     }
   },
-  mounted: {
-    fit () {
-      var devicewidth = document.documentElement.clientWidth// 获取当前分辨率下的可是区域宽度
-      var scale = devicewidth / 1920 // 分母——设计稿的尺寸
-      document.body.style.zoom = scale// 放大缩小相应倍数
-    }
+  mounted () {
+    // fit () {
+    //   var devicewidth = document.documentElement.clientWidth// 获取当前分辨率下的可是区域宽度
+    //   var scale = devicewidth / 1920 // 分母——设计稿的尺寸
+    //   document.body.style.zoom = scale// 放大缩小相应倍数
+    // }
   }
 }
 </script>
@@ -244,13 +244,17 @@ export default {
 }
 .form{
     bottom: 14rem;
+    top: 80px;
     border-radius: 25px;
-    position: fixed;
+    position: absolute;
+    height: 85%;
     width: 60rem;
+    left: 17rem;
     background-color: rgba(239,239,239);
     transition: all 1s;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     z-index: 2;
+    overflow: scroll;
 }
 .login{
     height: 100vh;

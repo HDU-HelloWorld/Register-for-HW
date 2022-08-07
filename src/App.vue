@@ -13,14 +13,24 @@ export default {
 </script>
 
 <style>
-  *{
-    padding: 0px;
-    margin: 0px;
-  }
-  li{
-    list-style: none;
-  }
-  a{
-    text-decoration: none;
-  }
+*{
+  padding: 0px;
+  margin: 0px;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+body{
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+html{
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
 </style>

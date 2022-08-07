@@ -7,6 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/myfont/font.css'
 import 'mv-full-page/lib-dist/mv-full-page.css'
 import MvFullPage from 'mv-full-page'
+//  引入适配文件
+import './utils/rem.js'
 Vue.use(MvFullPage)
 Vue.config.productionTip = false
 Vue.use(ElementUI)

@@ -7,7 +7,7 @@
           <img src="@/assets/logo.jpg">
         </div>
         <div class="right-info">
-          <li><a href="">部门介绍</a></li>
+          <li><a @click="test">部门介绍</a></li>
           <li><a href="">CCF介绍</a></li>
           <li><a href="">加入我们</a></li>
         </div>
@@ -20,7 +20,6 @@
     :isV='isV'
     :pages='3'
     :page.sync='currentPage'
-    :bgArr='bgArr'
     :isCache='false'
     :transition="{
         duration: '700ms', // 动画时长
@@ -62,10 +61,12 @@ export default {
     return {
       isV: true,
       currentPage: 1
-      // bgArr: ['#fff', '#fff', 'pink', 'green']
     }
   },
-  methodes: {
+  methods: {
+    test (event) {
+      console.log(event.target)
+    }
   }
 }
 </script>
@@ -124,10 +125,12 @@ export default {
   }
   .page1{
     width: 100%;
-    margin-top: 80px;
+    margin-top: 70px;
+    height: 100%;
   }
   .page2{
     width: 100%;
+    height: 100%;
     .test{
       width: 100%;
     }
