@@ -1,15 +1,14 @@
 <template>
-  <div class="showinfo">
-    <img src="@/assets/ccflogo.jpg" alt="" width="100%" height="500px" />
-    <div class="nav">
+  <div class="showinfo" style="background:url('/assets/ccflogo.jpg')">
+    <!-- <img src="@/assets/ccflogo.jpg" alt="" width="100%" height="500px" /> -->
+    <!-- <div class="nav">
       <ul>
         <li><a href="#1">简介</a></li>
         <li><a href="#2">发展历程</a></li>
       </ul>
-    </div>
+    </div> -->
     <div>
-      <div class="title" id="1">简介</div>
-      <br>
+      <div class="title">简介</div>
       <div class="">
         <p>
           中国计算机学会（CCF）成立于1962年，全国一级学会，独立社团法人，中国科学技术协会成员。
@@ -19,9 +18,8 @@
         </p>
       </div>
     </div>
-    <br /><br /><br /><br />
-    <div class="title" id="2">发展历程</div>
-    <br><br>
+    <br>
+    <div class="title1" id="2">发展历程</div>
     <div class="day12">
       <el-timeline>
         <el-timeline-item timestamp="1962年6月" placement="top" size="large" color="#65c5f1" class="left1">
@@ -79,6 +77,15 @@ export default {
   height: 1000px;
 }
 .title {
+  margin-top: 70px;
+  text-align: center;
+  font-size: 30px;
+  color: #2a2e2e;
+  font-family: "TencentSansw7";
+  font-weight: 800;
+  font-style: oblique;
+}
+.title1 {
   text-align: center;
   font-size: 30px;
   color: #2a2e2e;
@@ -90,7 +97,7 @@ export default {
   margin: auto;
 }
 body {
-  background: url("/assets/ccflogo.jpg");
+  background-image: url("/assets/ccflogo.jpg");
 }
 p {
   margin-left: 20%;
@@ -142,7 +149,7 @@ p {
   width: 80%;
   position: relative;
   left: 30%;
-  font-size: 20px;
+  font-size: 15px;
 }
 .day12 {
   width: 100%;
