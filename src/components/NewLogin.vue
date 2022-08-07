@@ -212,7 +212,7 @@ export default {
       this.$refs[formName].resetFields()
     },
     showForm () {
-      this.obj.marginLeft = '25%'
+      this.obj.marginLeft = '8%'
     },
     missForm () {
       this.obj.marginLeft = '100%'
@@ -236,10 +236,10 @@ export default {
     margin-top: 20px;
 }
 .form{
-    bottom: 20%;
+    bottom: 14rem;
     border-radius: 25px;
     position: fixed;
-    width: 50%;
+    width: 60rem;
     background-color: rgba(239,239,239);
     transition: all 1s;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -280,7 +280,7 @@ export default {
 }
 .text-1{
   text-align: left;
-  margin-left: 20px;
+  margin-left: 1.5rem;
 }
 .text-2{
   text-align: right;
@@ -291,8 +291,8 @@ export default {
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    left: 300px;
-    top: 240px;
+    left: 19.5rem;
+    top: 15rem;
     content: url('../assets/before.png');
     transform:scale(1.5,1.5);
 }
@@ -302,19 +302,19 @@ export default {
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    right: 355px;
-    bottom: 45px;
+    left: 149vh;
+    bottom: 3rem;
     content: url('../assets/after.png');
     transform:scale(1.5,1.5);
 }
 .button{
   color: rgb(103,107,115);
-  width: 300px;
-  height: 30px;
-  left: 800px;
+  width: 15rem;
+  height: 2rem;
+  left: 51rem;
   text-align: center;
   position: relative;
-  top: 20px;
+  top: 1rem;
   font-size: 1.6rem;
   line-height: 1.1em;
   font-family: "Brandon Text",serif;
@@ -331,12 +331,12 @@ export default {
 }
 .text-3:hover{
   background-image: linear-gradient(-135deg, #418ae0, #56a0d8,  #56a0d8, #418ae0, #56a0d8,  #56a0d8, #418ae0);
-  padding-top: 30px;
+  padding-top: 2.2rem;
   background-position: left bottom;
 }
 .text-3:hover .showtext-3{
   background-image: linear-gradient(-135deg, #418ae0, #56a0d8,  #56a0d8, #418ae0, #56a0d8,  #56a0d8, #418ae0);
-  margin-top: -60px;
+  margin-top: -4rem;
   background-position: left bottom;
   color:white;
 }
