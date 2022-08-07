@@ -1,6 +1,5 @@
 <template>
-  <div class="showinfo" style="background:url('/assets/ccflogo.jpg')">
-    <!-- <img src="@/assets/ccflogo.jpg" alt="" width="100%" height="500px" /> -->
+  <div class="showinfo" >
     <!-- <div class="nav">
       <ul>
         <li><a href="#1">简介</a></li>
@@ -86,7 +85,8 @@ export default {
   font-style: oblique;
 }
 .title1 {
-  text-align: center;
+  /* text-align: left; */
+  margin-left: 30%;
   font-size: 30px;
   color: #2a2e2e;
   font-family: "TencentSansw7";
@@ -106,7 +106,7 @@ p {
   padding: auto;
   color: rgb(97, 98, 99);
 }
-#a {
+/* #a {
   font-size: 20px;
 }
 .nav {
@@ -138,7 +138,7 @@ p {
 }
 .nav ul li a.last {
   border-right: none;
-}
+} */
 .history {
   margin-left: 45%;
 }
@@ -148,7 +148,7 @@ p {
 .el-timeline {
   width: 80%;
   position: relative;
-  left: 30%;
+  left: 20%;
   font-size: 15px;
 }
 .day12 {
@@ -156,4 +156,7 @@ p {
   display: inline-block;
   margin-right: 10%;
 }
+/* .image {
+  display: inline-block;
+} */
 </style>
