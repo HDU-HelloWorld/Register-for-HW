@@ -40,7 +40,6 @@ export default {
   },
   methods: {
     changeColor (index) {
-      console.log(index.target)
       // 给target的父级元素添加class
       index.target.parentNode.classList.add('borderBlue')
     }

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-model -->
 <template>
   <div class="showhome">
     <!-- 顶部导航条 -->
@@ -7,9 +8,9 @@
           <img src="@/assets/logo.jpg">
         </div>
         <div class="right-info">
-          <li><a @click="test">部门介绍</a></li>
-          <li><a href="">CCF介绍</a></li>
-          <li><a href="">加入我们</a></li>
+          <li @click="test" class="navshow"><a>部门介绍</a></li>
+          <li @click="test" class="navshow"><a>CCF介绍</a></li>
+          <li @click="test" class="navshow"><a>加入我们</a></li>
         </div>
       </div>
     </div>
@@ -20,12 +21,13 @@
     :isV='isV'
     :pages='3'
     :page.sync='currentPage'
-    :isCache='false'
+    :isCache='true'
     :transition="{
         duration: '700ms', // 动画时长
         timingFun: 'ease', // 动画速度曲线
         delay: '0s', // 动画延迟
       }"
+    :config='config'
     >
       <template #page1>
         <!-- 部门介绍展示 -->
@@ -60,12 +62,54 @@ export default {
   data () {
     return {
       isV: true,
-      currentPage: 1
+      currentPage: 1,
+      page: 0,
+      config: {
+        height: '100%',
+        width: '100',
+        loop: 'true'
+      }
     }
   },
   methods: {
     test (event) {
-      console.log(event.target)
+      //  点击时颜色发生变化
+      let navshows = document.querySelectorAll('.navshow')
+      for (let i = 0; i < 3; i++) {
+        navshows[i].firstElementChild.style.color = 'rgb(103, 107, 115)'
+      }
+      event.target.style.color = 'rgb(55, 120, 229)'
+      //  点击对应导航时发生页面跳转
+      let info = event.target.innerText
+      if (info === '部门介绍') {
+        this.currentPage = 1
+      }
+      if (info === 'CCF介绍') {
+        this.currentPage = 2
+      }
+      if (info === '加入我们') {
+        this.currentPage = 3
+      }
+    }
+  },
+  mounted () {
+    let navshows = document.querySelectorAll('.navshow')
+    let index = this.currentPage - 1
+    for (let i = 0; i < 3; i++) {
+      navshows[i].firstElementChild.style.color = 'rgb(103, 107, 115)'
+    }
+    navshows[index].firstElementChild.style.color = 'rgb(55, 120, 229)'
+  },
+  watch: {
+    currentPage: {
+      handler (newValue) {
+        let navshows = document.querySelectorAll('.navshow')
+        let index = newValue - 1
+        for (let i = 0; i < 3; i++) {
+          navshows[i].firstElementChild.style.color = 'rgb(103, 107, 115)'
+        }
+        navshows[index].firstElementChild.style.color = 'rgb(55, 120, 229)'
+      }
     }
   }
 }
@@ -115,6 +159,7 @@ export default {
             min-width: 40%;
             color: rgb(103, 107, 115);
             transition: 0.2s;
+            cursor: pointer;
             &:hover{
               color: rgb(55, 120, 229);
             }

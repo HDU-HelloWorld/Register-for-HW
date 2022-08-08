@@ -8,9 +8,9 @@
     </div>
     <br>
     <div class="develop">
-      <div class="title1" id="2">发展历程</div>
+      <div class="title1">发展历程</div>
       <div class="day12">
-        <el-timeline>
+        <el-timeline id="cardone">
           <el-timeline-item timestamp="1962年6月" placement="top" size="large" color="#65c5f1" class="left1">
             <div class="card">
               <h4>成立中国电子学会计算机专业委员会第一届委员会</h4>
@@ -31,6 +31,8 @@
               <h4>中国计算机学会青年计算机科技论坛YOCSEF创建</h4>
             </div>
           </el-timeline-item>
+        </el-timeline>
+        <el-timeline id="cardtwo">
           <el-timeline-item timestamp="1998年8月" placement="top" color="#65c5f1" class="left3">
             <div class="card">
               <h4>学会网站正式开通，<a href="http://www.ccf.org.cn">http://www.ccf.org.cn</a></h4>
@@ -74,7 +76,6 @@ export default {
 }
 .Intro{
   width: 100%;
-  background-color: pink;
   height: 30%;
   .title {
   margin-top: 50px;
@@ -91,35 +92,36 @@ export default {
     margin-right: 20%;
     font-weight: 600;
     padding: auto;
+    font-size: 20px;
     color: rgb(97, 98, 99);
   }
 }
 .develop{
   height: 80%;
   .title1 {
-    margin-left: 30%;
-    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
     color: #2a2e2e;
     font-family: "TencentSansw7";
     font-weight: 800;
     font-style: oblique;
+    margin-bottom: 35px;
   }
 }
 .card{
   margin:5px 0;
 }
 .el-timeline {
-  width: 80%;
-  height: 100%;
+  width: 100%;
   position: relative;
   left: 20%;
   font-size: 15px;
 }
 .day12 {
   height: 80%;
-  width: 100%;
-  display: inline-block;
-  margin-right: 10%;
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
 }
 </style>
