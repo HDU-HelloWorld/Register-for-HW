@@ -37,6 +37,7 @@ export default {
     .desc{
       width: 38%;
       h1{
+        margin-top: 5%;
         margin-left: 5%;
         font-size: 40px;
         font-family: 'bigtitle';

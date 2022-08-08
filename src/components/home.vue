@@ -142,7 +142,7 @@ export default {
       z-index: 99;
       min-width: 50%;
       width: 90%;
-      height: 50px;
+      height: 60px;
       display: flex;
       justify-content: space-between;
       align-content: center;
@@ -172,6 +172,7 @@ export default {
             min-width: 40%;
             color: rgb(103, 107, 115);
             transition: 0.2s;
+            font-size: 20px;
             cursor: pointer;
             &:hover{
               color: rgb(55, 120, 229);
