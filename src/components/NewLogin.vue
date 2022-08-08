@@ -252,7 +252,7 @@ export default {
     left: 17rem;
     background-color: rgba(239,239,239);
     transition: all 1s;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 10 10px 25px rgba(0,0,0,0.0.3);
     z-index: 2;
     overflow: scroll;
 }
@@ -260,7 +260,7 @@ export default {
     height: 100vh;
 }
 .wrapper{
-    background-color: rgba(239,239,239);
+    /* background-color: rgba(239,239,239); */
     width: 100%;
     height: 100vh;
 }
@@ -268,7 +268,7 @@ export default {
   position: relative;
   display: block;
   top: 20vh;
-  margin-left: 30vh;
+  margin-left: 20%;
   width: 120vh;
   height: 60vh;
   background-color:aliceblue;
@@ -302,8 +302,9 @@ export default {
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    left: 19.5rem;
-    top: 15rem;
+    height: 100%;
+    top: 65%;
+    left: 20%;
     content: url('../assets/before.png');
     transform:scale(1.5,1.5);
 }
@@ -313,8 +314,8 @@ export default {
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    left: 149vh;
-    bottom: 3rem;
+    right: 25%;
+    top: 92%;
     content: url('../assets/after.png');
     transform:scale(1.5,1.5);
 }

@@ -72,6 +72,7 @@ export default {
   width: 100%;
   position: absolute;
   height: 100%;
+  margin-top: 1%;
   .contro {
     position: relative;
     z-index: 999;
