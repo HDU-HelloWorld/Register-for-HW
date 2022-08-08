@@ -10,7 +10,8 @@
         学习后端.run();
         学习java.run();
       }
-    加入我们,让我们一起来学习酷炫的后端以及实用的Java!
+    加入我们,让我们一起来学习酷炫的后端
+    以及实用的Java!
       </pre>
     </div>
   </div>
@@ -28,13 +29,14 @@ export default {
     display: flex;
     justify-content: space-evenly;
     img{
-      margin-top: 50px;
+      margin-top: 2%;
       border-radius: 15px;
-      width:50%
+      width:60%
     }
     .desc{
-      width: 35%;
+      width: 38.5%;
       h1{
+        margin-left: 5%;
         font-size: 40px;
         font-family: 'bigtitle';
         margin-bottom: 30px;

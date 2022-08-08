@@ -136,7 +136,7 @@ export default {
     justify-content: space-evenly;
     align-content: center;
     background: rgba(255, 255, 255,);
-    box-shadow: 5px 5px 100px rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid rgba(78, 75, 75, 0.3);
     min-width: 80%;
     .top-barrer{
       z-index: 99;
@@ -184,7 +184,6 @@ export default {
   .page1{
     width: 100%;
     height: 100%;
-    // background-color: #fff;
   }
   .page2{
     width: 100%;

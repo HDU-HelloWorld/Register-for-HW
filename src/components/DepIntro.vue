@@ -78,15 +78,15 @@ export default {
     z-index: 999;
     width: 55%;
     height: 15%;
-    top: 75%;
+    top: 80%;
     .imgs-icon {
-      margin-left: 40%;
+      margin-left: 70%;
       z-index: 999;
       height: 100%;
-      width: 60%;
+      width: 40%;
       display: flex;
       justify-content: space-between;
-      align-content: center;
+      align-content: right;
       text-align: center;
       li {
         width: 15%;
