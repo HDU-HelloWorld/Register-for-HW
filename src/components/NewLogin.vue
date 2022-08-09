@@ -3,13 +3,19 @@
     <div class="wrapper">
       <div class="outcard">
         <div class="incard">
-          <div class="text-1">Welcome to</div>
-          <div class="text-2">Hello World</div>
+          <div class="row">
+            <div class="punc">『</div>
+            <div class="text">Welcome to</div>
+          </div>
+          <div class="row">
+            <div class="text">HelloWorld</div>
+            <div class="punc">』</div>
+          </div>
         </div>
       </div>
-      <div class="form" :style= "obj">
+      <div class="form" :style="obj">
         <h1 align="center" class="title">Hello World 22级招新信息收集表</h1>
-        <el-form :model="form" :rules="rules" ref="form" label-width="80px" >
+        <el-form :model="form" :rules="rules" ref="form" label-width="80px">
           <el-row>
             <el-col :span="8" :offset="3">
               <el-form-item label="姓名" prop="name" id="m">
@@ -18,7 +24,7 @@
             </el-col>
             <el-col :span="8" :offset="1">
               <el-form-item label="性别">
-                <el-select v-model="form.gender" >
+                <el-select v-model="form.gender">
                   <el-option
                     v-for="item in options1"
                     :key="item.value"
@@ -37,7 +43,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="8" :offset="1">
-              <el-form-item label="所在学院" prop="college" >
+              <el-form-item label="所在学院" prop="college">
                 <el-input v-model="form.college"></el-input>
               </el-form-item>
             </el-col>
@@ -77,42 +83,42 @@
           <el-row>
             <el-col :span="17" :offset="3">
               <el-form-item label="自我介绍" prop="selfintroduction">
-                <el-input type='textarea' v-model="form.selfintroduction"></el-input>
+                <el-input
+                  type="textarea"
+                  v-model="form.selfintroduction"
+                ></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="17" :offset="3">
               <el-form-item label="获奖经历" prop="honor">
-                <el-input type='textarea' v-model="form.honor"></el-input>
+                <el-input type="textarea" v-model="form.honor"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row id="check">
-              <el-form-item>
-                <el-col :span="1" :offset="6">
-                <el-button
-                  type="primary"
-                  @click="submitForm('form')"
+            <el-form-item>
+              <el-col :span="1" :offset="6">
+                <el-button type="primary" @click="submitForm('form')"
                   >提交</el-button
                 >
-                </el-col>
-                <el-col :span="4" :offset="3">
+              </el-col>
+              <el-col :span="4" :offset="3">
                 <el-button type="secondary" @click="resetForm('form')"
                   >清空</el-button
                 >
-                </el-col>
-                <el-col :span="4" :offset="0">
-                <el-button type="secondary" @click="missForm()"
-                  >返回</el-button
-                >
-                </el-col>
-              </el-form-item>
+              </el-col>
+              <el-col :span="4" :offset="0">
+                <el-button type="secondary" @click="missForm()">返回</el-button>
+              </el-col>
+            </el-form-item>
           </el-row>
         </el-form>
       </div>
       <div class="button" @click="showForm">
-        <div class="text-3">Are You Ready?
+        <div class="text-3">
+          Are You Ready?
           <div class="showtext-3">Npm Run Dev!</div>
         </div>
       </div>
@@ -228,127 +234,148 @@ export default {
 }
 </script>
 
-<style scoped>
-@keyframes mymove
-{
-  from {background-position:120% 120%;}
-  to {background-position:0% 0%;}
-}
-.title{
-    margin-top: 30px;
-    margin-bottom: 40px;
-    font-size:35px;
+<style scoped lang="less">
+@keyframes mymove {
+  from {
+    background-position: 120% 120%;
   }
-#check{
-    margin-top: 20px;
+  to {
+    background-position: 0% 0%;
+  }
 }
-.form{
-    bottom: 14rem;
-    top: 80px;
-    border-radius: 25px;
-    position: absolute;
-    height: 85%;
-    width: 60rem;
-    left: 17rem;
-    background-color: rgba(239,239,239);
-    transition: all 1s;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    z-index: 2;
-    overflow: scroll;
+.title {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  font-size: 35px;
 }
-.login{
-    height: 100vh;
+#check {
+  margin-top: 20px;
 }
-.wrapper{
-    background-color: rgba(239,239,239);
-    width: 100%;
-    height: 100vh;
+.form {
+  bottom: 14rem;
+  top: 80px;
+  border-radius: 25px;
+  position: absolute;
+  height: 85%;
+  width: 60rem;
+  left: 17rem;
+  background-color: rgba(239, 239, 239);
+  transition: all 1s;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  overflow: scroll;
 }
-.incard{
+.login {
+  height: 100vh;
+}
+.wrapper {
+  background-color: #fff;
+  width: 100%;
+  height: 100vh;
+}
+.incard {
   position: relative;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
   top: 20vh;
-  margin-left: 30vh;
-  width: 120vh;
+  width: 100%;
   height: 60vh;
-  background-color:aliceblue;
+  background-color: aliceblue;
   text-align: center;
   font-size: 8rem;
-  line-height: 12rem;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   font-weight: lighter;
   color: #4ea1d9;
-  background-image: linear-gradient(-135deg, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0, #56a0d8, #dc8bc3, #56a0d8, #418ae0);
-  -webkit-text-fill-color: rgba(0,0,0,0);
+  background-image: linear-gradient(
+    -135deg,
+    #418ae0,
+    #56a0d8,
+    #dc8bc3,
+    #56a0d8,
+    #418ae0,
+    #56a0d8,
+    #dc8bc3,
+    #56a0d8,
+    #418ae0
+  );
+  -webkit-text-fill-color: rgba(0, 0, 0, 0);
   background-clip: border-box;
   -webkit-background-clip: text;
   user-select: none;
   animation: mymove 3s infinite linear;
   background-size: 200% 100%;
 }
-.outcard{
-  position: relative;
+.punc {
+  font-size: 5rem;
+  justify-content: start;
+  align-self: flex-start;
+  margin: 0 30px;
+  &:nth-child(2) {
+    align-self: flex-end;
+  }
 }
-.text-1{
-  text-align: left;
-  margin-left: 1.5rem;
+.row {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 80%;
+  height: 20vh;
 }
-.text-2{
-  text-align: right;
+.row:nth-child(2) {
+  margin-top: 20px;
+  justify-content: end;
 }
-.outcard::before{
-    position: absolute;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    left: 19.5rem;
-    top: 15rem;
-    content: url('../assets/before.png');
-    transform:scale(1.5,1.5);
-}
-.outcard::after{
-    position: absolute;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    left: 149vh;
-    bottom: 3rem;
-    content: url('../assets/after.png');
-    transform:scale(1.5,1.5);
-}
-.button{
-  color: rgb(103,107,115);
+.button {
+  color: rgb(103, 107, 115);
   width: 15rem;
   height: 2rem;
   left: 51rem;
   text-align: center;
-  position: relative;
-  top: 1rem;
+  position: absolute;
+  top: 80vh;
   font-size: 1.6rem;
   line-height: 1.1em;
-  font-family: "Brandon Text",serif;
+  font-family: 'Brandon Text', serif;
   user-select: none;
   overflow: hidden;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   z-index: 1;
 }
-.text-3{
+.text-3 {
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
-  transition: all .5s;
+  transition: all 0.5s;
 }
-.text-3:hover{
-  background-image: linear-gradient(-135deg, #418ae0, #56a0d8,  #56a0d8, #418ae0, #56a0d8,  #56a0d8, #418ae0);
+.text-3:hover {
+  background-image: linear-gradient(
+    -135deg,
+    #418ae0,
+    #56a0d8,
+    #56a0d8,
+    #418ae0,
+    #56a0d8,
+    #56a0d8,
+    #418ae0
+  );
   padding-top: 2.2rem;
   background-position: left bottom;
 }
-.text-3:hover .showtext-3{
-  background-image: linear-gradient(-135deg, #418ae0, #56a0d8,  #56a0d8, #418ae0, #56a0d8,  #56a0d8, #418ae0);
+.text-3:hover .showtext-3 {
+  background-image: linear-gradient(
+    -135deg,
+    #418ae0,
+    #56a0d8,
+    #56a0d8,
+    #418ae0,
+    #56a0d8,
+    #56a0d8,
+    #418ae0
+  );
   margin-top: -4rem;
   background-position: left bottom;
-  color:white;
+  color: white;
 }
 </style>
