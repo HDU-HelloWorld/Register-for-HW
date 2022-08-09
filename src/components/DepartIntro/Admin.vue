@@ -3,8 +3,7 @@
     <img src="@/assets/img/2.jpeg" alt="">
     <div class="desc">
       <h1>行政部门</h1>
-      <pre>
-  HelloWorld行政部门是一个友爱团结的大家庭。
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;HelloWorld行政部门是一个友爱团结的大家庭。
 加入HelloWorld行政部门，你可以提高自己的组织管理能力
 参加并策划组织社团的活动；你也可以提高自己的社交能力
 你还可以制作视频和海报，可以参与摄影和撰稿，
@@ -15,7 +14,7 @@
 如果你感兴趣，都可以去其他的部门蹭课，
 还不会有硬性的作业要求喔。
   欢迎加入行政部门，以热情的心为社团注入活力！！
-      </pre>
+      </p>
     </div>
   </div>
 </template>
@@ -32,18 +31,20 @@ export default {
     display: flex;
     justify-content: space-evenly;
     img{
-      margin-top: 50px;
+      margin-top: 2%;
       border-radius: 15px;
-      width:50%
+      width:60%
     }
     .desc{
       width: 35%;
       h1{
+        margin-top: 5%;
+        margin-left: 5%;
         font-size: 40px;
         font-family: 'bigtitle';
         margin-bottom: 30px;
       }
-      pre{
+      p{
         font-family: 'descrip';
         font-size: 20px;
         font-weight: 600;

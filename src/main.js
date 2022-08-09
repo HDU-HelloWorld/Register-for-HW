@@ -1,14 +1,18 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+//  引入UI库
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // 引入字体样式
 import '@/assets/myfont/font.css'
+//  引入fullpage插件
 import 'mv-full-page/lib-dist/mv-full-page.css'
 import MvFullPage from 'mv-full-page'
 //  引入适配文件
 import './utils/rem.js'
+import VuePrlx from 'vue-prlx'
+Vue.use(VuePrlx)
 Vue.use(MvFullPage)
 Vue.config.productionTip = false
 Vue.use(ElementUI)

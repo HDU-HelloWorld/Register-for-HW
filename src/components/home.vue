@@ -22,28 +22,29 @@
     :pages='3'
     :page.sync='currentPage'
     :isCache='true'
+    :bgArr="bgArr"
     :transition="{
-        duration: '700ms', // 动画时长
-        timingFun: 'ease', // 动画速度曲线
+        duration: '500ms', // 动画时长
+        timingFun: 'ease-in-out', // 动画速度曲线
         delay: '0s', // 动画延迟
       }"
     :config='config'
     >
       <template #page1>
         <!-- 部门介绍展示 -->
-        <div class="page1">
+        <div class="page1" v-prlx>
           <dep-intro></dep-intro>
         </div>
       </template>
 
       <template #page2>
-        <div class="page2">
+        <div class="page2" v-prlx>
         <!-- CCF介绍展示 -->
           <ccfintro></ccfintro>
         </div>
       </template>
       <template #page3>
-        <div class="page3">
+        <div class="page3" v-prlx>
           <!-- 报名页面展示 -->
           <new-login></new-login>
         </div>
@@ -66,9 +67,21 @@ export default {
       page: 0,
       config: {
         height: '100%',
-        width: '100',
-        loop: 'true'
+        width: '100'
       }
+      // bgArr: [{
+      //   isBg: true,
+      //   src: require('@/assets/bgcimg/1.png')
+      // },
+      // {
+      //   isBg: true,
+      //   src: require('@/assets/bgcimg/2.png')
+      // },
+      // {
+      //   isBg: true,
+      //   src: require('@/assets/bgcimg/3.png')
+      // }
+      // ]
     }
   },
   methods: {
@@ -122,14 +135,14 @@ export default {
     display: flex;
     justify-content: space-evenly;
     align-content: center;
-    box-shadow: 5px 0px 5px rgba(0,0,0,0.3);
+    background: rgba(255, 255, 255,);
+    border-bottom: 2px solid rgba(78, 75, 75, 0.3);
     min-width: 80%;
     .top-barrer{
       z-index: 99;
-      background-color: #fff;
       min-width: 50%;
       width: 90%;
-      height: 50px;
+      height: 60px;
       display: flex;
       justify-content: space-between;
       align-content: center;
@@ -159,6 +172,7 @@ export default {
             min-width: 40%;
             color: rgb(103, 107, 115);
             transition: 0.2s;
+            font-size: 20px;
             cursor: pointer;
             &:hover{
               color: rgb(55, 120, 229);
@@ -170,7 +184,6 @@ export default {
   }
   .page1{
     width: 100%;
-    margin-top: 70px;
     height: 100%;
   }
   .page2{
@@ -179,5 +192,9 @@ export default {
     .test{
       width: 100%;
     }
+  }
+  .page3{
+    width: 100%;
+    height: 100%;
   }
 </style>

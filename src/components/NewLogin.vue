@@ -218,18 +218,11 @@ export default {
       this.$refs[formName].resetFields()
     },
     showForm () {
-      this.obj.marginLeft = '8%'
+      this.obj.marginLeft = '13%'
     },
     missForm () {
       this.obj.marginLeft = '100%'
     }
-  },
-  mounted () {
-    // fit () {
-    //   var devicewidth = document.documentElement.clientWidth// 获取当前分辨率下的可是区域宽度
-    //   var scale = devicewidth / 1920 // 分母——设计稿的尺寸
-    //   document.body.style.zoom = scale// 放大缩小相应倍数
-    // }
   }
 }
 </script>
@@ -331,7 +324,7 @@ export default {
   color: rgb(103, 107, 115);
   width: 15rem;
   height: 2rem;
-  left: 51rem;
+  left: 55rem;
   text-align: center;
   position: absolute;
   top: 80vh;

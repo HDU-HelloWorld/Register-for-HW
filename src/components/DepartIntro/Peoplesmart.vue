@@ -3,7 +3,7 @@
     <img src="@/assets/img/3.png">
     <div class="desc">
       <h1>人工智能部门</h1>
-      <pre>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;
   在刚刚开始的大学生活中，
   你是否为所学的计算机课程
   中不包含人工智能而感到烦恼，
@@ -13,7 +13,7 @@
   想进一步提高自己的计算机水平，来吧，
   我们人工智能部门将给你提供一个学习交流的场所，
   让你在人工智能的天空自由翱翔~
-      </pre>
+      </p>
     </div>
   </div>
 </template>
@@ -30,18 +30,20 @@ export default {
     display: flex;
     justify-content: space-evenly;
     img{
-      margin-top: 50px;
+      margin-top: 2%;
       border-radius: 15px;
-      width:50%
+      width:60%
     }
     .desc{
-      width: 35%;
+      width: 38%;
       h1{
+        margin-top: 5%;
+        margin-left: 5%;
         font-size: 40px;
         font-family: 'bigtitle';
         margin-bottom: 30px;
       }
-      pre{
+      p{
         font-family: 'descrip';
         font-size: 20px;
         font-weight: 600;
