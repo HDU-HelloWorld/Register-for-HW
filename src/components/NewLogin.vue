@@ -212,18 +212,11 @@ export default {
       this.$refs[formName].resetFields()
     },
     showForm () {
-      this.obj.marginLeft = '8%'
+      this.obj.marginLeft = '13%'
     },
     missForm () {
       this.obj.marginLeft = '100%'
     }
-  },
-  mounted () {
-    // fit () {
-    //   var devicewidth = document.documentElement.clientWidth// 获取当前分辨率下的可是区域宽度
-    //   var scale = devicewidth / 1920 // 分母——设计稿的尺寸
-    //   document.body.style.zoom = scale// 放大缩小相应倍数
-    // }
   }
 }
 </script>
@@ -247,7 +240,7 @@ export default {
     top: 80px;
     border-radius: 25px;
     position: absolute;
-    height: 85%;
+    height: 65%;
     width: 60rem;
     left: 17rem;
     background-color: rgba(239,239,239);
@@ -314,8 +307,8 @@ export default {
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    right: 25%;
-    top: 92%;
+    right: 15%;
+    top: 84.5%;
     content: url('../assets/after.png');
     transform:scale(1.5,1.5);
 }
@@ -323,7 +316,7 @@ export default {
   color: rgb(103,107,115);
   width: 15rem;
   height: 2rem;
-  left: 51rem;
+  left: 55rem;
   text-align: center;
   position: relative;
   top: 1rem;
