@@ -22,7 +22,7 @@ export default {
         type: 'success'
       })
       // 向服务器post发送message
-      this.$http.post('/api/message', { message: this.message }).then(response => {
+      this.$axios.post('http://localhost:3000/api/message', { message: this.message }).then(response => {
         alert(response.data)
       })
     }
