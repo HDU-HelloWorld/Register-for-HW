@@ -68,20 +68,8 @@ export default {
       config: {
         height: '100%',
         width: '100'
-      }
-      // bgArr: [{
-      //   isBg: true,
-      //   src: require('@/assets/bgcimg/1.png')
-      // },
-      // {
-      //   isBg: true,
-      //   src: require('@/assets/bgcimg/2.png')
-      // },
-      // {
-      //   isBg: true,
-      //   src: require('@/assets/bgcimg/3.png')
-      // }
-      // ]
+      },
+      bgArr: ['#FAFAFA', '#CAD8D8', '#F2E4E3']
     }
   },
   methods: {
@@ -136,7 +124,7 @@ export default {
     justify-content: space-evenly;
     align-content: center;
     background: rgba(255, 255, 255,);
-    border-bottom: 2px solid rgba(78, 75, 75, 0.3);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
     min-width: 80%;
     .top-barrer{
       z-index: 99;
