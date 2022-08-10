@@ -3,17 +3,17 @@
     <div class="wrapper">
       <div class="outcard">
         <div class="incard">
-          <div class="row">
+          <div class="row" :style="class2">
             <div class="punc">『</div>
-            <div class="text">Welcome to</div>
+            <div class="text1">Welcome to</div>
           </div>
-          <div class="row">
-            <div class="text">HelloWorld</div>
+          <div class="row" :style="class3">
+            <div class="text2">HelloWorld</div>
             <div class="punc">』</div>
           </div>
         </div>
       </div>
-      <div class="form" :style="obj">
+      <div class="form" :style="class1">
         <h1 align="center" class="title">Hello World 22级招新信息收集表</h1>
         <el-form :model="form" :rules="rules" ref="form" label-width="80px">
           <el-row>
@@ -131,8 +131,14 @@ export default {
   name: 'NewLogin',
   data () {
     return {
-      obj: {
-        marginLeft: '100%'
+      class1: {
+        marginTop: '100%'
+      },
+      class2: {
+        marginRight: '0%'
+      },
+      class3: {
+        marginLeft: '0%'
       },
       form: {
         name: '',
@@ -218,10 +224,14 @@ export default {
       this.$refs[formName].resetFields()
     },
     showForm () {
-      this.obj.marginLeft = '13%'
+      this.class1.marginTop = '5%'
+      this.class2.marginRight = '200%'
+      this.class3.marginLeft = '200%'
     },
     missForm () {
-      this.obj.marginLeft = '100%'
+      this.class1.marginTop = '100%'
+      this.class2.marginRight = '0%'
+      this.class3.marginLeft = '0%'
     }
   }
 }
@@ -239,7 +249,7 @@ export default {
 .title {
   margin-top: 30px;
   margin-bottom: 40px;
-  font-size: 35px;
+  font:500 15px ;
 }
 #check {
   margin-top: 20px;
@@ -247,16 +257,14 @@ export default {
 .form {
   bottom: 14rem;
   top: 80px;
-  border-radius: 25px;
   position: absolute;
-  height: 85%;
-  width: 60rem;
-  left: 17rem;
-  background-color: rgba(239, 239, 239);
+  left: 25%;
+  height: 70%;
+  width: 50%;
+  background-color: #fff;
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,.18);
   transition: all 1s;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   z-index: 2;
-  overflow: scroll;
 }
 .login {
   height: 100vh;
@@ -314,11 +322,19 @@ export default {
   justify-content: start;
   align-items: center;
   width: 80%;
-  height: 20vh;
+  transition: all 1s;
 }
 .row:nth-child(2) {
   margin-top: 20px;
   justify-content: end;
+}
+.text1{
+  width: 100vh;
+  text-align: left;;
+}
+.text2{
+  width: 100vh;
+  text-align: right;
 }
 .button {
   color: rgb(103, 107, 115);
