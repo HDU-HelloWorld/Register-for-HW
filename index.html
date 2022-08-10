@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>register-for-hw</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+  <script type="text/javascript" charset="utf-8" src="http://helloworld-hdu.com/L2Dwidget.0.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="http://helloworld-hdu.com/L2Dwidget.min.js"></script>
+  <script type="text/javascript">
+    L2Dwidget.init({
+        "dialog": {
+            "enable": true,
+            "script": {
+                //每20s，显示一言（调用一言Api返回的句子）
+                // 'every idle 20s': '$hitokoto$',
+                //触摸到身体
+                'tap body': '欢迎来到HelloWorld',
+                //触摸到头部
+                'tap face': '别看啦快去填写报名表！！'
+          }
+        }
+    });
+    </script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>register-for-hw</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
 </html>
