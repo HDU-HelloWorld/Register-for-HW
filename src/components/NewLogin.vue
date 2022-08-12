@@ -258,11 +258,10 @@ export default {
   bottom: 14rem;
   top: 80px;
   position: absolute;
-  left: 25%;
-  height: 70%;
-  width: 50%;
-  background-color: #fff;
-  box-shadow: 0 3px 8px 0 rgba(0,0,0,.18);
+  height: 85%;
+  width: 60rem;
+  left: 17rem;
+  // background-color: rgba(239, 239, 239);
   transition: all 1s;
   z-index: 2;
 }
@@ -270,7 +269,6 @@ export default {
   height: 100vh;
 }
 .wrapper {
-  background-color: #fff;
   width: 100%;
   height: 100vh;
 }
@@ -283,7 +281,7 @@ export default {
   top: 20vh;
   width: 100%;
   height: 60vh;
-  background-color: aliceblue;
+  // background-color: aliceblue;
   text-align: center;
   font-size: 8rem;
   letter-spacing: 0.1em;

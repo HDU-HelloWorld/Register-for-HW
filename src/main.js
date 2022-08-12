@@ -12,6 +12,9 @@ import MvFullPage from 'mv-full-page'
 //  引入适配文件
 import './utils/rem.js'
 import VuePrlx from 'vue-prlx'
+import axios from 'axios'
+
+Vue.prototype.$axios = axios // 全局注册，使用方法为:this.$axios
 Vue.use(VuePrlx)
 Vue.use(MvFullPage)
 Vue.config.productionTip = false
