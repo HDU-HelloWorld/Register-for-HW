@@ -19,7 +19,11 @@
           <el-row>
             <el-col :span="8" :offset="3">
               <el-form-item label="姓名" prop="name" id="m">
-                <el-input v-model="form.name" class="input"  required=""></el-input>
+                <el-input
+                  v-model="form.name"
+                  class="input"
+                  required=""
+                ></el-input>
                 <div class="underline"></div>
               </el-form-item>
             </el-col>
@@ -83,7 +87,7 @@
           </el-row>
           <el-row>
             <el-col :span="17" :offset="3">
-              <el-form-item label="自我介绍" prop="selfintroduction" >
+              <el-form-item label="自我介绍" prop="selfintroduction">
                 <el-input
                   type="textarea"
                   v-model="form.selfintroduction"
@@ -95,7 +99,11 @@
           <el-row>
             <el-col :span="17" :offset="3">
               <el-form-item label="获奖经历" prop="honor">
-                <el-input type="textarea" v-model="form.honor" class="input"></el-input>
+                <el-input
+                  type="textarea"
+                  v-model="form.honor"
+                  class="input"
+                ></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -251,7 +259,7 @@ export default {
 .title {
   margin-top: 30px;
   margin-bottom: 40px;
-  font:500 15px ;
+  font: 500 15px;
 }
 #check {
   margin-top: 20px;
@@ -328,11 +336,11 @@ export default {
   margin-top: 20px;
   justify-content: end;
 }
-.text1{
+.text1 {
   width: 100vh;
-  text-align: left;;
+  text-align: left;
 }
-.text2{
+.text2 {
   width: 100vh;
   text-align: right;
 }
@@ -388,23 +396,23 @@ export default {
   color: white;
 }
 //此处设置input框内部样式
-/deep/.el-input__inner{
+/deep/.el-input__inner {
   //背景颜色以及透明度设置
   background-color: rgba(255, 255, 255, 0.247);
   border: none;
   //下划线颜色
   border-bottom: 2px solid black;
   font-size: 17px;
-//设置字体颜色
+  //设置字体颜色
   color: black;
   border-radius: 0;
 }
 
-/deep/ .el-form-item.is-error{
-  .el-input__inner{
+/deep/ .el-form-item.is-error {
+  .el-input__inner {
     border-color: #fff;
   }
-  .el-form-item__error{
+  .el-form-item__error {
     color: #fff;
   }
 }
@@ -414,12 +422,11 @@ export default {
   // border: #11be59 1px solid;、
   border-color: rgba(255, 255, 255, 0.247);
 }
-  //修改类型为textarea的input框样式
+//修改类型为textarea的input框样式
 /deep/.el-textarea__inner {
   background-color: rgba(255, 255, 255, 0.247);
   border: 0;
   /* 这个是去掉自我介绍和获奖经历下面拉伸的那个标志 */
   resize: none;
 }
-
 </style>
