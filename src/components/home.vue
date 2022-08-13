@@ -69,7 +69,10 @@ export default {
         height: '100%',
         width: '100'
       },
-      bgArr: ['#FAFAFA', '#CAD8D8', '#F2E4E3']
+      bgArr: ['#FAFAFA', '#CAD8D8', {
+        isBg: true,
+        src: require('@/assets/bgcimg/3.png')
+      }]
     }
   },
   methods: {
