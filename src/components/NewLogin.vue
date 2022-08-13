@@ -19,11 +19,12 @@
           <el-row>
             <el-col :span="8" :offset="3">
               <el-form-item label="姓名" prop="name" id="m">
-                <el-input v-model="form.name" @change="change()"></el-input>
+                <el-input v-model="form.name" class="input"  required=""></el-input>
+                <div class="underline"></div>
               </el-form-item>
             </el-col>
             <el-col :span="8" :offset="1">
-              <el-form-item label="性别">
+              <el-form-item label="性别" class="input">
                 <el-select v-model="form.gender">
                   <el-option
                     v-for="item in options1"
@@ -39,19 +40,19 @@
           <el-row>
             <el-col :span="8" :offset="3">
               <el-form-item label="学号" prop="stuNum">
-                <el-input v-model="form.stuNum"></el-input>
+                <el-input v-model="form.stuNum" class="input"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8" :offset="1">
               <el-form-item label="所在学院" prop="college">
-                <el-input v-model="form.college"></el-input>
+                <el-input v-model="form.college" class="input"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="8" :offset="3">
               <el-form-item label="志愿部门">
-                <el-select v-model="form.department">
+                <el-select v-model="form.department" class="input">
                   <el-option
                     v-for="item in options2"
                     :key="item.value"
@@ -64,28 +65,29 @@
             </el-col>
             <el-col :span="8" :offset="1">
               <el-form-item label="电话" prop="phone">
-                <el-input v-model="form.phone"></el-input>
+                <el-input v-model="form.phone" class="input"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="8" :offset="3">
               <el-form-item label="qq号" prop="qqnumber">
-                <el-input v-model="form.qqnumber"></el-input>
+                <el-input v-model="form.qqnumber" class="input"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8" :offset="1">
               <el-form-item label="邮箱" prop="mail">
-                <el-input v-model="form.mail"></el-input>
+                <el-input v-model="form.mail" class="input"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="17" :offset="3">
-              <el-form-item label="自我介绍" prop="selfintroduction">
+              <el-form-item label="自我介绍" prop="selfintroduction" >
                 <el-input
                   type="textarea"
                   v-model="form.selfintroduction"
+                  class="input"
                 ></el-input>
               </el-form-item>
             </el-col>
@@ -93,7 +95,7 @@
           <el-row>
             <el-col :span="17" :offset="3">
               <el-form-item label="获奖经历" prop="honor">
-                <el-input type="textarea" v-model="form.honor"></el-input>
+                <el-input type="textarea" v-model="form.honor" class="input"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -224,7 +226,7 @@ export default {
       this.$refs[formName].resetFields()
     },
     showForm () {
-      this.class1.marginTop = '5%'
+      this.class1.marginTop = '3%'
       this.class2.marginRight = '200%'
       this.class3.marginLeft = '200%'
     },
@@ -260,7 +262,7 @@ export default {
   position: absolute;
   height: 85%;
   width: 60rem;
-  left: 17rem;
+  left: 31rem;
   // background-color: rgba(239, 239, 239);
   transition: all 1s;
   z-index: 2;
@@ -385,4 +387,30 @@ export default {
   background-position: left bottom;
   color: white;
 }
+//此处设置input框内部样式
+/deep/.el-input__inner{
+  //背景颜色以及透明度设置
+  background-color: rgba(255, 255, 255, 0.247);
+  border: none;
+  //下划线颜色
+  border-bottom: 2px solid black;
+  font-size: 17px;
+//设置字体颜色
+  color: black;
+  border-radius: 0;
+}
+
+/deep/.el-input__inner:focus {
+  // el-input输入时设置边框颜色
+  // border: #11be59 1px solid;、
+  border: rgba(255, 255, 255, 0.247);
+}
+  //修改类型为textarea的input框样式
+/deep/.el-textarea__inner {
+  background-color: rgba(255, 255, 255, 0.247);
+  border: 0;
+  /* 这个是去掉自我介绍和获奖经历下面拉伸的那个标志 */
+  resize: none;
+}
+
 </style>
