@@ -400,10 +400,19 @@ export default {
   border-radius: 0;
 }
 
+/deep/ .el-form-item.is-error{
+  .el-input__inner{
+    border-color: #fff;
+  }
+  .el-form-item__error{
+    color: #fff;
+  }
+}
+
 /deep/.el-input__inner:focus {
   // el-input输入时设置边框颜色
   // border: #11be59 1px solid;、
-  border: rgba(255, 255, 255, 0.247);
+  border-color: rgba(255, 255, 255, 0.247);
 }
   //修改类型为textarea的input框样式
 /deep/.el-textarea__inner {
