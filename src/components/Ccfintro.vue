@@ -3,11 +3,13 @@
     <div class="Intro">
       <div class="title">简介</div>
       <div class="descr">
-        中国计算机学会（CCF）成立于1962年，全国一级学会，独立社团法人，中国科学技术协会成员。CCF是中国计算机及相关领域的学术团体，宗旨是为本领域专业人士的学术和职业发展提供服务；推动学术进步和技术成果的应用；进行学术评价，引领学术方向；促进技术和产业应用一线的交流和互动；对在学术和技术方面有突出成就的个人、企业和单位给予认可和表彰
+        中国计算机学会（CCF）成立于1962年，全国一级学会，独立社团法人，中国科学技术协会成员。
       </div>
+      <div class="content">CCF是中国计算机及相关领域的学术团体，宗旨是为本领域专业人士的学术和职业发展提供服务；推动学术进步和技术成果的应用；进行学术评价，引领学术方向；促进技术和产业应用一线的交流和互动；对在学术和技术方面有突出成就的个人、企业和单位给予认可和表彰</div>
     </div>
-    <br>
     <div class="develop">
+      <img src="@/assets/ccflogo.jpg" alt="" class="disappear">
+      <div class="overlay">
       <div class="title1">发展历程</div>
       <div class="day12">
         <el-timeline id="cardone">
@@ -49,7 +51,8 @@
             </div>
           </el-timeline-item>
         </el-timeline>
-      </div>
+      </div></div>
+
     </div>
   </div>
 </template>
@@ -73,6 +76,18 @@ export default {
 .whole{
   width: 100%;
 }
+img {
+  margin-left: 15%;
+  box-sizing: border-box;
+  padding: 5px;
+  vertical-align: top;
+  border-radius: 80px;
+  width: 70%;
+  height: 450px;
+  margin-top: 1%;
+  opacity: 1;
+  transition: 0.5s ease;
+}
 .Intro{
   margin-top: 5%;
   width: 100%;
@@ -92,8 +107,17 @@ export default {
     margin-right: 20%;
     font-weight: 600;
     padding: auto;
-    font-size: 20px;
+    font-size: 23px;
     color: rgb(97, 98, 99);
+  }
+  .content {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 20px;
+  font-weight: 600;
+  padding: auto;
+  font-size: 20px;
+  color: rgb(97, 98, 99);
   }
 }
 .develop{
@@ -101,6 +125,7 @@ export default {
   .title1 {
     width: 100%;
     text-align: center;
+    margin-top: -450px;
     font-size: 40px;
     color: #2a2e2e;
     font-family: "TencentSansw7";
@@ -108,6 +133,17 @@ export default {
     font-style: oblique;
     margin-bottom: 35px;
   }
+}
+.develop:hover .overlay {
+  opacity: 1;
+}
+.develop:hover .disappear {
+  opacity: 0;
+}
+.overlay {
+  opacity: 0;
+  transition: 0.5s ease;
+  margin-top: -20px;
 }
 .card{
   margin:5px 0;
