@@ -110,23 +110,24 @@
           <el-row id="check">
             <el-form-item>
               <el-col :span="1" :offset="6">
-                <el-button type="primary" @click="submitForm('form')"
+                <el-button type="primary" @click="submitForm('form')" class="button1"
                   >提交</el-button
                 >
               </el-col>
               <el-col :span="4" :offset="3">
-                <el-button type="secondary" @click="resetForm('form')"
+                <el-button type="secondary" @click="resetForm('form')" class="button2"
                   >清空</el-button
                 >
               </el-col>
               <el-col :span="4" :offset="0">
-                <el-button type="secondary" @click="missForm()">返回</el-button>
+                <el-button type="secondary" @click="missForm()" class="button2"
+                  >返回</el-button>
               </el-col>
             </el-form-item>
           </el-row>
         </el-form>
       </div>
-      <div class="button" @click="showForm">
+      <div class="button" @click="showForm" v-show="showButton">
         <div class="text-3">
           Are You Ready?
           <div class="showtext-3">Npm Run Dev!</div>
@@ -141,6 +142,7 @@ export default {
   name: 'NewLogin',
   data () {
     return {
+      showButton: true,
       class1: {
         marginTop: '100%'
       },
@@ -237,11 +239,13 @@ export default {
       this.class1.marginTop = '3%'
       this.class2.marginRight = '200%'
       this.class3.marginLeft = '200%'
+      this.showButton = false
     },
     missForm () {
       this.class1.marginTop = '100%'
       this.class2.marginRight = '0%'
       this.class3.marginLeft = '0%'
+      this.showButton = true
     }
   }
 }
@@ -257,6 +261,7 @@ export default {
   }
 }
 .title {
+  color: white;
   margin-top: 30px;
   margin-bottom: 40px;
   font: 500 15px;
@@ -265,13 +270,14 @@ export default {
   margin-top: 20px;
 }
 .form {
+  background-color: rgba(0, 0, 0, .2);
   bottom: 14rem;
   top: 80px;
   position: absolute;
-  height: 85%;
+  height: 70%;
   width: 60rem;
   left: 31rem;
-  // background-color: rgba(239, 239, 239);
+  border-radius: 10px;
   transition: all 1s;
   z-index: 2;
 }
@@ -398,35 +404,68 @@ export default {
 //此处设置input框内部样式
 /deep/.el-input__inner {
   //背景颜色以及透明度设置
-  background-color: rgba(255, 255, 255, 0.247);
+  background-color: rgba(255, 255, 255, 0);
   border: none;
   //下划线颜色
-  border-bottom: 2px solid black;
-  font-size: 17px;
+  border-bottom: 2px solid rgba(255, 255, 255, .2);
+  font-size: 15px;
   //设置字体颜色
-  color: black;
+  color: #fff;
   border-radius: 0;
+  user-select: none;
 }
-
+/deep/ .el-form-item__label{
+  color: white;
+  user-select: none;
+}
+//表单填写错误时的高亮颜色
 /deep/ .el-form-item.is-error {
   .el-input__inner {
-    border-color: #fff;
+    user-select: none;
+    border-color: rgba(255, 255, 255);
   }
   .el-form-item__error {
-    color: #fff;
+    user-select: none;
+    color: rgba(255, 255, 255);
   }
+  .el-form-button__error {
+    user-select: none;
+    border-color: rgba(255, 255, 255);
+  }
+  // .el-form-select__error {
+  //   border-color: rgba(255, 255, 255);
+  // }
 }
-
 /deep/.el-input__inner:focus {
   // el-input输入时设置边框颜色
-  // border: #11be59 1px solid;、
-  border-color: rgba(255, 255, 255, 0.247);
+  // border: #11be59 1px solid;
+  border-color: rgba(255, 255, 255,.5);
 }
+/deep/ .el-select .el-input.is-focus .el-input__inner{
+    border-color: rgba(255, 255, 255,.5);
+  }
 //修改类型为textarea的input框样式
 /deep/.el-textarea__inner {
-  background-color: rgba(255, 255, 255, 0.247);
+  background-color: rgba(255, 255, 255, .1);
   border: 0;
+  color: white;
   /* 这个是去掉自我介绍和获奖经历下面拉伸的那个标志 */
   resize: none;
+  user-select: none;
+}
+.button1 {
+  color: #fff;
+  text-align: center;
+  user-select: none;
+  letter-spacing: 0.1em;
+  border-color:rgba(64,158,255, 0);
+  background: rgba(64,158,255, .6);
+}
+.button2 {
+  color: rgba(64,158,255);
+  text-align: center;
+  user-select: none;
+  letter-spacing: 0.1em;
+  border-color:rgba(255,255,255, .6);
 }
 </style>
