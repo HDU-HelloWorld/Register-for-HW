@@ -3,67 +3,68 @@
     <div class="contro">
       <!-- 部门介绍导航栏 -->
       <div class="imgs-icon">
-        <li @click="changeColor">
-          <router-link class="navList" to="/"
-            ><img src="@/assets/front.png"
-          /></router-link>
+        <li @click="changeIntro($event, 1)">
+          <div class="navList borderBlue">
+            <img src="@/assets/front.png" />
+          </div>
         </li>
-        <li @click="changeColor">
-          <router-link class="navList" to="/Back"
-            ><img src="@/assets/back.jpg"
-          /></router-link>
+        <li @click="changeIntro($event, 2)">
+          <div class="navList">
+            <img src="@/assets/back.jpg" />
+          </div>
         </li>
-        <li @click="changeColor">
-          <router-link class="navList" to="/Peoplesmart"
-            ><img src="@/assets/peoplesmart.png"
-          /></router-link>
+        <li @click="changeIntro($event, 3)">
+          <div class="navList">
+            <img src="@/assets/peoplesmart.png" />
+          </div>
         </li>
-        <li @click="changeColor">
-          <router-link class="navList" to="/Admin"
-            ><img src="@/assets/admin.png"
-          /></router-link>
+        <li @click="changeIntro($event, 4)">
+          <div class="navList">
+            <img src="@/assets/admin.png" />
+          </div>
         </li>
       </div>
     </div>
     <div class="showinfo">
       <!-- 指定组件的呈现位置 -->
-      <router-view></router-view>
+      <Front v-if="introIndex == 1"></Front>
+      <Back v-if="introIndex == 2"></Back>
+      <Peoplesmart v-if="introIndex == 3"></Peoplesmart>
+      <Admin v-if="introIndex == 4"></Admin>
     </div>
   </div>
 </template>
 <script>
+import Admin from '@/components/DepartIntro/Admin'
+import Back from '@/components/DepartIntro/Back'
+import Front from '@/components/DepartIntro/Front'
+import Peoplesmart from '@/components/DepartIntro/Peoplesmart'
 export default {
   name: 'DepIntro',
   data () {
     return {
+      introIndex: '1'
     }
+  },
+  components: {
+    Admin,
+    Back,
+    Front,
+    Peoplesmart
   },
   methods: {
-    changeColor (index) {
+    changeIntro (targetNode, index) {
+      // console.log(targetNode)
+      // 切换介绍与图片
+      this.introIndex = index
       // 给target的父级元素添加class
-      index.target.parentNode.classList.add('borderBlue')
-    }
-  },
-  mounted () {
-    // 根据路由的参数，改变导航栏的颜色
-    this.$nextTick(() => {
-      let path = this.$route.path
+      // targetNode.target.parentNode.classList.add('borderBlue')
       let navList = document.querySelectorAll('.navList')
-      switch (path) {
-        case '/':
-          navList[0].classList.add('borderBlue')
-          break
-        case '/Back':
-          navList[1].classList.add('borderBlue')
-          break
-        case '/Peoplesmart':
-          navList[2].classList.add('borderBlue')
-          break
-        case '/Admin':
-          navList[3].classList.add('borderBlue')
-          break
+      for (let i = 0; i < 4; i++) {
+        navList[i].classList.remove('borderBlue')
       }
-    })
+      targetNode.target.parentNode.classList.add('borderBlue')
+    }
   }
 }
 </script>
@@ -91,12 +92,14 @@ export default {
       li {
         width: 15%;
         border-radius: 8px;
+        list-style-type: none;
         .navList {
           display: block;
           width: 100%;
           border-radius: 8px;
           transition: 0.2s;
           outline: 2.8px solid #fff;
+          cursor: pointer;
           &:hover {
             outline: 2.8px solid rgba(117, 159, 231, 0.98);
             border-radius: 8px;

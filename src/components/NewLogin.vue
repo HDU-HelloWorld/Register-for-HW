@@ -67,15 +67,18 @@
                 </el-select>
               </el-form-item>
             </el-col>
-            <el-col :span="8" :offset="1">
+            <el-col :span="5" :offset="1">
               <el-form-item label="电话" prop="phone">
                 <el-input v-model="form.phone" class="input"></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="2" :offset="1">
+                <el-input v-model="form.authCode" class="input" placeholder="验证码"></el-input>
+            </el-col>
           </el-row>
           <el-row>
             <el-col :span="8" :offset="3">
-              <el-form-item label="qq号" prop="qqnumber">
+              <el-form-item label="QQ号" prop="qqnumber">
                 <el-input v-model="form.qqnumber" class="input"></el-input>
               </el-form-item>
             </el-col>
@@ -108,7 +111,6 @@
             </el-col>
           </el-row>
           <el-row id="check">
-            <el-form-item>
               <el-col :span="1" :offset="6">
                 <el-button type="primary" @click="submitForm('form')" class="button1"
                   >提交</el-button
@@ -123,7 +125,6 @@
                 <el-button type="secondary" @click="missForm()" class="button2"
                   >返回</el-button>
               </el-col>
-            </el-form-item>
           </el-row>
         </el-form>
       </div>
@@ -157,6 +158,7 @@ export default {
         gender: '',
         stuNum: '',
         phone: '',
+        authCode: '',
         qqnumber: '',
         college: '',
         department: '',
@@ -214,7 +216,12 @@ export default {
       }, {
         value: '选项4',
         label: '后端部门'
-      }]
+      }],
+      Mapi: {
+        'apikey': '190f304e388e9516a8d90e38cee777ed',
+        'mobile': '',
+        'content': 'this is a test message'
+      }
     }
   },
   change () {
@@ -246,6 +253,13 @@ export default {
       this.class2.marginRight = '0%'
       this.class3.marginLeft = '0%'
       this.showButton = true
+    },
+    getAuthCode () {
+      this.Mapi.mobile = this.form.phone
+      console.log(this.Mapi.mobile)
+      this.$axios.post('http://api01.monyun.cn:7901/sms/v2/std/single_send', this.Mapi).then(res => {
+        console.log(res)
+      })
     }
   }
 }
@@ -270,13 +284,12 @@ export default {
   margin-top: 20px;
 }
 .form {
-  background-color: rgba(0, 0, 0, .2);
-  bottom: 14rem;
-  top: 80px;
+  background-color: rgb(255, 238, 140);
+  top: 50vh;
   position: absolute;
-  height: 70%;
-  width: 60rem;
-  left: 31rem;
+  height: 50vh;
+  width: 80%;
+  left: 10%;
   border-radius: 10px;
   transition: all 1s;
   z-index: 2;

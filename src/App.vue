@@ -1,36 +1,20 @@
 <template>
   <div id="app">
-    <home></home>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import home from './components/home.vue'
 export default {
-  components: { home },
   name: 'App'
 }
 </script>
 
 <style>
-*{
-  padding: 0px;
-  margin: 0px;
-}
-li{
-  list-style: none;
-}
-a{
-  text-decoration: none;
-}
-body{
+#app {
+  position: absolute;
+  width: 100%;
   height: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-html{
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
+  overflow: hidden;
 }
 </style>

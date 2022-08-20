@@ -5,7 +5,7 @@
     <div class="home">
       <div class="top-barrer">
         <div class="icon-hw">
-          <img src="@/assets/logo.jpg">
+          <img src="@/assets/logo.jpg" />
         </div>
         <div class="right-info">
           <li @click="test" class="navshow"><a>部门介绍</a></li>
@@ -16,35 +16,40 @@
     </div>
     <!-- 使用fullpage制作 -->
     <mv-full-page
-    :isPointer='true'
-    pointerPos='right'
-    :isV='isV'
-    :pages='3'
-    :page.sync='currentPage'
-    :isCache='true'
-    :bgArr="bgArr"
-    :transition="{
+      :isPointer="true"
+      pointerPos="right"
+      :isV="isV"
+      :pages="4"
+      :page.sync="currentPage"
+      :isCache="true"
+      :bgArr="bgArr"
+      :transition="{
         duration: '500ms', // 动画时长
         timingFun: 'ease-in-out', // 动画速度曲线
-        delay: '0s', // 动画延迟
+        delay: '0s' // 动画延迟
       }"
-    :config='config'
+      :config="config"
     >
       <template #page1>
         <!-- 部门介绍展示 -->
-        <div class="page1" v-prlx>
+        <div class="page">
+          <WelcomePage></WelcomePage>
+        </div>
+      </template>
+      <template #page2>
+        <!-- 部门介绍展示 -->
+        <div class="page">
           <dep-intro></dep-intro>
         </div>
       </template>
-
-      <template #page2>
-        <div class="page2" v-prlx>
-        <!-- CCF介绍展示 -->
+      <template #page3>
+        <div class="page">
+          <!-- CCF介绍展示 -->
           <ccfintro></ccfintro>
         </div>
       </template>
-      <template #page3>
-        <div class="page3" v-prlx>
+      <template #page4>
+        <div class="page">
           <!-- 报名页面展示 -->
           <new-login></new-login>
         </div>
@@ -57,8 +62,9 @@
 import Ccfintro from './Ccfintro.vue'
 import DepIntro from './DepIntro.vue'
 import NewLogin from './NewLogin.vue'
+import WelcomePage from './WelcomePage.vue'
 export default {
-  components: { DepIntro, Ccfintro, NewLogin },
+  components: { DepIntro, Ccfintro, NewLogin, WelcomePage },
   name: 'Home',
   data () {
     return {
@@ -67,9 +73,12 @@ export default {
       page: 0,
       config: {
         height: '100%',
-        width: '100'
+        width: '100%'
       },
-      bgArr: ['#FAFAFA', '#CAD8D8', {
+      bgArr: [{
+        isBg: true,
+        src: require('@/assets/bgcimg/3.png')
+      }, '#FAFAFA', '#CAD8D8', {
         isBg: true,
         src: require('@/assets/bgcimg/3.png')
       }]
@@ -119,73 +128,65 @@ export default {
 }
 </script>
 <style scoped lang="less">
-  .home{
-    width: 100%;
-    position: absolute;
-    z-index: 999;
+.home {
+  width: 100%;
+  position: absolute;
+  z-index: 999;
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  background: rgba(255, 255, 255);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  min-width: 80%;
+  .top-barrer {
+    z-index: 99;
+    min-width: 50%;
+    width: 90%;
+    height: 60px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-content: center;
-    background: rgba(255, 255, 255,);
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
-    min-width: 80%;
-    .top-barrer{
-      z-index: 99;
-      min-width: 50%;
-      width: 90%;
-      height: 60px;
-      display: flex;
-      justify-content: space-between;
-      align-content: center;
-      .icon-hw{
-        width: 20%;
-        height: 80%;
-        img{
-          margin-top: 5px;
-          height: 100%;
-        }
-      }
-      .right-info{
+    .icon-hw {
+      width: 20%;
+      height: 80%;
+      img {
+        margin-top: 5px;
         height: 100%;
-        align-items: center;
+      }
+    }
+    .right-info {
+      height: 100%;
+      align-items: center;
+      display: flex;
+      width: 40%;
+      justify-content: space-between;
+      li {
+        min-width: 150px;
+        width: 80%;
+        height: 100%;
         display: flex;
-        width: 40%;
-        justify-content: space-between;
-        li{
-          min-width: 150px;
-          width: 80%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          a{
-            width: 100%;
-            min-width: 40%;
-            color: rgb(103, 107, 115);
-            transition: 0.2s;
-            font-size: 20px;
-            cursor: pointer;
-            &:hover{
-              color: rgb(55, 120, 229);
-            }
+        justify-content: center;
+        align-items: center;
+        a {
+          width: 100%;
+          min-width: 40%;
+          color: rgb(103, 107, 115);
+          transition: 0.2s;
+          font-size: 20px;
+          cursor: pointer;
+          &:hover {
+            color: rgb(55, 120, 229);
           }
         }
       }
     }
   }
-  .page1{
+}
+.page {
+  width: 100%;
+  height: 100%;
+  .test {
     width: 100%;
-    height: 100%;
   }
-  .page2{
-    width: 100%;
-    height: 100%;
-    .test{
-      width: 100%;
-    }
-  }
-  .page3{
-    width: 100%;
-    height: 100%;
-  }
+}
 </style>
