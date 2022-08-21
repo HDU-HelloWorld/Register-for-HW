@@ -8,6 +8,7 @@
           <img src="@/assets/logo.jpg" />
         </div>
         <div class="right-info">
+          <li @click="test" class="navshow"><a>Welcome</a></li>
           <li @click="test" class="navshow"><a>部门介绍</a></li>
           <li @click="test" class="navshow"><a>CCF介绍</a></li>
           <li @click="test" class="navshow"><a>加入我们</a></li>
@@ -85,20 +86,23 @@ export default {
     test (event) {
       //  点击时颜色发生变化
       let navshows = document.querySelectorAll('.navshow')
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 4; i++) {
         navshows[i].firstElementChild.style.color = 'rgb(103, 107, 115)'
       }
       event.target.style.color = 'rgb(55, 120, 229)'
       //  点击对应导航时发生页面跳转
       let info = event.target.innerText
-      if (info === '部门介绍') {
+      if (info === 'Welcome') {
         this.currentPage = 1
       }
-      if (info === 'CCF介绍') {
+      if (info === '部门介绍') {
         this.currentPage = 2
       }
-      if (info === '加入我们') {
+      if (info === 'CCF介绍') {
         this.currentPage = 3
+      }
+      if (info === '加入我们') {
+        this.currentPage = 4
       }
     }
   },
