@@ -13,6 +13,7 @@ import MvFullPage from 'mv-full-page'
 import './utils/rem.js'
 import VuePrlx from 'vue-prlx'
 import axios from 'axios'
+import 'animate.css' // 引入animate.css
 
 Vue.prototype.$axios = axios // 全局注册，使用方法为:this.$axios
 Vue.use(VuePrlx)

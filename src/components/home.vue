@@ -51,7 +51,7 @@
       <template #page4>
         <div class="page">
           <!-- 报名页面展示 -->
-          <new-login></new-login>
+          <!-- <new-login></new-login> -->
         </div>
       </template>
     </mv-full-page>
@@ -75,10 +75,7 @@ export default {
         height: '100%',
         width: '100%'
       },
-      bgArr: [{
-        isBg: true,
-        src: require('@/assets/bgcimg/3.png')
-      }, '#FAFAFA', '#CAD8D8', {
+      bgArr: ['rgba(0, 0, 0, 0)', '#FAFAFA', '#CAD8D8', {
         isBg: true,
         src: require('@/assets/bgcimg/3.png')
       }]
@@ -183,10 +180,18 @@ export default {
   }
 }
 .page {
+  position: absolute;
   width: 100%;
   height: 100%;
   .test {
     width: 100%;
   }
+}
+canvas {
+  /* display: block; */
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
 }
 </style>

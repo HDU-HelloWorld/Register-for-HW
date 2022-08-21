@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="body" @contextmenu.prevent>
   </div>
 </template>
 
@@ -224,7 +224,7 @@ export default {
           transparent: false,
         });
         this.renderer.autoResize = true;
-        document.body.appendChild(this.renderer.view);
+        document.querySelector('.body').appendChild(this.renderer.view);
 
         // Create a container object called the `stage`
         this.stage = new PIXI.Container();
@@ -882,12 +882,13 @@ export default {
 .body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  z-index: 9999;
 }
 
 canvas {
-  display: block;
-  position: absolute;
+  /* display: block; */
+  position: fixed;
+  z-index: 999999;
   top: 0;
   left: 0;
 }
