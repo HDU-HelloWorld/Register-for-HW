@@ -1,5 +1,5 @@
 <template>
-  <div class="login" :style="{minWidth:this.mw}">
+  <div class="login" :style="{ minWidth: this.mw }">
     <div class="wrapper">
       <div class="outcard">
         <div class="incard">
@@ -73,7 +73,11 @@
               </el-form-item>
             </el-col>
             <el-col :span="2" :offset="1">
-                <el-input v-model="form.authCode" class="input" placeholder="验证码"></el-input>
+              <el-input
+                v-model="authCode"
+                class="input"
+                placeholder="验证码"
+              ></el-input>
             </el-col>
           </el-row>
           <el-row>
@@ -83,17 +87,17 @@
               </el-form-item>
             </el-col>
             <el-col :span="8" :offset="1">
-              <el-form-item label="邮箱" prop="mail">
-                <el-input v-model="form.mail" class="input"></el-input>
+              <el-form-item label="邮箱" prop="email">
+                <el-input v-model="form.email" class="input"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="17" :offset="3">
-              <el-form-item label="自我介绍" prop="selfintroduction">
+              <el-form-item label="自我介绍" prop="selfIntroduction">
                 <el-input
                   type="textarea"
-                  v-model="form.selfintroduction"
+                  v-model="form.selfIntroduction"
                   class="input"
                 ></el-input>
               </el-form-item>
@@ -111,20 +115,27 @@
             </el-col>
           </el-row>
           <el-row id="check">
-              <el-col :span="1" :offset="6">
-                <el-button type="primary" @click="submitForm('form')" class="button1"
-                  >提交</el-button
-                >
-              </el-col>
-              <el-col :span="4" :offset="3">
-                <el-button type="secondary" @click="resetForm('form')" class="button2"
-                  >清空</el-button
-                >
-              </el-col>
-              <el-col :span="4" :offset="0">
-                <el-button type="secondary" @click="missForm()" class="button2"
-                  >返回</el-button>
-              </el-col>
+            <el-col :span="1" :offset="6">
+              <el-button
+                type="primary"
+                @click="submitForm('form')"
+                class="button1"
+                >提交</el-button
+              >
+            </el-col>
+            <el-col :span="4" :offset="3">
+              <el-button
+                type="secondary"
+                @click="resetForm('form')"
+                class="button2"
+                >清空</el-button
+              >
+            </el-col>
+            <el-col :span="4" :offset="0">
+              <el-button type="secondary" @click="missForm()" class="button2"
+                >返回</el-button
+              >
+            </el-col>
           </el-row>
         </el-form>
       </div>
@@ -154,17 +165,17 @@ export default {
       class3: {
         marginLeft: '0%'
       },
+      authCode: '',
       form: {
         name: '',
         gender: '',
         stuNum: '',
         phone: '',
-        authCode: '',
         qqnumber: '',
         college: '',
         department: '',
-        mail: '',
-        selfintroduction: '',
+        email: '',
+        selfIntroduction: '',
         honor: ''
       },
       rules: {
@@ -192,7 +203,7 @@ export default {
           { pattern: /^[\u0391-\uFFE5A-Za-z]+$/, message: '请输入学院', trigger: 'blur' },
           { min: 0, max: 15, message: '长度在 0 到 15 个字符', trigger: 'blur' }
         ],
-        mail: [
+        email: [
           { required: true, message: '请输入邮箱地址', trigger: 'blur' },
           { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
         ]
@@ -230,10 +241,52 @@ export default {
   },
   methods: {
     submitForm (formName) {
+      let message = this.$message
+      // 测试数据
+      // this.form.name = '张三'
+      // this.form.gender = '男'
+      // this.form.stuNum = '20182124'
+      // this.form.phone = '13000000002'
+      // this.form.qqnumber = '123456789'
+      // this.form.college = '计算机学院'
+      // this.form.department = '人工智能部门'
+      // this.form.email = 'test@qq.com'
+      // this.form.selfIntroduction = '这是一个测试'
+      // this.form.honor = '这是一个测试'
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
           console.log(this.form)
+          // 将表单提交到3000端口的/api/register接口
+          this.$axios.post('http://localhost:3000/api/register', this.form).then(function (response, code) {
+            if (response.status === 200) {
+              message({
+                message: '提交成功',
+                type: 'success'
+              })
+              // this.$router.push('/login')
+            }
+          }).catch((err) => {
+            console.log(err.response)
+            let data = err.response.data
+            if (data.name === 'SequelizeUniqueConstraintError') {
+              if (data.msg.indexOf('stuNum') !== -1) {
+                message({
+                  message: '学号已被注册',
+                  type: 'error'
+                })
+              } else {
+                message({
+                  message: '您已经提交过表单啦，请勿重复提交',
+                  type: 'error'
+                })
+              }
+            } else {
+              message({
+                message: '提交失败',
+                type: 'error'
+              })
+            }
+          })
         } else {
           console.log('error submit!!')
           return false
@@ -286,7 +339,7 @@ export default {
 }
 .form {
   background-color: rgb(255, 238, 140);
-  top: 50vh;
+  top: 0vh;
   position: absolute;
   height: 50vh;
   width: 80%;
@@ -421,14 +474,14 @@ export default {
   background-color: rgba(255, 255, 255, 0);
   border: none;
   //下划线颜色
-  border-bottom: 2px solid rgba(255, 255, 255, .2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   font-size: 15px;
   //设置字体颜色
   color: #fff;
   border-radius: 0;
   user-select: none;
 }
-/deep/ .el-form-item__label{
+/deep/ .el-form-item__label {
   color: white;
   user-select: none;
 }
@@ -453,14 +506,14 @@ export default {
 /deep/.el-input__inner:focus {
   // el-input输入时设置边框颜色
   // border: #11be59 1px solid;
-  border-color: rgba(255, 255, 255,.5);
+  border-color: rgba(255, 255, 255, 0.5);
 }
-/deep/ .el-select .el-input.is-focus .el-input__inner{
-    border-color: rgba(255, 255, 255,.5);
-  }
+/deep/ .el-select .el-input.is-focus .el-input__inner {
+  border-color: rgba(255, 255, 255, 0.5);
+}
 //修改类型为textarea的input框样式
 /deep/.el-textarea__inner {
-  background-color: rgba(255, 255, 255, .1);
+  background-color: rgba(255, 255, 255, 0.1);
   border: 0;
   color: white;
   /* 这个是去掉自我介绍和获奖经历下面拉伸的那个标志 */
@@ -472,14 +525,14 @@ export default {
   text-align: center;
   user-select: none;
   letter-spacing: 0.1em;
-  border-color:rgba(64,158,255, 0);
-  background: rgba(64,158,255, .6);
+  border-color: rgba(64, 158, 255, 0);
+  background: rgba(64, 158, 255, 0.6);
 }
 .button2 {
-  color: rgba(64,158,255);
+  color: rgba(64, 158, 255);
   text-align: center;
   user-select: none;
   letter-spacing: 0.1em;
-  border-color:rgba(255,255,255, .6);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 </style>

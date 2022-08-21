@@ -52,7 +52,7 @@
       <template #page4>
         <div class="page">
           <!-- 报名页面展示 -->
-          <!-- <new-login></new-login> -->
+          <new-login></new-login>
         </div>
       </template>
     </mv-full-page>
