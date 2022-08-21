@@ -1,5 +1,5 @@
 <template>
-  <div class="whole">
+  <div class="whole" :style="{minWidth:this.mw}">
     <div class="Intro">
       <div class="title">简介</div>
       <div class="descr">
@@ -62,12 +62,12 @@ export default {
   name: 'Ccfintro',
   data () {
     return {
+      mw: window.screen.width + 'px'
     }
   },
   mounted () {
     let Heig = document.querySelector('.whole')
     Heig.style.height = window.screen.height
-    console.log(window.screen.height)
   }
 }
 </script>

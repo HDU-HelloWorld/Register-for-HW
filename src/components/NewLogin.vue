@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login" :style="{minWidth:this.mw}">
     <div class="wrapper">
       <div class="outcard">
         <div class="incard">
@@ -143,6 +143,7 @@ export default {
   name: 'NewLogin',
   data () {
     return {
+      mw: window.screen.width + 'px',
       showButton: true,
       class1: {
         marginTop: '100%'

@@ -25,7 +25,7 @@
         </li>
       </div>
     </div>
-    <div class="showinfo">
+    <div class="showinfo" :style="{minWidth:this.mw}">
       <!-- 指定组件的呈现位置 -->
       <Front v-if="introIndex == 1"></Front>
       <Back v-if="introIndex == 2"></Back>
@@ -43,7 +43,8 @@ export default {
   name: 'DepIntro',
   data () {
     return {
-      introIndex: '1'
+      introIndex: '1',
+      mw: window.screen.width + 'px'
     }
   },
   components: {
@@ -79,7 +80,7 @@ export default {
     z-index: 999;
     width: 55%;
     height: 15%;
-    top: 80%;
+    top: 88%;
     .imgs-icon {
       margin-left: 70%;
       z-index: 999;
@@ -121,8 +122,9 @@ export default {
     }
   }
   .showinfo {
-    top: -100px;
+    top: -50px;
     width: 100%;
+    // min-width: 1348px;
     position: relative;
   }
 }
