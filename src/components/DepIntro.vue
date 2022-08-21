@@ -25,7 +25,7 @@
         </li>
       </div>
     </div>
-    <div class="showinfo" :style="{minWidth:this.mw}">
+    <div class="showinfo">
       <!-- 指定组件的呈现位置 -->
       <Front v-if="introIndex == 1"></Front>
       <Back v-if="introIndex == 2"></Back>
@@ -43,8 +43,7 @@ export default {
   name: 'DepIntro',
   data () {
     return {
-      introIndex: '1',
-      mw: window.screen.width + 'px'
+      introIndex: '1'
     }
   },
   components: {
@@ -75,11 +74,14 @@ export default {
   position: absolute;
   height: 100%;
   margin-top: 1%;
+  display: flex;
+  flex-direction: column;
   .contro {
     position: relative;
     z-index: 999;
     width: 55%;
     height: 15%;
+    min-width: 300px;
     top: 88%;
     .imgs-icon {
       margin-left: 70%;
@@ -94,6 +96,7 @@ export default {
         width: 15%;
         border-radius: 8px;
         list-style-type: none;
+        min-width: 50px;
         .navList {
           display: block;
           width: 100%;
@@ -106,6 +109,7 @@ export default {
             border-radius: 8px;
           }
           img {
+            min-width: 100%;
             box-sizing: border-box;
             padding: 5px;
             vertical-align: top;
@@ -124,7 +128,6 @@ export default {
   .showinfo {
     top: -50px;
     width: 100%;
-    // min-width: 1348px;
     position: relative;
   }
 }

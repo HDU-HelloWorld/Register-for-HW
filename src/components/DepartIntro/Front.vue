@@ -26,10 +26,12 @@ export default {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    min-width: 800px;
     img{
       margin-top: 2%;
       border-radius: 15px;
-      width:60%
+      width:60%;
+      min-width: 600px;
     }
     .desc{
       width: 38%;
