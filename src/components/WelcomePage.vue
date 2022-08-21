@@ -156,14 +156,19 @@ export default {
         constructor() {
           this.width = window.innerWidth
           this.height = window.innerHeight
-
-          // Define the assets that PIXI needs to preload to use later in the application
-          this.loader = PIXI.loader
-            .add('https://stefanweck.nl/codepen/alpha.png')
-            .add('https://stefanweck.nl/codepen/shine.png')
-            .add('https://stefanweck.nl/codepen/background.jpg')
-            .add('https://stefanweck.nl/codepen/foreground.jpg')
-            .load(() => this.initialize())
+          try{
+            // Define the assets that PIXI needs to preload to use later in the application
+            this.loader = PIXI.loader
+              .add('https://stefanweck.nl/codepen/alpha.png')
+              .add('https://stefanweck.nl/codepen/shine.png')
+              .add('https://stefanweck.nl/codepen/background.jpg')
+              .add('https://stefanweck.nl/codepen/foreground.jpg')
+              .load(() => this.initialize())
+          } catch (e) {
+            console.log(e)
+            // 刷新页面
+            window.location.reload()
+          }
         }
 
         /**
@@ -872,7 +877,7 @@ export default {
           return Math.floor(Math.random() * ((max - min) + 1)) + min
         }
       }
-      new Application()
+      const app = new Application()
     }
     this.isLoad = true
   },
@@ -884,14 +889,6 @@ export default {
   },
   beforeMount () {
     console.log("调用了beforeMount")
-  },
-  beforeDestroy () {
-    // 清空变量
-    this.app = null
-    this.largeDroplets = null
-    this.dropletPool = null
-    this.dropletContainer = null
-    this.dropletTexture = null
   }
 }
 </script>
