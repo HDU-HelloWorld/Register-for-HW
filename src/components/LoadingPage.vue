@@ -1,7 +1,10 @@
 <template>
   <div class="body">
-    <div id="typedtext">this is test message</div>
-    <div id="typedtext" v-for="message in indexMessage" :key="message">{{message}}</div>
+    <div id="typedtext">
+      <div class="outputText">this is test message</div>
+      <div v-for="text in indexMessage" class="outputText" :key="text"></div>
+    </div>
+    <!-- <class id="typedtext" v-for="message in indexMessage" :key="message">{{message}}</div> -->
   </div>
 </template>
 
@@ -24,9 +27,32 @@ export default {
       ]
     }
   },
-  mounted () {
+  async mounted () {
+    this.printMessage(this.indexMessage)
   },
   methods: {
+    // 单句话的打字效果
+    async typeText (text, index) {
+      return new Promise((resolve, reject) => {
+        let textNode = document.querySelectorAll('.outputText')[index]
+        let i = 0
+        let timer = setInterval(() => {
+          if (i < text.length) {
+            textNode.innerHTML += text[i]
+            i++
+          } else {
+            clearInterval(timer)
+            resolve()
+          }
+        }, 10)
+      })
+    },
+    // 打印一个对话数组中的每一句话
+    async printMessage (message) {
+      for (let i = 0; i < message.length; i++) {
+        await this.typeText(message[i], i + 1)
+      }
+    }
   }
 }
 </script>

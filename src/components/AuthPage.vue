@@ -83,8 +83,9 @@ export default {
         }).then(res => {
           console.log('res:', res)
           // 正则匹配console.log('Hello World!')，忽略大小写
-          const reg = /console.log\('Hello World'\)/gi
-          if (reg.test(this.inputString)) {
+          const reg1 = /(console[.。]log[(（]['‘’]Hello( )*World[!!]['‘’][)）])/gi
+          const reg2 = /(console[.。]log[(（]['‘’]Hello( )*World['‘’][)）])/gi
+          if (reg1.test(this.inputString) || reg2.test(this.inputString)) {
             console.log('success')
             let output = document.querySelector('.outputFade')
             setTimeout(() => {
