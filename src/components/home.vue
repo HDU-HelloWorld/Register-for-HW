@@ -33,7 +33,7 @@
       <template #page1>
         <!-- 部门介绍展示 -->
         <div class="page">
-          <WelcomePage></WelcomePage>
+          <WelcomePage v-if="isLoad"></WelcomePage>
         </div>
       </template>
       <template #page2>
@@ -68,6 +68,7 @@ export default {
   name: 'Home',
   data () {
     return {
+      isLoad: false,
       isV: true,
       currentPage: 1,
       page: 0,
@@ -103,6 +104,7 @@ export default {
     }
   },
   mounted () {
+    this.isLoad = true
     let navshows = document.querySelectorAll('.navshow')
     let index = this.currentPage - 1
     for (let i = 0; i < 3; i++) {
@@ -121,6 +123,9 @@ export default {
         navshows[index].firstElementChild.style.color = 'rgb(55, 120, 229)'
       }
     }
+  },
+  beforeCreate () {
+    this.isLoad = false
   }
 }
 </script>

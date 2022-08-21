@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Demo from '@/components/Demo'
 import home from '@/components/home'
-import WelcomePage from '@/components/WelcomePage'
+// import WelcomePage from '@/components/WelcomePage'
 import IndexPage from '@/components/IndexPage'
 import LoadingPage from '@/components/LoadingPage'
 import AuthPage from '@/components/AuthPage'
@@ -29,11 +29,6 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: home
-    },
-    {
-      path: '/welcome',
-      name: 'WelcomePage',
-      component: WelcomePage
     },
     {
       path: '/auth',
