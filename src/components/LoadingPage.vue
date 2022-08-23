@@ -6,18 +6,19 @@
       </div>
       <div class="inputText" @click="focusInput">
         [HelloWorld]:
-        <div class="input">
+        <div class="input" @click="focusInput">
           <el-input
             class="inputBox"
             ref="inputBox"
             v-model="inputString"
+            @click="focusInput"
             @focus="caretShining"
             @blur="cancelShining"
             @keyup.enter.native="sendMessage"
             @keydown.left.prevent.native
             autofocus
           ></el-input
-          ><span
+          ><span @click="focusInput"
             >{{ inputString }}
             <div class="caret" v-show="caret"></div
           ></span>
@@ -176,6 +177,40 @@ export default {
         }, speed)
       })
     },
+    // 输出选项
+    async typeOption (text, speed, index) {
+      return new Promise((resolve, reject) => {
+        let textNode = document.createElement('div')
+        let inputNode = document.querySelector('.inputText')
+        // 添加class
+        textNode.classList.add('outputText', 'options', `option${index}`)
+        // 设置options样式
+        textNode.style.cursor = 'pointer'
+        textNode.style.color = '#33f1ff'
+        textNode.style.marginLeft = '40px'
+        document.querySelector('.textBox').appendChild(textNode)
+        let i = 0
+        let timer = setInterval(() => {
+          inputNode.scrollIntoView({ block: 'end' })
+          if (i < text.length) {
+            textNode.innerHTML += text[i]
+            // 将 textNode 添加到 #typedtext 的末尾
+            i++
+          } else {
+            clearInterval(timer)
+            resolve()
+          }
+        }, speed)
+      })
+    },
+    // 停顿
+    async sleep (time) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve()
+        }, time)
+      })
+    },
     // 打印一个对话数组中的每一句话
     async printMessage (message) {
       for (let i = 0; i < message.length; i++) {
@@ -189,8 +224,20 @@ export default {
       }
       await this.printMessage(this.indexMessage, 10)
       await this.focusInput()
-      let answer = await this.question('请输入你的姓名：')
-      await this.typeQuickText(`你的姓名是${answer}`, 10)
+      let name = await this.question('请输入你的姓名：', 100)
+      while (name === '') {
+        await this.typeText('嘿，嘿，嘿！这不对吧，怎么会有人没有名字？', 100)
+        name = await this.question('请输入你的姓名：', 100)
+      }
+      await this.typeText(`噢噢噢！我想起来了，对对，你就是${name}，我可不会忘了你——${name}`, 100)
+      let choiceArr1 = [`哈哈，骗你的，我才不叫${name}`, '终于想起我来了吗？', '总感觉很可疑...']
+      let choice1 = await this.choice(choiceArr1, 100)
+      console.log(choice1)
+      if (choice1 === '1') {
+        await this.typeText('?你该不会是在耍我吧？o(一︿一+)o', 100)
+      } else {
+        await this.typeText('总之...总之...计算机的记忆力可是极好的，你可不能怀疑我！', 100)
+      }
     },
     // 光标闪烁函数
     caretShining () {
@@ -203,17 +250,23 @@ export default {
       }, 500)
     },
     cancelShining () {
-      this.isFocus = false
+      // 查找当前focus的元素
+      let focusItem = document.activeElement
       // 清除setInterval函数
       clearInterval(this.timer)
-      this.caret = false
-      // this.isFocus = false
+      // console.log('触发blur', focusItem.tagName)
+      if (focusItem.tagName !== 'INPUT') {
+        this.isFocus = false
+        this.caret = false
+      }
     },
     // 聚焦input框
     focusInput () {
-      this.isFocus = true
-      this.$refs.inputBox.focus()
-      console.log('聚焦input框')
+      this.$nextTick(() => {
+        this.isFocus = true
+        this.$refs.inputBox.focus()
+        console.log('聚焦input框')
+      })
     },
     async sendMessage () {
       // 发送消息
@@ -227,8 +280,9 @@ export default {
       this.caretShining()
       this.focusInput()
     },
-    async question (question) {
-      await this.typeQuickText(question, 10)
+    async question (question, speed) {
+      await this.typeText(question, speed)
+      this.focusInput()
       // 等待用户输入
       return new Promise((resolve, reject) => {
         window.addEventListener('keyup', (e) => {
@@ -239,7 +293,32 @@ export default {
           }
         })
       })
+    },
+    async choice (choice, speed) {
+      // 遍历并输出choice数组
+      for (let i = 0; i < choice.length; i++) {
+        await this.typeOption(`选项${i + 1}：` + choice[i], speed, i + 1)
+        await this.sleep(500)
+      }
+      await this.typeText('（使用鼠标点击选项进行选择）', speed)
+      this.focusInput()
+      return new Promise((resolve, reject) => {
+        window.addEventListener('click', (e) => {
+          let option = e.target.className.slice(-1)
+          // console.log(option)
+          // 正则匹配数字
+          let reg = /\d/
+          if (reg.test(option)) {
+            resolve(option)
+          }
+        })
+      })
     }
+  },
+  // 销毁
+  beforeDestroy () {
+    // 销毁所有异步函数
+    clearInterval(this.timer)
   }
 }
 </script>
