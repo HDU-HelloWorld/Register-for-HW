@@ -4,8 +4,24 @@
       <div class="textBox">
         <div class="outputText">this is test message</div>
       </div>
-      <div class="inputText">
-        [HelloWorld]<el-input class="inputBox" v-model="inputString"></el-input>
+      <div class="inputText" @click="focusInput">
+        [HelloWorld]:
+        <div class="input">
+          <el-input
+            class="inputBox"
+            ref="inputBox"
+            v-model="inputString"
+            @focus="caretShining"
+            @blur="cancelShining"
+            @keyup.enter.native="sendMessage"
+            @keydown.left.prevent.native
+            autofocus
+          ></el-input
+          ><span
+            >{{ inputString }}
+            <div class="caret" v-show="caret"></div
+          ></span>
+        </div>
       </div>
     </div>
     <!-- <class id="typedtext" v-for="message in indexMessage" :key="message">{{message}}</div> -->
@@ -18,7 +34,23 @@ export default {
   name: 'LoadingPage',
   data () {
     return {
+      timer: Object, // 定时器
       inputString: '',
+      command: '',
+      caret: true,
+      isFocus: true,
+      form: {
+        name: '',
+        gender: '',
+        stuNum: '',
+        phone: '',
+        qqnumber: '',
+        college: '',
+        department: '',
+        email: '',
+        selfIntroduction: '',
+        honor: ''
+      },
       indexMessage: [
         '正在启动系统...',
         '正在检查系统log...',
@@ -29,7 +61,7 @@ export default {
         'Success: 显卡正常',
         'Success: CPU运算速度...世界级',
         'Success: 网络连接正常',
-        '正在尝试连接到Hello World'
+        '正在尝试连接到Hello World......'
       ],
       systemMessage: [
         `System information as of ${moment().format('MMMM Do YYYY, h:mm:ss a')} CST`,
@@ -156,6 +188,57 @@ export default {
         await this.typeQuickText(text, 10)
       }
       await this.printMessage(this.indexMessage, 10)
+      await this.focusInput()
+      let answer = await this.question('请输入你的姓名：')
+      await this.typeQuickText(`你的姓名是${answer}`, 10)
+    },
+    // 光标闪烁函数
+    caretShining () {
+      this.isFocus = true
+      // 先清楚闪烁，防止多次闪烁
+      this.cancelShining()
+      // 每0.5s修改caret的值
+      this.timer = setInterval(() => {
+        this.caret = !this.caret
+      }, 500)
+    },
+    cancelShining () {
+      this.isFocus = false
+      // 清除setInterval函数
+      clearInterval(this.timer)
+      this.caret = false
+      // this.isFocus = false
+    },
+    // 聚焦input框
+    focusInput () {
+      this.isFocus = true
+      this.$refs.inputBox.focus()
+      console.log('聚焦input框')
+    },
+    async sendMessage () {
+      // 发送消息
+      await this.typeQuickText(this.inputString, 10)
+      // 保存命令
+      this.command = this.inputString
+      // 清空input框
+      this.inputString = ''
+      // 发送消息后先清除光标闪烁，然后聚焦input框
+      this.cancelShining()
+      this.caretShining()
+      this.focusInput()
+    },
+    async question (question) {
+      await this.typeQuickText(question, 10)
+      // 等待用户输入
+      return new Promise((resolve, reject) => {
+        window.addEventListener('keyup', (e) => {
+          // console.log(e.key, this.isFocus)
+          // 这里之前那个判断是真tm傻逼
+          if (e.key === 'Enter' && this.isFocus === true) {
+            resolve(this.inputString)
+          }
+        })
+      })
     }
   }
 }
@@ -177,7 +260,6 @@ export default {
   --bkg-color: #1a1a1c;
   --text-color: #95a9b4;
   --big-font-size: 4rem;
-
   background-color: var(--bkg-color);
   background-image: url('../assets/background/binding-dark.png');
 }
@@ -186,18 +268,44 @@ export default {
   display: flex;
   align-items: end;
   height: 20px;
+  cursor: text;
+  .input {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    span {
+      display: flex;
+      white-space: nowrap;
+    }
+    .caret {
+      width: 6px;
+      height: 17px;
+      background-color: #33ff66;
+    }
+  }
   .inputBox /deep/ .el-input__inner {
+    position: absolute;
     display: flex;
     align-items: center;
     background-color: rgba(0, 0, 0, 0);
+    width: 50px;
+    height: 100%;
     border: 0;
-    padding: 2px;
-    height: 20px;
+    padding: 0px;
+    top: 5px;
     letter-spacing: 3px;
+    line-height: 1px;
     font-weight: bold;
     font-family: 'Barlow', sans-serif;
     font-size: 15px;
     color: #33ff66;
+    caret-color: rgba(0, 0, 0, 0);
+    &:focus {
+      outline: 0;
+    }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0);
+    }
   }
 }
 
