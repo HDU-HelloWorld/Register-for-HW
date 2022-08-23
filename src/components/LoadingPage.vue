@@ -4,6 +4,9 @@
       <div class="textBox">
         <div class="outputText">this is test message</div>
       </div>
+      <div class="inputText">
+        [HelloWorld]<el-input class="inputBox" v-model="inputString"></el-input>
+      </div>
     </div>
     <!-- <class id="typedtext" v-for="message in indexMessage" :key="message">{{message}}</div> -->
   </div>
@@ -15,6 +18,7 @@ export default {
   name: 'LoadingPage',
   data () {
     return {
+      inputString: '',
       indexMessage: [
         '正在启动系统...',
         '正在检查系统log...',
@@ -106,12 +110,13 @@ export default {
     async typeText (text, speed) {
       return new Promise((resolve, reject) => {
         let textNode = document.createElement('div')
+        let inputNode = document.querySelector('.inputText')
         // 添加class
         textNode.className = 'outputText'
         document.querySelector('.textBox').appendChild(textNode)
         let i = 0
         let timer = setInterval(() => {
-          textNode.scrollIntoView({ block: 'end' })
+          inputNode.scrollIntoView({ block: 'end' })
           if (i < text.length) {
             textNode.innerHTML += text[i]
             // 将 textNode 添加到 #typedtext 的末尾
@@ -126,6 +131,7 @@ export default {
     // 更快的打字效果
     async typeQuickText (texts, speed) {
       let textNode = document.createElement('div')
+      let inputNode = document.querySelector('.inputText')
       // 添加class
       textNode.className = 'outputText'
       document.querySelector('.textBox').appendChild(textNode)
@@ -133,7 +139,7 @@ export default {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           textNode.innerHTML = texts
-          textNode.scrollIntoView({ block: 'end' })
+          inputNode.scrollIntoView({ block: 'end' })
           resolve()
         }, speed)
       })
@@ -162,6 +168,8 @@ export default {
   letter-spacing: 3px;
   font-weight: bold;
   font-family: 'Barlow', sans-serif;
+  font-size: 15px;
+  line-height: 20px;
   width: 100%;
   min-height: 100vh;
   height: 100vh;
@@ -171,12 +179,31 @@ export default {
   --big-font-size: 4rem;
 
   background-color: var(--bkg-color);
-  background-image: url('https://www.transparenttextures.com/patterns/binding-dark.png');
+  background-image: url('../assets/background/binding-dark.png');
+}
+
+.inputText {
+  display: flex;
+  align-items: end;
+  height: 20px;
+  .inputBox /deep/ .el-input__inner {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+    padding: 2px;
+    height: 20px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: #33ff66;
+  }
 }
 
 #typedtext {
-  width: 100%;
-  height: 80vh;
+  width: 50%;
+  height: 90vh;
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none; /* Chrome Safari */

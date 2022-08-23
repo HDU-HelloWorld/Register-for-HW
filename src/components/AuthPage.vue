@@ -133,14 +133,12 @@ export default {
   justify-content: center;
   display: grid;
   place-content: center;
-
   --soft-color: #5c5c5c;
   --bkg-color: #1a1a1c;
   --text-color: #95a9b4;
   --big-font-size: 4rem;
-
   background-color: var(--bkg-color);
-  background-image: url('https://www.transparenttextures.com/patterns/binding-dark.png');
+  background-image: url('../assets/background/binding-dark.png');
 }
 
 .container {
