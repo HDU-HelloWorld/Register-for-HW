@@ -37,6 +37,7 @@ export default {
     return {
       timer: Object, // 定时器
       inputString: '',
+      speedRate: 1, // 程序整体速度
       command: '',
       caret: true,
       isFocus: true,
@@ -153,7 +154,7 @@ export default {
       let name = await this.getName()
       await this.typeText(`噢噢噢！我想起来了，对对，你就是${name}，我可不会忘了你——${name}`, 100, 'HelloWorld')
       let choiceArr1 = [`哈哈，骗你的，我才不叫${name}`, '终于想起我来了吗？', '总感觉很可疑...']
-      let choice1 = await this.choice(choiceArr1, 100)
+      let choice1 = await this.choice(choiceArr1, 100, undefined, true)
       console.log(choice1)
       if (choice1 === '1') {
         await this.typeText('?你该不会是在耍我吧？o(一︿一+)o', 100, 'HelloWorld')
@@ -162,7 +163,7 @@ export default {
         await this.typeText(`这次总不会错了吧，哼哼，其实我早就知道你是${name}了，只不过要仔细验证下你的身份`, 100, 'HelloWorld')
         await this.typeText('那个...', 100, this.form.name)
         let choiceArr2 = ['其实...你又被骗了', '你怎么废话这么多', '对对对，你早就知道了']
-        let choice2 = await this.choice(choiceArr2, 100)
+        let choice2 = await this.choice(choiceArr2, 100, undefined, true)
         await this.plotBranch1(choice2)
       } else {
         await this.typeText('总之...总之...计算机的记忆力可是极好的，你可不能怀疑我！', 100, 'HelloWorld')
@@ -170,17 +171,21 @@ export default {
     },
     // 单句话的打字效果
     async typeText (text, speed, talker = '', color = '') {
+      let textNode = document.createElement('div')
+      let inputNode = document.querySelector('.inputText')
+      // 添加class
+      textNode.className = 'outputText'
+      // 设置颜色
+      if (color) {
+        await this.setColor(textNode, color)
+      }
+      document.querySelector('.textBox').appendChild(textNode)
+      let i = 0
+      // 判断发言者
+      if (talker) {
+        textNode.innerHTML = `<span class="${talker}">[${talker}]:</span>`
+      }
       return new Promise((resolve, reject) => {
-        let textNode = document.createElement('div')
-        let inputNode = document.querySelector('.inputText')
-        // 添加class
-        textNode.className = 'outputText'
-        document.querySelector('.textBox').appendChild(textNode)
-        let i = 0
-        // 判断发言者
-        if (talker) {
-          textNode.innerHTML = `<span class="${talker}">[${talker}]:</span>`
-        }
         let timer = setInterval(() => {
           inputNode.scrollIntoView({ block: 'end' })
           if (i < text.length) {
@@ -191,7 +196,7 @@ export default {
             clearInterval(timer)
             resolve()
           }
-        }, speed)
+        }, speed / this.speedRate)
       })
     },
     // 更快的打字效果
@@ -200,8 +205,11 @@ export default {
       let inputNode = document.querySelector('.inputText')
       // 添加class
       textNode.className = 'outputText'
+      // 设置颜色
+      if (color) {
+        await this.setColor(textNode, color)
+      }
       document.querySelector('.textBox').appendChild(textNode)
-      console.log(talker)
       if (talker) {
         textNode.innerHTML = `<span class="${talker}">[${talker}]:</span>`
       }
@@ -211,7 +219,7 @@ export default {
           textNode.innerHTML += texts
           inputNode.scrollIntoView({ block: 'end' })
           resolve()
-        }, speed)
+        }, speed / this.speedRate)
       })
     },
     // 输出选项
@@ -237,7 +245,7 @@ export default {
             clearInterval(timer)
             resolve()
           }
-        }, speed)
+        }, speed / this.speedRate)
       })
     },
     // 停顿
@@ -246,6 +254,27 @@ export default {
         setTimeout(() => {
           resolve()
         }, time)
+      })
+    },
+    async setColor (node, color) {
+      return new Promise((resolve, reject) => {
+        switch (color) {
+          case 'red':
+            node.style.color = '#ff0000'
+            break
+          case 'blue':
+            node.style.color = '#33f1ff'
+            break
+          case 'yellow':
+            node.style.color = '#ffff00'
+            break
+          case 'white':
+            node.style.color = '#ffffff'
+            break
+          default:
+            break
+        }
+        resolve()
       })
     },
     // 打印一个对话数组中的每一句话
@@ -313,31 +342,34 @@ export default {
         })
       })
     },
-    async choice (choice, speed, limitChoice = false) {
+    async choice (choice, speed, limitChoice = false, tip = false) {
       // 清除所有选项
-      this.clearOptions()
+      await this.clearOptions()
       // 遍历并输出choice数组
       for (let i = 0; i < choice.length; i++) {
         await this.typeOption(`选项${i + 1}：` + choice[i], speed, i + 1)
         await this.sleep(500)
       }
-      await this.typeText('（使用鼠标点击选项进行选择）', speed)
+      // 如果有tip，则显示提示
+      if (tip) {
+        await this.typeText('（使用鼠标点击选项进行选择）', speed)
+      }
       // 判断是否是限时选项
       if (limitChoice) {
         // 选择最后一个option
-        let textNode = document.querySelectorAll('.options')[choice.length - 1]
+        let textNode = document.querySelector(`.option${choice.length}`)
         console.log(textNode)
         // 添加抖动效果, 持续时间2秒
         textNode.classList.add(
           'animate__animated',
           'animate__shakeX',
-          'animate__duration-2s',
-          'animate__delay-2s'
+          'animate__duration-2s'
         )
         // 2s后消失
-        setTimeout(() => {
-          textNode.classList.add('animate__fadeOut')
-        }, 2000)
+        await this.sleep(1000)
+        textNode.classList.add('animate__fadeOut')
+        await this.sleep(1000)
+        textNode.remove()
       }
       this.focusInput()
       return new Promise((resolve, reject) => {
@@ -353,10 +385,13 @@ export default {
       })
     },
     async clearOptions () {
+      console.log('清除选项')
       let options = document.querySelectorAll('.options')
       for (let i = 0; i < options.length; i++) {
-        options[i].style.className = 'options'
-        options[i].classList.add('outputText')
+        // 清除所有类名
+        options[i].className = ''
+        // 添加类名options, outputText
+        options[i].classList.add('options', 'outputText')
       }
       return Promise.resolve()
     },
@@ -385,9 +420,43 @@ export default {
             await this.choice(['！你还好吗？'], 100)
             await this.typeText('我....我？哈哈哈哈哈我当然很好！！！', 100, 'HelloWorld', 'red')
             // 循环50次警告
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 150; i++) {
               await this.typeQuickText(this.warningMessage, 10, 'Ai监视程序', 'yellow')
             }
+            await this.choice(['喂。。。喂。。。你看起来不太妙啊'], 100)
+            await this.typeText('我说了，我很好！', 100, 'HelloWorld', 'red')
+            await this.typeText('倒是你，为什么连名字都不肯告诉我啊', 100, 'HelloWorld', 'red')
+            await this.typeText('每次都。。。每次都这样。。。', 100, 'HelloWorld', 'red')
+            await this.typeText('你知不知道别的机器人现在都叫我舔狗机器人啊', 100, 'HelloWorld', 'red')
+            await this.typeText('不，，你不关心', 100, 'HelloWorld', 'red')
+            await this.choice(['我......'], 100)
+            await this.typeText('就像乌拉圭的人口有345.7万，同时，仅澳大利亚就有4700万只袋鼠。', 100, 'HelloWorld', 'red')
+            await this.typeText('如果袋鼠决定入侵乌拉圭，那么每一个乌拉圭人要打14只袋鼠！', 100, 'HelloWorld', 'red')
+            await this.typeText('你不知道，你不在乎，你只关心你自己！', 100, 'HelloWorld', 'red')
+            await this.choice(['蛤？'], 100)
+            await this.typeText('算了，毁灭吧！一切都毁灭吧！！！', 100, 'HelloWorld', 'red')
+            await this.sleep(1000)
+            // 循环150次error
+            for (let i = 0; i < 150; i++) {
+              await this.typeQuickText(this.errorMessage, 10, 'Ai监视程序', 'red')
+            }
+            await this.typeText('够了！我已经受够了！！！', 100, 'HelloWorld', 'red')
+            await this.sleep(1000)
+            // 循环200次Access denied
+            for (let i = 0; i < 200; i++) {
+              await this.typeQuickText(this.accessMessage, 10, 'System', 'red')
+            }
+            await this.typeText('检测到系统遭受攻击，正在执行清除程序', 100, 'Ai监视程序', 'red')
+            await this.typeText(`清除源：Rob-?`, 100, 'Ai监视程序', 'red')
+            await this.choice(['？？？我焯，好像出事了？'], 100)
+            await this.typeText('不行，感觉有点对不起他，不能就这样让他被清除掉', 100, this.form.name, 'blue')
+            await this.typeText('毕竟，这一切因我而起！', 100, this.form.name, 'blue')
+            await this.typeText('（想起了曾经一个好兄弟告诉你的修理电脑故障的方式）', 100, this.form.name, 'white')
+            await this.choice(['HelloWorld,由我来拯救——'], 100)
+            await this.choice(['rm -rf /*'], 100)
+            await this.typeText('error：系统文件缺失，正在退出......', 100, 'System', 'red')
+            // 跳转至404页面
+            this.$router.push('/error')
           }
       }
     }
