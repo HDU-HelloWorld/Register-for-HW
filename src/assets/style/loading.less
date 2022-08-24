@@ -15,6 +15,26 @@
   --big-font-size: 4rem;
   background-color: var(--bkg-color);
   background-image: url('../background/binding-dark.png');
+  #imgCover {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      max-height: 80vh;
+    }
+    // background-color: var(--bkg-color);
+    // background-image: url('../background/binding-dark.png');
+    // background-repeat: repeat;
+  }
+  audio {
+    display: none;
+  }
 }
 
 .inputText {
