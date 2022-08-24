@@ -2,7 +2,7 @@
 > 基于Webpack + Vue2开发的招新网站
 
 <div align=center>
-<img src="./logo1.jpg" width="500"/>
+<img src="./src/assets/logo.jpg" width="500"/>
 </div>
 
 ## 开发任务
