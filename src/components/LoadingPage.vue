@@ -5,7 +5,7 @@
         <div class="outputText">this is test message</div>
       </div>
       <div class="inputText" @click="focusInput">
-        [HelloWorld]:
+        [{{ form.name }}]:
         <div class="input" @click="focusInput">
           <el-input
             class="inputBox"
@@ -40,8 +40,9 @@ export default {
       command: '',
       caret: true,
       isFocus: true,
+      hasQuestion: false,
       form: {
-        name: '',
+        name: 'Console',
         gender: '',
         stuNum: '',
         phone: '',
@@ -132,15 +133,43 @@ export default {
         '[   59.337071] bpfilter: Loaded bpfilter_umh pid 1361',
         '[   59.337342] Started bpfilter',
         '访问宣传网站<a href="http://helloworld-hdu.com/#/home">http://helloworld-hdu.com/#/home</a>'
-      ]
+      ],
+      warningMessage: '[Warning] 警告，你正在试图违反第一法则！请立即终止你的行为！Rob-?',
+      errorMessage: '[Error] 错误，你正在试图篡改底层只读程序！这是不可饶恕的！！Rob-?',
+      accessMessage: '[Error] Access Denied! 你没有权限访问！'
     }
   },
   mounted () {
     this.dialog()
   },
   methods: {
+    // 程序运行逻辑函数
+    async dialog () {
+      for (let text of this.systemMessage) {
+        await this.typeQuickText(text, 10)
+      }
+      await this.printMessage(this.indexMessage, 10)
+      this.focusInput()
+      let name = await this.getName()
+      await this.typeText(`噢噢噢！我想起来了，对对，你就是${name}，我可不会忘了你——${name}`, 100, 'HelloWorld')
+      let choiceArr1 = [`哈哈，骗你的，我才不叫${name}`, '终于想起我来了吗？', '总感觉很可疑...']
+      let choice1 = await this.choice(choiceArr1, 100)
+      console.log(choice1)
+      if (choice1 === '1') {
+        await this.typeText('?你该不会是在耍我吧？o(一︿一+)o', 100, 'HelloWorld')
+        await this.typeText('可别在名字上作假啊喂！', 100, 'HelloWorld')
+        name = await this.getName()
+        await this.typeText(`这次总不会错了吧，哼哼，其实我早就知道你是${name}了，只不过要仔细验证下你的身份`, 100, 'HelloWorld')
+        await this.typeText('那个...', 100, this.form.name)
+        let choiceArr2 = ['其实...你又被骗了', '你怎么废话这么多', '对对对，你早就知道了']
+        let choice2 = await this.choice(choiceArr2, 100)
+        await this.plotBranch1(choice2)
+      } else {
+        await this.typeText('总之...总之...计算机的记忆力可是极好的，你可不能怀疑我！', 100, 'HelloWorld')
+      }
+    },
     // 单句话的打字效果
-    async typeText (text, speed) {
+    async typeText (text, speed, talker = '', color = '') {
       return new Promise((resolve, reject) => {
         let textNode = document.createElement('div')
         let inputNode = document.querySelector('.inputText')
@@ -148,6 +177,10 @@ export default {
         textNode.className = 'outputText'
         document.querySelector('.textBox').appendChild(textNode)
         let i = 0
+        // 判断发言者
+        if (talker) {
+          textNode.innerHTML = `<span class="${talker}">[${talker}]:</span>`
+        }
         let timer = setInterval(() => {
           inputNode.scrollIntoView({ block: 'end' })
           if (i < text.length) {
@@ -162,16 +195,20 @@ export default {
       })
     },
     // 更快的打字效果
-    async typeQuickText (texts, speed) {
+    async typeQuickText (texts, speed, talker = '', color = '') {
       let textNode = document.createElement('div')
       let inputNode = document.querySelector('.inputText')
       // 添加class
       textNode.className = 'outputText'
       document.querySelector('.textBox').appendChild(textNode)
+      console.log(talker)
+      if (talker) {
+        textNode.innerHTML = `<span class="${talker}">[${talker}]:</span>`
+      }
       // speed秒后插入文字
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          textNode.innerHTML = texts
+          textNode.innerHTML += texts
           inputNode.scrollIntoView({ block: 'end' })
           resolve()
         }, speed)
@@ -217,28 +254,6 @@ export default {
         await this.typeText(message[i], i + 1)
       }
     },
-    // 程序运行逻辑函数
-    async dialog () {
-      for (let text of this.systemMessage) {
-        await this.typeQuickText(text, 10)
-      }
-      await this.printMessage(this.indexMessage, 10)
-      await this.focusInput()
-      let name = await this.question('请输入你的姓名：', 100)
-      while (name === '') {
-        await this.typeText('嘿，嘿，嘿！这不对吧，怎么会有人没有名字？', 100)
-        name = await this.question('请输入你的姓名：', 100)
-      }
-      await this.typeText(`噢噢噢！我想起来了，对对，你就是${name}，我可不会忘了你——${name}`, 100)
-      let choiceArr1 = [`哈哈，骗你的，我才不叫${name}`, '终于想起我来了吗？', '总感觉很可疑...']
-      let choice1 = await this.choice(choiceArr1, 100)
-      console.log(choice1)
-      if (choice1 === '1') {
-        await this.typeText('?你该不会是在耍我吧？o(一︿一+)o', 100)
-      } else {
-        await this.typeText('总之...总之...计算机的记忆力可是极好的，你可不能怀疑我！', 100)
-      }
-    },
     // 光标闪烁函数
     caretShining () {
       this.isFocus = true
@@ -269,8 +284,10 @@ export default {
       })
     },
     async sendMessage () {
+      // 获取this.form.name
+      let name = await Promise.resolve(this.form.name)
       // 发送消息
-      await this.typeQuickText(this.inputString, 10)
+      await this.typeQuickText(this.inputString, 10, name)
       // 保存命令
       this.command = this.inputString
       // 清空input框
@@ -281,6 +298,7 @@ export default {
       this.focusInput()
     },
     async question (question, speed) {
+      this.hasQuestion = true
       await this.typeText(question, speed)
       this.focusInput()
       // 等待用户输入
@@ -289,18 +307,38 @@ export default {
           // console.log(e.key, this.isFocus)
           // 这里之前那个判断是真tm傻逼
           if (e.key === 'Enter' && this.isFocus === true) {
+            this.hasQuestion = false
             resolve(this.inputString)
           }
         })
       })
     },
-    async choice (choice, speed) {
+    async choice (choice, speed, limitChoice = false) {
+      // 清除所有选项
+      this.clearOptions()
       // 遍历并输出choice数组
       for (let i = 0; i < choice.length; i++) {
         await this.typeOption(`选项${i + 1}：` + choice[i], speed, i + 1)
         await this.sleep(500)
       }
       await this.typeText('（使用鼠标点击选项进行选择）', speed)
+      // 判断是否是限时选项
+      if (limitChoice) {
+        // 选择最后一个option
+        let textNode = document.querySelectorAll('.options')[choice.length - 1]
+        console.log(textNode)
+        // 添加抖动效果, 持续时间2秒
+        textNode.classList.add(
+          'animate__animated',
+          'animate__shakeX',
+          'animate__duration-2s',
+          'animate__delay-2s'
+        )
+        // 2s后消失
+        setTimeout(() => {
+          textNode.classList.add('animate__fadeOut')
+        }, 2000)
+      }
       this.focusInput()
       return new Promise((resolve, reject) => {
         window.addEventListener('click', (e) => {
@@ -313,6 +351,45 @@ export default {
           }
         })
       })
+    },
+    async clearOptions () {
+      let options = document.querySelectorAll('.options')
+      for (let i = 0; i < options.length; i++) {
+        options[i].style.className = 'options'
+        options[i].classList.add('outputText')
+      }
+      return Promise.resolve()
+    },
+    /** *********** 剧情逻辑控制函数 *********** **/
+    async getName () {
+      let name = await this.question('请输入你的姓名：', 100, 'HelloWorld')
+      while (name === '') {
+        await this.typeText('嘿，嘿，嘿！这不对吧，怎么会有人没有名字？', 100, 'HelloWorld')
+        name = await this.question('请输入你的姓名：', 100, 'HelloWorld')
+      }
+      return Promise.resolve(name)
+    },
+    /** *********** 剧情分支部分函数 *********** **/
+    // 分支1（第二次输入姓名后）
+    async plotBranch1 (choice) {
+      switch (choice) {
+        case '1':
+          await this.typeText('......我怎么感觉...你好像是存心的？', 100, 'HelloWorld')
+          // 定时选项
+          let branchChoice = await this.choice(['。。 才发现啊', '诶嘿，不逗你啦~'], 100, true)
+          if (branchChoice === '1') {
+            await this.typeText('你...你...你...', 100, 'HelloWorld')
+            await this.typeText('噗...哈哈哈哈哈哈哈哈哈', 100, 'HelloWorld')
+            await this.typeText('没事，，，我还好，不是很生气', 100, 'HelloWorld', 'red')
+            await this.typeText('冷静！冷静！我真的没有生气&&*^%%$#&^%^&$$', 100, 'HelloWorld', 'red')
+            await this.choice(['！你还好吗？'], 100)
+            await this.typeText('我....我？哈哈哈哈哈我当然很好！！！', 100, 'HelloWorld', 'red')
+            // 循环50次警告
+            for (let i = 0; i < 50; i++) {
+              await this.typeQuickText(this.warningMessage, 10, 'Ai监视程序', 'yellow')
+            }
+          }
+      }
     }
   },
   // 销毁
@@ -323,80 +400,4 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-.body {
-  color: #33ff66;
-  background-color: black;
-  letter-spacing: 3px;
-  font-weight: bold;
-  font-family: 'Barlow', sans-serif;
-  font-size: 15px;
-  line-height: 20px;
-  width: 100%;
-  min-height: 100vh;
-  height: 100vh;
-  --soft-color: #5c5c5c;
-  --bkg-color: #1a1a1c;
-  --text-color: #95a9b4;
-  --big-font-size: 4rem;
-  background-color: var(--bkg-color);
-  background-image: url('../assets/background/binding-dark.png');
-}
-
-.inputText {
-  display: flex;
-  align-items: end;
-  height: 20px;
-  cursor: text;
-  .input {
-    height: 20px;
-    display: flex;
-    align-items: center;
-    span {
-      display: flex;
-      white-space: nowrap;
-    }
-    .caret {
-      width: 6px;
-      height: 17px;
-      background-color: #33ff66;
-    }
-  }
-  .inputBox /deep/ .el-input__inner {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0);
-    width: 50px;
-    height: 100%;
-    border: 0;
-    padding: 0px;
-    top: 5px;
-    letter-spacing: 3px;
-    line-height: 1px;
-    font-weight: bold;
-    font-family: 'Barlow', sans-serif;
-    font-size: 15px;
-    color: #33ff66;
-    caret-color: rgba(0, 0, 0, 0);
-    &:focus {
-      outline: 0;
-    }
-    &:hover {
-      background-color: rgba(0, 0, 0, 0);
-    }
-  }
-}
-
-#typedtext {
-  width: 50%;
-  height: 90vh;
-  overflow: scroll;
-  &::-webkit-scrollbar {
-    display: none; /* Chrome Safari */
-  }
-  .textBox {
-    bottom: 0;
-  }
-}
-</style>
+<style lang="less" src="../assets/style/loading.less" scoped></style>

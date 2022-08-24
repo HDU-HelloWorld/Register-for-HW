@@ -1,0 +1,75 @@
+.body {
+  color: #33ff66;
+  background-color: black;
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-family: 'Barlow', sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  --soft-color: #5c5c5c;
+  --bkg-color: #1a1a1c;
+  --text-color: #95a9b4;
+  --big-font-size: 4rem;
+  background-color: var(--bkg-color);
+  background-image: url('../background/binding-dark.png');
+}
+
+.inputText {
+  display: flex;
+  align-items: end;
+  height: 20px;
+  cursor: text;
+  .input {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    span {
+      display: flex;
+      white-space: nowrap;
+    }
+    .caret {
+      width: 6px;
+      height: 17px;
+      background-color: #33ff66;
+    }
+  }
+  .inputBox /deep/ .el-input__inner {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+    width: 50px;
+    height: 100%;
+    border: 0;
+    padding: 0px;
+    top: 5px;
+    letter-spacing: 3px;
+    line-height: 1px;
+    font-weight: bold;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    color: #33ff66;
+    caret-color: rgba(0, 0, 0, 0);
+    &:focus {
+      outline: 0;
+    }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
+}
+
+#typedtext {
+  width: 50%;
+  height: 90vh;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+  .textBox {
+    bottom: 0;
+  }
+}
