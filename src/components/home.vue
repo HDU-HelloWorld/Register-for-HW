@@ -77,10 +77,7 @@ export default {
         height: '100%',
         width: '100%'
       },
-      bgArr: ['rgba(0, 0, 0, 0)', '#FAFAFA', '#CAD8D8', {
-        isBg: true,
-        src: require('@/assets/bgcimg/3.png')
-      }]
+      bgArr: ['rgba(0, 0, 0, 0)', '#FAFAFA', '#CAD8D8', 'grey']
     }
   },
   methods: {

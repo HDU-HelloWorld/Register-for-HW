@@ -1,5 +1,5 @@
 <template>
-  <div class="login" :style="{ minWidth: this.mw }">
+  <div class="login">
     <div class="wrapper">
       <div class="outcard">
         <div class="incard">
@@ -13,131 +13,151 @@
           </div>
         </div>
       </div>
-      <div class="form" :style="class1">
-        <h1 align="center" class="title">Hello World 22级招新信息收集表</h1>
-        <el-form :model="form" :rules="rules" ref="form" label-width="80px">
-          <el-row>
-            <el-col :span="8" :offset="3">
-              <el-form-item label="姓名" prop="name" id="m">
-                <el-input
-                  v-model="form.name"
-                  class="input"
-                  required=""
-                ></el-input>
-                <div class="underline"></div>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8" :offset="1">
-              <el-form-item label="性别" class="input">
-                <el-select v-model="form.gender">
-                  <el-option
-                    v-for="item in options1"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.label"
-                  >
-                  </el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="8" :offset="3">
-              <el-form-item label="学号" prop="stuNum">
-                <el-input v-model="form.stuNum" class="input"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8" :offset="1">
-              <el-form-item label="所在学院" prop="college">
-                <el-input v-model="form.college" class="input"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="8" :offset="3">
-              <el-form-item label="志愿部门">
-                <el-select v-model="form.department" class="input">
-                  <el-option
-                    v-for="item in options2"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.label"
-                  >
-                  </el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="5" :offset="1">
-              <el-form-item label="电话" prop="phone">
-                <el-input v-model="form.phone" class="input"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2" :offset="1">
-              <el-input
-                v-model="authCode"
-                class="input"
-                placeholder="验证码"
-              ></el-input>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="8" :offset="3">
-              <el-form-item label="QQ号" prop="qqnumber">
-                <el-input v-model="form.qqnumber" class="input"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8" :offset="1">
-              <el-form-item label="邮箱" prop="email">
-                <el-input v-model="form.email" class="input"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="17" :offset="3">
-              <el-form-item label="自我介绍" prop="selfIntroduction">
-                <el-input
-                  type="textarea"
-                  v-model="form.selfIntroduction"
-                  class="input"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="17" :offset="3">
-              <el-form-item label="获奖经历" prop="honor">
-                <el-input
-                  type="textarea"
-                  v-model="form.honor"
-                  class="input"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row id="check">
-            <el-col :span="1" :offset="6">
-              <el-button
-                type="primary"
-                @click="submitForm('form')"
-                class="button1"
-                >提交</el-button
-              >
-            </el-col>
-            <el-col :span="4" :offset="3">
-              <el-button
-                type="secondary"
-                @click="resetForm('form')"
-                class="button2"
-                >清空</el-button
-              >
-            </el-col>
-            <el-col :span="4" :offset="0">
-              <el-button type="secondary" @click="missForm()" class="button2"
-                >返回</el-button
-              >
-            </el-col>
-          </el-row>
-        </el-form>
+      <div class="form-wrapper" :style="class1">
+        <div class="form-left">
+          <div class="imgs">
+            <img src="@/assets/img/login/avter.jpg" alt="可爱捏">
+          </div>
+          <p class="shuoming">let's join us</p>
+          <p class="derect">Quickly fill out the form to join us, welcome mengxin, welcome to the dalao</p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+        <div class="form">
+          <h1 align="center" class="title">Hello World 22级招新表</h1>
+          <el-form :model="form" :rules="rules" ref="form" label-width="90px">
+            <!-- 姓名 -->
+            <el-row class="first">
+              <el-col :span="8">
+                <el-form-item label="姓名" prop="name" id="m">
+                  <el-input
+                    v-model="form.name"
+                    class="input"
+                    required=""
+                  ></el-input>
+                  <div class="underline"></div>
+                </el-form-item>
+              </el-col>
+              <el-col :span="7">
+                <el-form-item label="性别" class="input">
+                  <el-select v-model="form.gender">
+                    <el-option
+                      v-for="item in options1"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.label"
+                    >
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="学号" prop="stuNum">
+                  <el-input v-model="form.stuNum" class="input"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <!-- 学院 -->
+            <el-row>
+              <el-col :span="10">
+                <el-form-item label="所在学院" prop="college">
+                  <el-input v-model="form.college" class="input"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="11">
+                <el-form-item label="志愿部门">
+                  <el-select v-model="form.department" class="input">
+                    <el-option
+                      v-for="item in options2"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.label"
+                    >
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <!-- 电话 -->
+            <el-row>
+              <el-col :span="10" >
+                <el-form-item label="电话" prop="phone">
+                  <el-input v-model="form.phone" class="input"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="8" >
+                <el-form-item label="验证码">
+                  <el-input
+                    v-model="authCode"
+                    class="input"
+                    placeholder="验证码"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <!-- QQ号 -->
+            <el-row>
+              <el-col :span="10">
+                <el-form-item label="QQ号" prop="qqnumber">
+                  <el-input v-model="form.qqnumber" class="input"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="11">
+                <el-form-item label="邮箱" prop="email">
+                  <el-input v-model="form.email" class="input"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <!-- 自我介绍 -->
+            <el-row>
+              <el-col :span="21">
+                <el-form-item label="自我介绍" prop="selfIntroduction">
+                  <el-input
+                    type="textarea"
+                    v-model="form.selfIntroduction"
+                    class="input"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <!-- 获奖经历 -->
+            <el-row>
+              <el-col :span="21">
+                <el-form-item label="获奖经历" prop="honor">
+                  <el-input
+                    type="textarea"
+                    v-model="form.honor"
+                    class="input"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row id="check">
+              <el-col :span="4" :offset="3">
+                <el-button
+                  type="primary"
+                  @click="submitForm('form')"
+                  class="button1"
+                  >提交</el-button
+                >
+              </el-col>
+              <el-col :span="4" :offset="3">
+                <el-button
+                  type="secondary"
+                  @click="resetForm('form')"
+                  class="button2"
+                  >清空</el-button
+                >
+              </el-col>
+              <el-col :span="4" :offset="3">
+                <el-button type="secondary" @click="missForm()" class="button2"
+                  >返回</el-button
+                >
+              </el-col>
+            </el-row>
+          </el-form>
+        </div>
       </div>
       <div class="button" @click="showForm" v-show="showButton">
         <div class="text-3">
@@ -154,7 +174,6 @@ export default {
   name: 'NewLogin',
   data () {
     return {
-      mw: window.screen.width + 'px',
       showButton: true,
       class1: {
         marginTop: '100%'
@@ -318,8 +337,13 @@ export default {
   }
 }
 </script>
-
 <style scoped lang="less">
+html{
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px    100% = 16px
+  overflow-y: scroll;
+  background: #E4EBF5;
+}
 @keyframes mymove {
   from {
     background-position: 120% 120%;
@@ -328,25 +352,157 @@ export default {
     background-position: 0% 0%;
   }
 }
-.title {
-  color: white;
-  margin-top: 30px;
-  margin-bottom: 40px;
-  font: 500 15px;
-}
 #check {
   margin-top: 20px;
 }
-.form {
-  background-color: rgb(255, 238, 140);
-  top: 0vh;
-  position: absolute;
-  height: 50vh;
-  width: 80%;
-  left: 10%;
+//此处设置input框内部样式
+/deep/.el-input__inner {
+  // width: 204px;
+  margin-left: 10px;
+  height: 35px;
+  border: none;
   border-radius: 10px;
+  font-size: 14px;
+  box-shadow: inset -2px -2px 5px #fff,
+                    2px 2px 5px #c8d0e7;
+  background: none;
+  font-family: inherit;
+  color: #9baacf;
+  &::placeholder{
+    color: #bec8e4;
+  }
+  &:focus{
+    outline: none ;
+    box-shadow: 3px 3px 6px #c8d0e7,
+                -2px -2px 5px #fff;
+  }
+}
+//设置label标签
+/deep/ .el-form-item__label {
+  color: #1A507E;
+  user-select: none;
+}
+//表单填写错误时的高亮颜色
+/deep/ .el-form-item.is-error {
+  .el-input__inner {
+    user-select: none;
+    border-color: rgba(255, 255, 255);
+  }
+  .el-form-item__error {
+    margin-left: 15px;
+    user-select: none;
+    color: #DB5A6C;
+  }
+  .el-form-button__error {
+    user-select: none;
+    border-color: rgba(255, 255, 255);
+  }
+  // .el-form-select__error {
+  //   border-color: rgba(255, 255, 255);
+  // }
+}
+// /deep/.el-input__inner:focus {
+//   // el-input输入时设置边框颜色
+//   // border: #11be59 1px solid;
+//   border-color: rgba(255, 255, 255, 0.5);
+// }
+// /deep/ .el-select .el-input.is-focus .el-input__inner {
+//   border-color: rgba(255, 255, 255, 0.5);
+// }
+//修改类型为textarea的input框样式
+/deep/.el-textarea__inner {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: inset -2px -2px 5px #fff,
+                    2px 2px 5px #c8d0e7;
+  background: none;
+  font-family: inherit;
+  color: #9baacf;
+  &::placeholder{
+    color: #bec8e4;
+  }
+  &:focus{
+    border: none;
+    outline: none;
+    box-shadow: 3px 3px 6px #c8d0e7,
+                -2px -2px 5px #fff;
+  }
+  &:hover{
+    outline: none;
+    border: none;
+  }
+  /* 这个是去掉自我介绍和获奖经历下面拉伸的那个标志 */
+  resize: none;
+  user-select: none;
+}
+//修改按钮的样式
+/deep/ .el-button{
+  margin-top: -20%;
+  height: 45px;
+  width: 150px;
+  margin-bottom: 20px;
+  border-radius: 22.5px;
+}
+.form-wrapper {
+  top: 13vh;
+  position: absolute;
+  height: 68vh;
+  width: 66%;
+  left: 17%;
+  border-radius: 15px;
   transition: all 1s;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  .form-left{
+    width: 39%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: #FEA8A9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    .imgs{
+      margin-top: 5%;
+      width: 45%;
+      border-radius: 50%;
+      img{
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+    .shuoming{
+      font-size: 40px;
+      font-family: 'descrip';
+      font-weight: 600;
+    }
+    .derect{
+      margin-top: -5%;
+      width: 75%;
+      font-size: 24px;
+      font-family: 'descrip';
+      font-weight: 100;
+      height: 10%;
+    }
+  }
+  .form{
+    //不知道那个颜色好捏
+    // background-color: #1A507E;
+    background-color: #E4EBF5;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 61%;
+    height: 100%;
+    .title {
+      color: #1A507E;
+      font: 500 15px;
+      font-family: 'bigtitle';
+    }
+
+  }
 }
 .login {
   height: 100vh;
@@ -468,58 +624,7 @@ export default {
   background-position: left bottom;
   color: white;
 }
-//此处设置input框内部样式
-/deep/.el-input__inner {
-  //背景颜色以及透明度设置
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  //下划线颜色
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  font-size: 15px;
-  //设置字体颜色
-  color: #fff;
-  border-radius: 0;
-  user-select: none;
-}
-/deep/ .el-form-item__label {
-  color: white;
-  user-select: none;
-}
-//表单填写错误时的高亮颜色
-/deep/ .el-form-item.is-error {
-  .el-input__inner {
-    user-select: none;
-    border-color: rgba(255, 255, 255);
-  }
-  .el-form-item__error {
-    user-select: none;
-    color: rgba(255, 255, 255);
-  }
-  .el-form-button__error {
-    user-select: none;
-    border-color: rgba(255, 255, 255);
-  }
-  // .el-form-select__error {
-  //   border-color: rgba(255, 255, 255);
-  // }
-}
-/deep/.el-input__inner:focus {
-  // el-input输入时设置边框颜色
-  // border: #11be59 1px solid;
-  border-color: rgba(255, 255, 255, 0.5);
-}
-/deep/ .el-select .el-input.is-focus .el-input__inner {
-  border-color: rgba(255, 255, 255, 0.5);
-}
-//修改类型为textarea的input框样式
-/deep/.el-textarea__inner {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 0;
-  color: white;
-  /* 这个是去掉自我介绍和获奖经历下面拉伸的那个标志 */
-  resize: none;
-  user-select: none;
-}
+
 .button1 {
   color: #fff;
   text-align: center;
