@@ -15,6 +15,7 @@
   --big-font-size: 4rem;
   background-color: var(--bkg-color);
   background-image: url('../background/binding-dark.png');
+
   #imgCover {
     position: fixed;
     left: 0;
@@ -25,13 +26,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     img {
       max-height: 80vh;
     }
+
     // background-color: var(--bkg-color);
     // background-image: url('../background/binding-dark.png');
     // background-repeat: repeat;
   }
+
   audio {
     display: none;
   }
@@ -42,20 +46,24 @@
   align-items: end;
   height: 20px;
   cursor: text;
+
   .input {
     height: 20px;
     display: flex;
     align-items: center;
+
     span {
       display: flex;
       white-space: nowrap;
     }
+
     .caret {
       width: 6px;
       height: 17px;
       background-color: #33ff66;
     }
   }
+
   .inputBox /deep/ .el-input__inner {
     position: absolute;
     display: flex;
@@ -73,9 +81,11 @@
     font-size: 15px;
     color: #33ff66;
     caret-color: rgba(0, 0, 0, 0);
+
     &:focus {
       outline: 0;
     }
+
     &:hover {
       background-color: rgba(0, 0, 0, 0);
     }
@@ -86,10 +96,116 @@
   width: 50%;
   height: 90vh;
   overflow: scroll;
+
   &::-webkit-scrollbar {
-    display: none; /* Chrome Safari */
+    display: none;
+    /* Chrome Safari */
   }
+
   .textBox {
     bottom: 0;
   }
+}
+
+#subScreen {
+  width: 50vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+  position: fixed;
+  background-color: rgba(122, 224, 255, 0.1);
+  top: 0;
+  left: 100vw;
+  transition: all 0.5s;
+  display: flex;
+
+  .title {
+    width: 100%;
+    height: 20px;
+    background-color: rgb(25, 46, 63);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(122, 224, 255, 0.5);
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: normal;
+  }
+
+  .leftPart {
+    height: 100%;
+    overflow: hidden;
+    flex: 1;
+
+    // border: #33ff66 solid 1px;
+
+    .topMenu {
+      width: 100%;
+      height: 5%;
+      border: rgb(52, 126, 155) solid 1px;
+      display: flex;
+
+      .item {
+        width: 25%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          color: rgba(122, 224, 255, 0.5);
+          // 去除a的下划线
+          text-decoration: none;
+
+          &:visited {
+            color: rgba(122, 224, 255, 0.5);
+          }
+        }
+
+        .menu {
+          color: rgba(122, 224, 255, 0.5);
+          cursor: pointer;
+        }
+
+        &:hover,
+        &:focus {
+          border-color: rgb(52, 126, 155);
+          transition: all 0.25s;
+        }
+      }
+    }
+
+    .topSubScreen {
+      width: 100%;
+      height: 55%;
+      overflow: hidden;
+      border: rgb(52, 126, 155) solid 1px;
+      margin-bottom: 3px;
+    }
+
+    .footSubScreen {
+      width: 100%;
+      height: 40%;
+      overflow: hidden;
+      border: rgb(52, 126, 155) solid 1px;
+    }
+  }
+
+  .rightPart {
+    height: 100%;
+    flex: 1;
+
+    .title {
+      display: flex;
+      justify-content: space-between;
+      #closeMenu {
+        cursor: pointer;
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.fill:hover,
+.fill:focus {
+  box-shadow: inset 0 0 0 2rem rgb(52, 126, 155);
 }

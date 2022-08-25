@@ -7,7 +7,7 @@ export default {
     return {
       timer: Object, // 定时器
       inputString: '',
-      speedRate: 4, // 程序整体速度
+      speedRate: 10, // 程序整体速度
       command: '',
       caret: true,
       isFocus: true,
@@ -118,6 +118,7 @@ export default {
   methods: {
     // 程序运行逻辑函数
     async dialog () {
+      // --------------------------------序幕--------------------------------
       await this.typeText(`时间：${moment().format('YYYY-MM-DD HH:mm:ss')}`, 150, 'System', 'white')
       await this.typeText(`注意：点击选项1后会有BGM，请注意调整音量并注意场合`, 50, 'System', 'red')
       await this.choice(['这是......'], 50, undefined, true)
@@ -148,7 +149,7 @@ export default {
       await this.typeText(`（此时，体力终于恢复了一些，你站起身来，一阵目眩，你又不得不瘫坐到了背后的椅子上）`, 100, undefined, 'white')
       await this.sleep(500)
       await this.typeText(`好奇怪，椅子怎么会在这？`, 100, this.form.name, 'blue')
-      await this.typeText(`（前几天我好想就是坐在椅子看女儿给我的礼物）`, 100, undefined, 'white')
+      await this.typeText(`（前几天我好像就是坐在椅子看女儿给我的礼物）`, 100, undefined, 'white')
       await this.typeText(`（但是刚带上这幅耳机好像就晕了过去）`, 100, undefined, 'white')
       await this.typeText(`（可能是劳累过度了吧，你这样想着，弯腰捡起了掉落在地上的耳机，将其整齐的放在了桌子上）`, 100, undefined, 'white')
       await this.typeText(`（为了补充体力又吃些桌上的压缩饼干）`, 100, undefined, 'white')
@@ -172,6 +173,9 @@ export default {
       await this.typeText(`但是，我为什么会一点印象都没有呢？`, 100, this.form.name, 'blue')
       await this.typeText(`（思考间，电脑屏幕已经亮了起来：`, 100, undefined, 'white')
       await this.sleep(2000)
+      // -------------------------------序幕完----------------------------------
+      // 同步显示副屏
+      this.showSubScreen()
       for (let text of this.systemMessage) {
         await this.typeQuickText(text, 10)
       }
@@ -195,7 +199,8 @@ export default {
         await this.typeText('总之...总之...计算机的记忆力可是极好的，你可不能怀疑我！', 100, 'HelloWorld')
       }
     },
-    // 单句话的打字效果
+    // -----------------------脚本功能函数-------------------------
+    // ********单句话的打字效果********
     async typeText (text, speed, talker = '', color = '') {
       let textNode = document.createElement('div')
       let inputNode = document.querySelector('.inputText')
@@ -225,7 +230,7 @@ export default {
         }, speed / this.speedRate)
       })
     },
-    // 更快的打字效果
+    // ***********更快的打字效果*************
     async typeQuickText (texts, speed, talker = '', color = '') {
       let textNode = document.createElement('div')
       let inputNode = document.querySelector('.inputText')
@@ -248,7 +253,7 @@ export default {
         }, speed / this.speedRate)
       })
     },
-    // 输出选项
+    // ************输出选项***********
     async typeOption (text, speed, index) {
       return new Promise((resolve, reject) => {
         let textNode = document.createElement('div')
@@ -274,103 +279,11 @@ export default {
         }, speed / this.speedRate)
       })
     },
-    // 停顿
-    async sleep (time) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve()
-        }, time / this.speedRate)
-      })
-    },
-    async showImg (imgSrc, time) {
-      this.showingImg = true
-      this.imgSrc = imgSrc
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          this.showingImg = false
-          resolve()
-        }, time)
-      })
-    },
-    async setColor (node, color) {
-      return new Promise((resolve, reject) => {
-        switch (color) {
-          case 'red':
-            node.style.color = '#ff0000'
-            break
-          case 'blue':
-            node.style.color = '#33f1ff'
-            break
-          case 'yellow':
-            node.style.color = '#ffff00'
-            break
-          case 'white':
-            node.style.color = '#ffffff'
-            break
-          default:
-            break
-        }
-        resolve()
-      })
-    },
-    // 打印一个对话数组中的每一句话
+    // ********打印一个对话数组中的每一句话********
     async printMessage (message) {
       for (let i = 0; i < message.length; i++) {
         await this.typeText(message[i], i + 1)
       }
-    },
-    // 光标闪烁函数
-    caretShining () {
-      this.isFocus = true
-      // 先清楚闪烁，防止多次闪烁
-      this.cancelShining()
-      // 每0.5s修改caret的值
-      this.timer = setInterval(() => {
-        this.caret = !this.caret
-      }, 500)
-    },
-    cancelShining () {
-      // 查找当前focus的元素
-      let focusItem = document.activeElement
-      // 清除setInterval函数
-      clearInterval(this.timer)
-      // console.log('触发blur', focusItem.tagName)
-      if (focusItem.tagName !== 'INPUT') {
-        this.isFocus = false
-        this.caret = false
-      }
-    },
-    // 聚焦input框
-    focusInput () {
-      this.$nextTick(() => {
-        this.isFocus = true
-        this.$refs.inputBox.focus()
-        console.log('聚焦input框')
-      })
-    },
-    // 播放音乐
-    audioAutoPlay () {
-      let audio = document.getElementById('audio')
-      audio.play()
-      // 监听音乐播放完毕
-      audio.addEventListener('ended', function () {
-        audio.currentTime = 0
-        audio.play()
-      })
-    },
-    async sendMessage () {
-      // 获取this.form.name
-      let name = await Promise.resolve(this.form.name)
-      // 发送消息
-      await this.typeQuickText(this.inputString, 10, name)
-      // 保存命令
-      this.command = this.inputString
-      // 清空input框
-      this.inputString = ''
-      // 发送消息后先清除光标闪烁，然后聚焦input框
-      this.cancelShining()
-      this.caretShining()
-      this.focusInput()
     },
     async question (question, speed) {
       this.hasQuestion = true
@@ -388,6 +301,7 @@ export default {
         })
       })
     },
+    // *************选择*************
     async choice (choice, speed, limitChoice = false, tip = false) {
       // 清除所有选项
       await this.clearOptions()
@@ -430,6 +344,108 @@ export default {
         })
       })
     },
+    async getName () {
+      let name = await this.question('请输入你的姓名：', 100, 'HelloWorld')
+      while (name === '') {
+        await this.typeText('嘿，嘿，嘿！这不对吧，怎么会有人没有名字？', 100, 'HelloWorld')
+        name = await this.question('请输入你的姓名：', 100, 'HelloWorld')
+      }
+      return Promise.resolve(name)
+    },
+    // *************发送消息*************
+    async sendMessage () {
+      // 获取this.form.name
+      let name = await Promise.resolve(this.form.name)
+      // 发送消息
+      await this.typeQuickText(this.inputString, 10, name)
+      // 保存命令
+      this.command = this.inputString
+      // 清空input框
+      this.inputString = ''
+      // 发送消息后先清除光标闪烁，然后聚焦input框
+      this.cancelShining()
+      this.caretShining()
+      this.focusInput()
+    },
+    // -------------------程序控制功能函数-------------------
+    // 停顿
+    async sleep (time) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve()
+        }, time / this.speedRate)
+      })
+    },
+    async showImg (imgSrc, time) {
+      this.showingImg = true
+      this.imgSrc = imgSrc
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          this.showingImg = false
+          resolve()
+        }, time)
+      })
+    },
+    async setColor (node, color) {
+      return new Promise((resolve, reject) => {
+        switch (color) {
+          case 'red':
+            node.style.color = '#ff0000'
+            break
+          case 'blue':
+            node.style.color = '#33f1ff'
+            break
+          case 'yellow':
+            node.style.color = '#ffff00'
+            break
+          case 'white':
+            node.style.color = '#ffffff'
+            break
+          default:
+            break
+        }
+        resolve()
+      })
+    },
+    // 光标闪烁函数
+    caretShining () {
+      this.isFocus = true
+      // 先清楚闪烁，防止多次闪烁
+      this.cancelShining()
+      // 每0.5s修改caret的值
+      this.timer = setInterval(() => {
+        this.caret = !this.caret
+      }, 500)
+    },
+    cancelShining () {
+      // 查找当前focus的元素
+      let focusItem = document.activeElement
+      // 清除setInterval函数
+      clearInterval(this.timer)
+      // console.log('触发blur', focusItem.tagName)
+      if (focusItem.tagName !== 'INPUT') {
+        this.isFocus = false
+        this.caret = false
+      }
+    },
+    // 聚焦input框
+    focusInput () {
+      this.$nextTick(() => {
+        this.isFocus = true
+        this.$refs.inputBox.focus()
+        console.log('聚焦input框')
+      })
+    },
+    // 播放音乐
+    audioAutoPlay () {
+      let audio = document.getElementById('audio')
+      audio.play()
+      // 监听音乐播放完毕
+      audio.addEventListener('ended', function () {
+        audio.currentTime = 0
+        audio.play()
+      })
+    },
     async clearOptions () {
       console.log('清除选项')
       let options = document.querySelectorAll('.options')
@@ -441,16 +457,22 @@ export default {
       }
       return Promise.resolve()
     },
-    /** *********** 剧情逻辑控制函数 *********** **/
-    async getName () {
-      let name = await this.question('请输入你的姓名：', 100, 'HelloWorld')
-      while (name === '') {
-        await this.typeText('嘿，嘿，嘿！这不对吧，怎么会有人没有名字？', 100, 'HelloWorld')
-        name = await this.question('请输入你的姓名：', 100, 'HelloWorld')
-      }
-      return Promise.resolve(name)
+    showSubScreen () {
+      // 显示子屏幕
+      document.querySelector('#subScreen').style.left = '75vw'
     },
-    /** *********** 剧情分支部分函数 *********** **/
+    showMenu () {
+      document.querySelector('#subScreen').style.left = '50vw'
+      addEventListener('click', (e) => {
+        if (e.target.id === 'closeMenu') {
+          document.querySelector('#subScreen').style.left = '75vw'
+        }
+      })
+    },
+    hideMenu () {
+      document.querySelector('#subScreen').style.left = '75vw'
+    },
+    // -------------------------剧情分支部分函数-------------------------
     // 分支1（第二次输入姓名后）
     async plotBranch1 (choice) {
       switch (choice) {
