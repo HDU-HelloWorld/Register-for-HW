@@ -77,7 +77,10 @@ export default {
         height: '100%',
         width: '100%'
       },
-      bgArr: ['rgba(0, 0, 0, 0)', '#FAFAFA', '#CAD8D8', 'grey']
+      bgArr: ['rgba(0, 0, 0, 0)', '#FAFAFA', '#CAD8D8', {
+        isBg: true,
+        src: require('@/assets/bgcimg/1.png')
+      }]
     }
   },
   methods: {
@@ -108,7 +111,7 @@ export default {
     this.isLoad = true
     let navshows = document.querySelectorAll('.navshow')
     let index = this.currentPage - 1
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       navshows[i].firstElementChild.style.color = 'rgb(103, 107, 115)'
     }
     navshows[index].firstElementChild.style.color = 'rgb(55, 120, 229)'
@@ -118,7 +121,7 @@ export default {
       handler (newValue) {
         let navshows = document.querySelectorAll('.navshow')
         let index = newValue - 1
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 4; i++) {
           navshows[i].firstElementChild.style.color = 'rgb(103, 107, 115)'
         }
         navshows[index].firstElementChild.style.color = 'rgb(55, 120, 229)'
