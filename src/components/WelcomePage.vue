@@ -895,14 +895,16 @@ export default {
 
 <style scoped>
 .body {
+  /* position: fixed !important;
+  left: 0;
+  top: 0;
+  z-index: -1; */
   width: 100%;
   height: 100%;
-  z-index: 9999;
 }
 
 canvas {
-  /* display: block; */
-  position: fixed;
+  display: block;
   z-index: 999999;
   top: 0;
   left: 0;
