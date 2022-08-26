@@ -20,7 +20,7 @@
       :isPointer="true"
       pointerPos="right"
       :isV="isV"
-      :pages="4"
+      :pages="5"
       :page.sync="currentPage"
       :isCache="true"
       :bgArr="bgArr"
@@ -34,22 +34,28 @@
       <template #page1>
         <!-- 部门介绍展示 -->
         <div class="page">
-          <WelcomePage v-if="isLoad"></WelcomePage>
+          <StartPage></StartPage>
         </div>
       </template>
       <template #page2>
+        <!-- 部门介绍展示 -->
+        <div class="page page2">
+          <WelcomePage></WelcomePage>
+        </div>
+      </template>
+      <template #page3>
         <!-- 部门介绍展示 -->
         <div class="page">
           <dep-intro></dep-intro>
         </div>
       </template>
-      <template #page3>
+      <template #page4>
         <div class="page">
           <!-- CCF介绍展示 -->
           <ccfintro></ccfintro>
         </div>
       </template>
-      <template #page4>
+      <template #page5>
         <div class="page">
           <!-- 报名页面展示 -->
           <new-login></new-login>
@@ -60,16 +66,16 @@
 </template>
 
 <script>
+import StartPage from './StartPage.vue'
 import Ccfintro from './Ccfintro.vue'
 import DepIntro from './DepIntro.vue'
 import NewLogin from './NewLogin.vue'
 import WelcomePage from './WelcomePage.vue'
 export default {
-  components: { DepIntro, Ccfintro, NewLogin, WelcomePage },
+  components: { DepIntro, Ccfintro, NewLogin, WelcomePage, StartPage },
   name: 'Home',
   data () {
     return {
-      isLoad: false,
       isV: true,
       currentPage: 1,
       page: 0,
@@ -77,10 +83,7 @@ export default {
         height: '100%',
         width: '100%'
       },
-      bgArr: ['rgba(0, 0, 0, 0)', '#FAFAFA', '#CAD8D8', {
-        isBg: true,
-        src: require('@/assets/bgcimg/1.png')
-      }]
+      bgArr: ['rgba(0, 0, 0, 0)', '#FAFAFA', '#CAD8D8', 'grey']
     }
   },
   methods: {
@@ -108,7 +111,6 @@ export default {
     }
   },
   mounted () {
-    this.isLoad = true
     let navshows = document.querySelectorAll('.navshow')
     let index = this.currentPage - 1
     for (let i = 0; i < 4; i++) {
@@ -127,9 +129,6 @@ export default {
         navshows[index].firstElementChild.style.color = 'rgb(55, 120, 229)'
       }
     }
-  },
-  beforeCreate () {
-    this.isLoad = false
   }
 }
 </script>
@@ -189,18 +188,10 @@ export default {
   }
 }
 .page {
-  position: absolute;
   width: 100%;
   height: 100%;
   .test {
     width: 100%;
   }
-}
-canvas {
-  /* display: block; */
-  position: fixed;
-  z-index: 999999;
-  top: 0;
-  left: 0;
 }
 </style>
