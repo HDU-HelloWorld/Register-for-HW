@@ -382,7 +382,6 @@ html{
   color: #1A507E;
   user-select: none;
 }
-//表单填写错误时的高亮颜色
 /deep/ .el-form-item.is-error {
   .el-input__inner {
     user-select: none;
@@ -401,15 +400,6 @@ html{
   //   border-color: rgba(255, 255, 255);
   // }
 }
-// /deep/.el-input__inner:focus {
-//   // el-input输入时设置边框颜色
-//   // border: #11be59 1px solid;
-//   border-color: rgba(255, 255, 255, 0.5);
-// }
-// /deep/ .el-select .el-input.is-focus .el-input__inner {
-//   border-color: rgba(255, 255, 255, 0.5);
-// }
-//修改类型为textarea的input框样式
 /deep/.el-textarea__inner {
   border: none;
   outline: none;
@@ -489,8 +479,6 @@ html{
     }
   }
   .form{
-    //不知道那个颜色好捏
-    // background-color: #1A507E;
     background-color: #E4EBF5;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;

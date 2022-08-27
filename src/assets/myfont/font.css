@@ -10,3 +10,19 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: EngBe;
+  src: url('./Kinuhi.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: commondesc;
+  src: url('./18字心坊诗雅体纤细体.ttf');
+  font-style: normal;
+}
+@font-face {
+  font-family: try;
+  src: url('./汉仪良品线简.ttf');
+  font-weight: 600;
+}
