@@ -5,7 +5,9 @@
     <div class="home">
       <div class="top-barrer">
         <div class="icon-hw">
-          <img src="@/assets/logo.jpg" />
+          <img src="@/assets/logo.png" />
+          <img src="@/assets/X.png" class="ccfLogo">
+          <img src="@/assets/CCFlogo.png" >
         </div>
         <div class="right-info">
           <li @click="test" class="navshow"><a>Start</a></li>
@@ -160,8 +162,8 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-content: center;
-  background: rgba(255, 255, 255);
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0);
+  // box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
   min-width: 80%;
   .top-barrer {
     z-index: 99;
@@ -174,9 +176,14 @@ export default {
     .icon-hw {
       width: 20%;
       height: 80%;
+      display: flex;
+      align-items: center;
       img {
         margin-top: 5px;
         height: 100%;
+      }
+      .ccfLogo {
+        height: 50%;
       }
     }
     .right-info {
