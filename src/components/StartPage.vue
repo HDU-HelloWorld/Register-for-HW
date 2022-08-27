@@ -1,7 +1,28 @@
 <template>
   <div class="startPage">
+    <transition name="load-mask">
+      <div class="loadBody" v-show="!isLoad">
+        <div class="loader">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </transition>
     <div class="cover">
-      <div class="text">
+      <div class="text" v-show="display">
         <span class="spanText">
           <div class="colorText">H</div>
           ello
@@ -23,7 +44,7 @@
           &nbsp; IT!
         </span>
       </div>
-      <div class="playVideo" @click="playVideo">
+      <div class="playVideo" @click="playVideo" v-show="display">
         <div class="iconBorder">
           <!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In  -->
           <div class="iconCover">
@@ -66,8 +87,8 @@
       </div>
     </div>
     <div class="videoBox">
-      <video autoplay loop muted>
-        <source :src="video" type="video/mp4" />
+      <video autoplay loop muted class="backVideo">
+        <source :src="backVideo" type="video/mp4" />
       </video>
     </div>
     <div class="videoPlayBox" v-if="showVideo">
@@ -83,12 +104,16 @@
 
 <script>
 import ccfVideo from '../assets/video/ccf.mp4'
+import backVideo from '../assets/video/ccf-bac.mp4'
 export default {
   name: 'StartPage',
   data () {
     return {
       video: ccfVideo,
-      showVideo: false
+      backVideo: backVideo,
+      showVideo: false,
+      isLoad: false,
+      display: false
     }
   },
   methods: {
@@ -98,6 +123,21 @@ export default {
     closeVideo () {
       this.showVideo = false
     }
+  },
+  // 加载完成前
+  created () {
+    const that = this
+    that.timer = setInterval(function () {
+      console.log(document.readyState)
+      if (document.readyState === 'complete') {
+        that.isLoad = true
+        // 等待一秒后再将display设置为true
+        setTimeout(() => {
+          that.display = true
+        }, 1000)
+        window.clearInterval(that.timer)
+      }
+    }, 1000)
   }
 }
 </script>
@@ -223,5 +263,111 @@ export default {
       }
     }
   }
+}
+
+// loading动画CSS
+
+// less声明$speed: 2.5s;
+.loadBody {
+  position: fixed;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(#eee,#fff);
+}
+
+.loader {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  width: 175px;
+  height: 100px;
+  span {
+    display: block;
+    background: #ccc;
+    width: 7px;
+    height: 10%;
+    border-radius: 14px;
+    margin-right: 5px;
+    float: left;
+    margin-top: 25%;
+    &:last-child {
+      margin-right: 0px;
+    }
+    &:nth-child(1) {
+      animation: load 2.5s 1.4s infinite linear;
+    }
+    &:nth-child(2) {
+      animation: load 2.5s 1.2s infinite linear;
+    }
+    &:nth-child(3) {
+      animation: load 2.5s 1s infinite linear;
+    }
+    &:nth-child(4) {
+      animation: load 2.5s 0.8s infinite linear;
+    }
+    &:nth-child(5) {
+      animation: load 2.5s 0.6s infinite linear;
+    }
+    &:nth-child(6) {
+      animation: load 2.5s 0.4s infinite linear;
+    }
+    &:nth-child(7) {
+      animation: load 2.5s 0.2s infinite linear;
+    }
+    &:nth-child(8) {
+      animation: load 2.5s 0s infinite linear;
+    }
+    &:nth-child(9) {
+      animation: load 2.5s 0.2s infinite linear;
+    }
+    &:nth-child(10) {
+      animation: load 2.5s 0.4s infinite linear;
+    }
+    &:nth-child(11) {
+      animation: load 2.5s 0.6s infinite linear;
+    }
+    &:nth-child(12) {
+      animation: load 2.5s 0.8s infinite linear;
+    }
+    &:nth-child(13) {
+      animation: load 2.5s 1s infinite linear;
+    }
+    &:nth-child(14) {
+      animation: load 2.5s 1.2s infinite linear;
+    }
+    &:nth-child(15) {
+      animation: load 2.5s 1.4s infinite linear;
+    }
+  }
+}
+
+@keyframes load {
+  0% {
+    background: #ccc;
+    margin-top: 25%;
+    height: 10%;
+  }
+  50% {
+    background: #444;
+    height: 100%;
+    margin-top: 0%;
+  }
+  100% {
+    background: #ccc;
+    height: 10%;
+    margin-top: 25%;
+  }
+}
+
+.load-mask-leave-active {
+  transition: all 1s;
+}
+
+.load-mask-leave-to {
+  opacity: 0;
 }
 </style>

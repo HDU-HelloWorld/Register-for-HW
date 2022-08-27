@@ -10,7 +10,7 @@
           <img src="@/assets/CCFlogo.png" >
         </div>
         <div class="right-info">
-          <li @click="test" class="navshow"><a>Start</a></li>
+          <li @click="test" class="navshow"><a>CCF × HW</a></li>
           <li @click="test" class="navshow"><a>Welcome</a></li>
           <li @click="test" class="navshow"><a>部门介绍</a></li>
           <li @click="test" class="navshow"><a>CCF介绍</a></li>
@@ -123,6 +123,7 @@ export default {
     }
   },
   mounted () {
+    console.log('mounted')
     let navshows = document.querySelectorAll('.navshow')
     let index = this.currentPage - 1
     for (let i = 0; i < 5; i++) {
