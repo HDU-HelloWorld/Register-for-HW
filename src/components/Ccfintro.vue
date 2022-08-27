@@ -28,7 +28,9 @@
     </div>
     <div class="right">
       <div class="imgs">
-        <img src="@/assets/ccflogo.jpg">
+        <div class="imgs-cover">
+          <img src="@/assets/logoccf.png">
+        </div>
         <p class="title">CCF介绍</p>
       </div>
       <div class="shuoming">
@@ -197,14 +199,28 @@ export default {
       justify-content: space-between;
       .imgs{
         width: 100%;
-        img{
-          width: 80%;
-          margin: 10%;
-          margin-top: 5%;
-          border-radius: 30px;
+        .imgs-cover{
+          width: 150px;
+          height: 150px;
+          margin-left: 30%;
+          border-radius: 50%;
+          background: #e9e9e9;
+          box-shadow:  24px 24px 48px #c6c6c6,
+                      -24px -24px 48px #ffffff;
+          text-align: center;
+          transition: 0.5s;
+          &:hover{
+            box-shadow: inset 24px 24px 48px #c6c6c6,
+            inset -24px -24px 48px #ffffff;
+            transition: 0.5s;
+          }
+          img{
+            width: 80%;
+            margin-top: 10%;
+            border-radius: 50%;
+          }
         }
         .title{
-          margin-top: -20px;
           font-family: commondesc;
           width: 100%;
           text-align: center;
@@ -213,7 +229,7 @@ export default {
       .shuoming{
         margin-top: -20px;
         .item{
-          margin-top: -5px;
+          margin-top: -10px;
           .item-title{
             background-color: #DB5A6C;
             font-size: 20px;
@@ -223,6 +239,7 @@ export default {
             border-radius: 10px;
           }
           .content{
+            margin-top: -12px;
             margin-left: 10%;
             border-radius: 5px;
             font-size: 18px;
