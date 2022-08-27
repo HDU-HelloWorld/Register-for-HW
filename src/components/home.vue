@@ -137,10 +137,13 @@ export default {
     currentPage: {
       handler (newValue, oldValue) {
         let rightBar = document.querySelector('.right-info')
+        let logo = document.querySelector('.icon-hw')
         if (newValue > oldValue) {
           rightBar.style.width = '30%'
+          logo.style.width = '10%'
         } else {
           rightBar.style.width = '50%'
+          logo.style.width = '20%'
         }
         let navshows = document.querySelectorAll('.navshow')
         let index = newValue - 1
@@ -175,7 +178,7 @@ export default {
   // box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
   .top-barrer {
     width: 90%;
-    height: 60px;
+    height: 5vh;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -184,6 +187,8 @@ export default {
       height: 80%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      transition: all 0.5s ease-in-out;
       img {
         margin-top: 5px;
         height: 100%;
