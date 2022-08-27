@@ -5,7 +5,7 @@
     <div class="home">
       <div class="top-barrer">
         <div class="icon-hw">
-          <img src="@/assets/logo.jpg" />
+          <img src="@/assets/logo.png" />
         </div>
         <div class="right-info">
           <li @click="test" class="navshow"><a>Start</a></li>
@@ -160,8 +160,8 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-content: center;
-  background: rgba(255, 255, 255);
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0);
+  // box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
   min-width: 80%;
   .top-barrer {
     z-index: 99;
