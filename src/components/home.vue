@@ -6,8 +6,8 @@
       <div class="top-barrer">
         <div class="icon-hw">
           <img src="@/assets/logo.png" />
-          <img src="@/assets/X.png" class="ccfLogo">
-          <img src="@/assets/CCFlogo.png" >
+          <img src="@/assets/X.png" class="ccfLogo" />
+          <img src="@/assets/CCFlogo.png" />
         </div>
         <div class="right-info">
           <li @click="test" class="navshow"><a>CCF × HW</a></li>
@@ -86,13 +86,15 @@ export default {
         height: '100%',
         width: '100%'
       },
-      bgArr: ['#fff', 'rgba(0, 0, 0, 0)', '#FAFAFA', {
-        isBg: true,
-        src: require('@/assets/bgcimg/4.png')
-      }, {
-        isBg: true,
-        src: require('@/assets/bgcimg/1.png')
-      }]
+      bgArr: ['#fff', 'rgba(0, 0, 0, 0)', '#FAFAFA',
+        {
+          isBg: true,
+          src: require('@/assets/bgcimg/4.png')
+        },
+        {
+          isBg: true,
+          src: require('@/assets/bgcimg/1.png')
+        }]
     }
   },
   methods: {
@@ -133,7 +135,13 @@ export default {
   },
   watch: {
     currentPage: {
-      handler (newValue) {
+      handler (newValue, oldValue) {
+        let rightBar = document.querySelector('.right-info')
+        if (newValue > oldValue) {
+          rightBar.style.width = '30%'
+        } else {
+          rightBar.style.width = '50%'
+        }
         let navshows = document.querySelectorAll('.navshow')
         let index = newValue - 1
         for (let i = 0; i < 5; i++) {
@@ -165,10 +173,7 @@ export default {
   align-content: center;
   background: rgba(255, 255, 255, 0);
   // box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-  min-width: 80%;
   .top-barrer {
-    z-index: 99;
-    min-width: 50%;
     width: 90%;
     height: 60px;
     display: flex;
@@ -193,23 +198,24 @@ export default {
       display: flex;
       width: 50%;
       justify-content: space-between;
+      transition: all 0.5s ease-in-out;
       li {
-        min-width: 150px;
         width: 80%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        a {
-          width: 100%;
-          min-width: 40%;
-          color: rgb(103, 107, 115);
-          transition: 0.2s;
-          font-size: 20px;
-          cursor: pointer;
-          &:hover {
-            color: rgb(55, 120, 229);
-          }
+      }
+      a {
+        width: 100%;
+        color: rgb(103, 107, 115);
+        transition: all 0.2s;
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        &:hover {
+          color: rgb(55, 120, 229) !important;
         }
       }
     }
