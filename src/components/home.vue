@@ -34,7 +34,7 @@
     >
       <template #page1>
         <!-- 部门介绍展示 -->
-        <div class="page page1">
+        <div class="page">
           <StartPage></StartPage>
         </div>
       </template>
