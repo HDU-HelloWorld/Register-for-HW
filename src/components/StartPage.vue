@@ -15,14 +15,15 @@
         >
         <span class="spanText">
           <div class="colorText">C</div>
-          reate</span>
+          reate</span
+        >
         <span class="spanText">
           AND&nbsp;
-          <div class="colorText">DO</div>&nbsp;
-          IT!
+          <div class="colorText">DO</div>
+          &nbsp; IT!
         </span>
       </div>
-      <div class="playVideo">
+      <div class="playVideo" @click="playVideo">
         <div class="iconBorder">
           <!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In  -->
           <div class="iconCover">
@@ -69,6 +70,14 @@
         <source :src="video" type="video/mp4" />
       </video>
     </div>
+    <div class="videoPlayBox" v-if="showVideo">
+      <div class="videoContainer">
+        <video autoplay loop controls>
+          <source :src="video" type="video/mp4" />
+        </video>
+        <img src="@/assets/X.png" @click="closeVideo" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -78,7 +87,16 @@ export default {
   name: 'StartPage',
   data () {
     return {
-      video: ccfVideo
+      video: ccfVideo,
+      showVideo: false
+    }
+  },
+  methods: {
+    playVideo () {
+      this.showVideo = true
+    },
+    closeVideo () {
+      this.showVideo = false
     }
   }
 }
@@ -172,6 +190,37 @@ export default {
       object-fit: cover;
       width: 100%;
       height: 100%;
+    }
+  }
+  .videoPlayBox {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    .videoContainer {
+      width: 60%;
+      display: flex;
+      justify-content: center;
+    }
+    video {
+      width: 80%;
+    }
+    img {
+      width: 40px;
+      cursor: pointer;
+      align-self: flex-start;
+      &:hover {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        -webkit-transition: -webkit-transform 0.3s linear;
+        transition: transform 0.3s linear;
+      }
     }
   }
 }

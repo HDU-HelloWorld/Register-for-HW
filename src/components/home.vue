@@ -6,6 +6,8 @@
       <div class="top-barrer">
         <div class="icon-hw">
           <img src="@/assets/logo.png" />
+          <img src="@/assets/X.png" class="ccfLogo">
+          <img src="@/assets/CCFlogo.png" >
         </div>
         <div class="right-info">
           <li @click="test" class="navshow"><a>Start</a></li>
@@ -174,9 +176,14 @@ export default {
     .icon-hw {
       width: 20%;
       height: 80%;
+      display: flex;
+      align-items: center;
       img {
         margin-top: 5px;
         height: 100%;
+      }
+      .ccfLogo {
+        height: 50%;
       }
     }
     .right-info {

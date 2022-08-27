@@ -181,7 +181,7 @@ export default {
           this.stats.domElement.style.position = 'absolute'
           this.stats.domElement.style.left = '0px'
           this.stats.domElement.style.top = '0px'
-          this.stats.domElement.style.zIndex = '9000'
+          this.stats.domElement.style.zIndex = '-999'
           document.querySelector('.body').appendChild(this.stats.domElement)
 
           // Create a new instance of the EffectCanvas which is going to produce all of the visuals
