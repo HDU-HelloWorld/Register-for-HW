@@ -8,6 +8,7 @@
           <img src="@/assets/logo.jpg" />
         </div>
         <div class="right-info">
+          <li @click="test" class="navshow"><a>Start</a></li>
           <li @click="test" class="navshow"><a>Welcome</a></li>
           <li @click="test" class="navshow"><a>部门介绍</a></li>
           <li @click="test" class="navshow"><a>CCF介绍</a></li>
@@ -17,7 +18,7 @@
     </div>
     <!-- 使用fullpage制作 -->
     <mv-full-page
-      :isPointer="true"
+      :isPointer="showPointer"
       pointerPos="right"
       :isV="isV"
       :pages="5"
@@ -33,12 +34,11 @@
     >
       <template #page1>
         <!-- 部门介绍展示 -->
-        <div class="page">
+        <div class="page page1">
           <StartPage></StartPage>
         </div>
       </template>
       <template #page2>
-        <!-- 部门介绍展示 -->
         <div class="page page2">
           <WelcomePage></WelcomePage>
         </div>
@@ -77,43 +77,53 @@ export default {
   data () {
     return {
       isV: true,
+      showPointer: false,
       currentPage: 1,
       page: 0,
       config: {
         height: '100%',
         width: '100%'
       },
-      bgArr: ['rgba(0, 0, 0, 0)', '#FAFAFA', '#CAD8D8', 'grey']
+      bgArr: ['#fff', 'rgba(0, 0, 0, 0)', '#FAFAFA', {
+        isBg: true,
+        src: require('@/assets/bgcimg/4.png')
+      }, {
+        isBg: true,
+        src: require('@/assets/bgcimg/1.png')
+      }]
     }
   },
   methods: {
     test (event) {
       //  点击时颜色发生变化
       let navshows = document.querySelectorAll('.navshow')
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 5; i++) {
         navshows[i].firstElementChild.style.color = 'rgb(103, 107, 115)'
       }
       event.target.style.color = 'rgb(55, 120, 229)'
       //  点击对应导航时发生页面跳转
       let info = event.target.innerText
-      if (info === 'Welcome') {
+      if (info === 'Start') {
         this.currentPage = 1
       }
-      if (info === '部门介绍') {
+      if (info === 'Welcome') {
         this.currentPage = 2
       }
-      if (info === 'CCF介绍') {
+      if (info === '部门介绍') {
         this.currentPage = 3
       }
-      if (info === '加入我们') {
+      if (info === 'CCF介绍') {
         this.currentPage = 4
+      }
+      if (info === '加入我们') {
+        this.currentPage = 5
       }
     }
   },
   mounted () {
     let navshows = document.querySelectorAll('.navshow')
     let index = this.currentPage - 1
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
       navshows[i].firstElementChild.style.color = 'rgb(103, 107, 115)'
     }
     navshows[index].firstElementChild.style.color = 'rgb(55, 120, 229)'
@@ -123,10 +133,20 @@ export default {
       handler (newValue) {
         let navshows = document.querySelectorAll('.navshow')
         let index = newValue - 1
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 5; i++) {
           navshows[i].firstElementChild.style.color = 'rgb(103, 107, 115)'
         }
         navshows[index].firstElementChild.style.color = 'rgb(55, 120, 229)'
+        if (newValue === 1) {
+          this.showPointer = false
+        } else {
+          this.showPointer = true
+          this.$nextTick(() => {
+            let pointer = document.querySelector('.pointer-wrapper')
+            console.log(pointer)
+            pointer.classList.add('animate__animated', 'animate__fadeInRight')
+          })
+        }
       }
     }
   }
@@ -163,7 +183,7 @@ export default {
       height: 100%;
       align-items: center;
       display: flex;
-      width: 40%;
+      width: 50%;
       justify-content: space-between;
       li {
         min-width: 150px;
