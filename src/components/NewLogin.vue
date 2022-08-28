@@ -622,71 +622,75 @@ html{
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
   .shuai{
-  text-align: center;
-  font-size: 24px;
-  width: 100%;
-  height: 100%;
-  z-index: 99999;
-  display: inline-block;
-  padding: 25px 30px;
-  margin: 40px 0;
-  color: #1703f4;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: 0.5s;
-  letter-spacing: 4px;
-  overflow: hidden;
-  margin-right: 50px;
-  &:hover{
-  background: #03e9f4;
-  color: #050801;
-  box-shadow: 0 0 5px #03e9f4,
-              0 0 25px #03e9f4,
-              0 0 50px #03e9f4,
-              0 0 200px #03e9f4;
-  -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
-  }
-  &:nth-child(1){
-    filter: hue-rotate(270deg);
-  }
-  span{
-    position: absolute;
-    display: block;
+    border-radius: 10px;
+    background: #edeaea;
+    box-shadow:  6px 6px 12px #c6c6c6,
+                -6px -6px 12px #fff;
+    text-align: center;
+    font-size: 24px;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: inline-block;
+    padding: 25px 30px;
+    margin: 40px 0;
+    color: #ab5555;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin-right: 50px;
+    &:hover{
+    background: #c968ed;
+    color: #050801;
+    box-shadow: 0 0 5px #c968ed,
+                0 0 25px #c968ed,
+                0 0 50px #c968ed,
+                0 0 200px #c968ed;
+    -webkit-box-reflect:below 1px linear-gradient(transparent, )#0005;
+    }
     &:nth-child(1){
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg,transparent,#03e9f4);
-      animation: animate1 1s linear infinite;
+      filter: hue-rotate(270deg);
     }
-    &:nth-child(2){
-      top: -100%;
-      right: 0;
-      width: 2px;
-      height: 100%;
-      background: linear-gradient(180deg,transparent,#03e9f4);
-      animation: animate2 1s linear infinite;
-      animation-delay: 0.25s;
-    }
-    &:nth-child(3){
-      bottom: 0;
-      right: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(270deg,transparent,#03e9f4);
-      animation: animate3 1s linear infinite;
-      animation-delay: 0.50s;
-    }
-    &:nth-child(4){
-      bottom: -100%;
-      left: 0;
-      width: 2px;
-      height: 100%;
-      background: linear-gradient(360deg,transparent,#03e9f4);
-      animation: animate4 1s linear infinite;
-      animation-delay: 0.75s;
-    }
+    span{
+      position: absolute;
+      display: block;
+      &:nth-child(1){
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg,transparent,#c968ed);
+        animation: animate1 1s linear infinite;
+      }
+      &:nth-child(2){
+        top: -100%;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg,transparent,#c968ed);
+        animation: animate2 1s linear infinite;
+        animation-delay: 0.25s;
+      }
+      &:nth-child(3){
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(270deg,transparent,#c968ed);
+        animation: animate3 1s linear infinite;
+        animation-delay: 0.50s;
+      }
+      &:nth-child(4){
+        bottom: -100%;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(360deg,transparent,#c968ed);
+        animation: animate4 1s linear infinite;
+        animation-delay: 0.75s;
+      }
   }
 }
 }
