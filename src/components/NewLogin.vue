@@ -136,7 +136,7 @@
             <el-row id="check">
               <el-col :span="4" :offset="3">
                 <el-button
-                  type="primary"
+                  type="secondary"
                   @click="submitForm('form')"
                   class="button1"
                   >提交</el-button
@@ -160,10 +160,12 @@
         </div>
       </div>
       <div class="button" @click="showForm" v-show="showButton">
-        <div class="text-3">
-          Are You Ready?
-          <div class="showtext-3">Npm Run Dev!</div>
-        </div>
+        <a href="#" class="shuai"><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                JION US
+        </a>
       </div>
     </div>
   </div>
@@ -352,6 +354,38 @@ html{
     background-position: 0% 0%;
   }
 }
+@keyframes animate1{
+  0%{
+      left: -100%;
+  }
+  50%,100%{
+      left: 100%;
+  }
+}
+@keyframes animate2{
+  0%{
+      top: -100%;
+  }
+  50%,100%{
+      top: 100%;
+  }
+}
+@keyframes animate3{
+  0%{
+      right: -100%;
+  }
+  50%,100%{
+      right: 100%;
+  }
+}
+@keyframes animate4{
+  0%{
+      bottom: -100%;
+  }
+  50%,100%{
+      bottom: 100%;
+  }
+}
 #check {
   margin-top: 20px;
 }
@@ -432,7 +466,20 @@ html{
   height: 45px;
   width: 150px;
   margin-bottom: 20px;
-  border-radius: 22.5px;
+  border-radius: 16px;
+  box-sizing: border-box;
+  padding: 10px;
+  background: #e9e9e9;
+  box-shadow:  6px 6px 12px #c6c6c6,
+              -6px -6px 12px #ffffff;
+  font-size: 20px;
+  &:hover{
+    background: #e9e9e9;
+    box-shadow: inset 5px 5px 10px #c6c6c6,
+            inset -5px -5px 10px #ffffff;
+    color: #FEA8A9;
+    transition: 0.2s;
+  }
 }
 .form-wrapper {
   top: 13vh;
@@ -498,6 +545,10 @@ html{
 .wrapper {
   width: 100%;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .incard {
   position: relative;
@@ -562,67 +613,88 @@ html{
   text-align: right;
 }
 .button {
-  color: rgb(103, 107, 115);
-  width: 15rem;
-  height: 2rem;
-  left: 55rem;
-  text-align: center;
-  position: absolute;
-  top: 80vh;
-  font-size: 1.6rem;
-  line-height: 1.1em;
-  font-family: 'Brandon Text', serif;
-  user-select: none;
-  overflow: hidden;
-  letter-spacing: 0.1em;
-  z-index: 1;
-}
-.text-3 {
-  text-decoration: none;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 300px;
+  font-family: 'Raleway', sans-serif;
   font-weight: bold;
-  cursor: pointer;
-  transition: all 0.5s;
-}
-.text-3:hover {
-  background-image: linear-gradient(
-    -135deg,
-    #418ae0,
-    #56a0d8,
-    #56a0d8,
-    #418ae0,
-    #56a0d8,
-    #56a0d8,
-    #418ae0
-  );
-  padding-top: 2.2rem;
-  background-position: left bottom;
-}
-.text-3:hover .showtext-3 {
-  background-image: linear-gradient(
-    -135deg,
-    #418ae0,
-    #56a0d8,
-    #56a0d8,
-    #418ae0,
-    #56a0d8,
-    #56a0d8,
-    #418ae0
-  );
-  margin-top: -4rem;
-  background-position: left bottom;
-  color: white;
-}
-
-.button1 {
-  color: #fff;
+  .shuai{
   text-align: center;
-  user-select: none;
-  letter-spacing: 0.1em;
-  border-color: rgba(64, 158, 255, 0);
-  background: rgba(64, 158, 255, 0.6);
+  font-size: 24px;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  display: inline-block;
+  padding: 25px 30px;
+  margin: 40px 0;
+  color: #1703f4;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  letter-spacing: 4px;
+  overflow: hidden;
+  margin-right: 50px;
+  &:hover{
+  background: #03e9f4;
+  color: #050801;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 200px #03e9f4;
+  -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+  }
+  &:nth-child(1){
+    filter: hue-rotate(270deg);
+  }
+  span{
+    position: absolute;
+    display: block;
+    &:nth-child(1){
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg,transparent,#03e9f4);
+      animation: animate1 1s linear infinite;
+    }
+    &:nth-child(2){
+      top: -100%;
+      right: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg,transparent,#03e9f4);
+      animation: animate2 1s linear infinite;
+      animation-delay: 0.25s;
+    }
+    &:nth-child(3){
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(270deg,transparent,#03e9f4);
+      animation: animate3 1s linear infinite;
+      animation-delay: 0.50s;
+    }
+    &:nth-child(4){
+      bottom: -100%;
+      left: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(360deg,transparent,#03e9f4);
+      animation: animate4 1s linear infinite;
+      animation-delay: 0.75s;
+    }
+  }
+}
+}
+.button1{
+  color: #1A507E;
 }
 .button2 {
-  color: rgba(64, 158, 255);
+  color: #1A507E;
   text-align: center;
   user-select: none;
   letter-spacing: 0.1em;

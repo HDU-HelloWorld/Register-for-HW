@@ -54,7 +54,6 @@ export default {
   },
   methods: {
     changeIntro (targetNode, index) {
-      // console.log(targetNode)
       // 切换介绍与图片
       this.introIndex = index
       // 给target的父级元素添加class

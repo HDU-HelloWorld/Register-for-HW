@@ -147,7 +147,7 @@ export default {
               content: '';
               position: absolute;
               left: -12px;
-              top: 6px;
+              top: 4px;
               width: 8px;
               height: 8px;
               border-radius: 50%;
@@ -173,7 +173,7 @@ export default {
               content: '';
               position: absolute;
               left: -12px;
-              top: 4 px;
+              top: 4px;
               width: 8px;
               height: 8px;
               border-radius: 50%;
