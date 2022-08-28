@@ -41,7 +41,7 @@
         <span class="spanText">
           AND&nbsp;
           <div class="colorText">DO</div>
-          &nbsp; IT!
+          &nbsp;IT!
         </span>
       </div>
       <div class="playVideo" @click="playVideo" v-show="display">

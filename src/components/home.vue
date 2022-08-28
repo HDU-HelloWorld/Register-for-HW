@@ -233,4 +233,9 @@ export default {
     width: 100%;
   }
 }
+.page2 {
+  width: 80%;
+  height: 60%;
+  overflow: hidden;
+}
 </style>
