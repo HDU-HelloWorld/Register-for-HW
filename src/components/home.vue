@@ -107,7 +107,7 @@ export default {
       event.target.style.color = 'rgb(55, 120, 229)'
       //  点击对应导航时发生页面跳转
       let info = event.target.innerText
-      if (info === 'Start') {
+      if (info === 'CCF × HW') {
         this.currentPage = 1
       }
       if (info === 'Welcome') {
@@ -214,7 +214,7 @@ export default {
       a {
         width: 100%;
         color: rgb(103, 107, 115);
-        transition: all 0.2s;
+        transition: all 0.4s;
         font-size: 0.8rem;
         display: flex;
         justify-content: center;
