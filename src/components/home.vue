@@ -42,7 +42,10 @@
       </template>
       <template #page2>
         <div class="page page2">
-          <WelcomePage></WelcomePage>
+          <div class="componentBox">
+            <div class="card"></div>
+            <!-- <WelcomePage></WelcomePage> -->
+          </div>
         </div>
       </template>
       <template #page3>
@@ -234,8 +237,19 @@ export default {
   }
 }
 .page2 {
-  width: 80%;
-  height: 60%;
-  overflow: hidden;
+  // background-color: #333333;
+  .componentBox {
+    height: 100vh;
+    width: 50%;
+    overflow: hidden;
+    .card {
+      position: absolute;
+      width: 20%;
+      height: 50%;
+      background: rgba(255, 255, 255, 0.7);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+  }
 }
 </style>
