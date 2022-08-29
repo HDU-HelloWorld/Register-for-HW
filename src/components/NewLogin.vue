@@ -94,6 +94,7 @@
                     placeholder="验证码"
                   ></el-input>
                 </el-form-item>
+                <el-button>获取验证码</el-button>
               </el-col>
             </el-row>
             <!-- QQ号 -->
