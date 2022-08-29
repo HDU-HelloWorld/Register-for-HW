@@ -160,7 +160,6 @@ export default {
           this.showPointer = true
           this.$nextTick(() => {
             let pointer = document.querySelector('.pointer-wrapper')
-            console.log(pointer)
             pointer.classList.add('animate__animated', 'animate__fadeInRight')
           })
         }

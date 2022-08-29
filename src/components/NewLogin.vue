@@ -96,7 +96,7 @@
                 </el-form-item>
               </el-col>
               <el-col :span="2" :offset='1'>
-                <el-button class="requma">获取验证码</el-button>
+                <el-button class="requma" @click="getAuthCode">获取验证码</el-button>
               </el-col>
             </el-row>
             <!-- QQ号 -->
@@ -180,6 +180,7 @@ export default {
   data () {
     return {
       showButton: true,
+      AuthCode: '-1',
       class1: {
         marginTop: '100%'
       },
@@ -256,7 +257,7 @@ export default {
       Mapi: {
         'apikey': '190f304e388e9516a8d90e38cee777ed',
         'mobile': '',
-        'content': 'this is a test message'
+        'content': ''
       }
     }
   },
@@ -333,11 +334,7 @@ export default {
       this.showButton = true
     },
     getAuthCode () {
-      this.Mapi.mobile = this.form.phone
-      console.log(this.Mapi.mobile)
-      this.$axios.post('http://api01.monyun.cn:7901/sms/v2/std/single_send', this.Mapi).then(res => {
-        console.log(res)
-      })
+      // 验证码获取方式替换为向服务器发送请求获取验证码
     }
   }
 }
