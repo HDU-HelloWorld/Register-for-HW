@@ -81,7 +81,7 @@
             </el-row>
             <!-- 电话 -->
             <el-row>
-              <el-col :span="10" >
+              <el-col :span="9" >
                 <el-form-item label="电话" prop="phone">
                   <el-input v-model="form.phone" class="input"></el-input>
                 </el-form-item>
@@ -94,7 +94,9 @@
                     placeholder="验证码"
                   ></el-input>
                 </el-form-item>
-                <el-button>获取验证码</el-button>
+              </el-col>
+              <el-col :span="2" :offset='1'>
+                <el-button class="requma">获取验证码</el-button>
               </el-col>
             </el-row>
             <!-- QQ号 -->
@@ -481,6 +483,10 @@ html{
     color: #FEA8A9;
     transition: 0.2s;
   }
+  &:focus{
+    outline: 0;
+    border:0;
+  }
 }
 .form-wrapper {
   top: 13vh;
@@ -704,5 +710,31 @@ html{
   user-select: none;
   letter-spacing: 0.1em;
   border-color: rgba(255, 255, 255, 0.6);
+}
+/deep/ .el-button.requma{
+  font-size: 16px;
+  color: #1A507E;
+  text-align: center;
+  user-select: none;
+  letter-spacing: 0.1em;
+  height: 35px;
+  width: 110px;
+  border-radius: 16px;
+  box-sizing: border-box;
+  background: #e9e9e9;
+  margin-top: 1px;
+  box-shadow:  6px 6px 12px #c6c6c6,
+              -6px -6px 12px #ffffff;
+  &:hover{
+    background: #e9e9e9;
+    box-shadow: inset 5px 5px 10px #c6c6c6,
+            inset -5px -5px 10px #ffffff;
+    color: #FEA8A9;
+    transition: 0.2s;
+  }
+  &:focus{
+    outline: 0;
+    border:0;
+  }
 }
 </style>
