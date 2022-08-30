@@ -274,7 +274,7 @@ export default {
     }
   },
   change () {
-    this.$forceUpdate()
+    // this.$forceUpdate()
   },
   methods: {
     submitForm (formName) {
@@ -300,6 +300,7 @@ export default {
             return
           }
           // 将表单提交到3000端口的/api/register接口
+          // http://localhost:3000/api/register 居然直接提交到了本地，而不是服务器的3000端口
           this.$axios.post('http://localhost:3000/api/register', this.form).then(function (response, code) {
             if (response.status === 200) {
               message({
@@ -380,6 +381,8 @@ export default {
       }
       // 像/api/getAuthCode接口发送请求获取验证码，字段为mobile
       let that = this
+      // 这里http://localhost:3000/api/getAuthCode 居然是发送到本地的3000端口，而不是发送到服务器的3000端口
+      // 发送到服务器的3000端口
       this.$axios.post('http://localhost:3000/api/getAuthCode', data).then(function (response, code) {
         if (response.status === 200) {
           console.log(response.data)
