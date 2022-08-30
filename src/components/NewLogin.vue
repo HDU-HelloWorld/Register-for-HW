@@ -231,6 +231,10 @@ export default {
         email: [
           { required: true, message: '请输入邮箱地址', trigger: 'blur' },
           { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+        ],
+        selfIntroduction: [
+          {required: true, message: '请输入自我介绍', trigger: 'blur'},
+          {min: 0, max: 100, message: '长度要求在一百个字符内捏', trigger: 'blur'}
         ]
       },
       options1: [{
@@ -719,7 +723,7 @@ html{
   border-radius: 16px;
   box-sizing: border-box;
   background: #e9e9e9;
-  margin-top: 1px;
+  margin-top: 2px;
   box-shadow:  6px 6px 12px #c6c6c6,
               -6px -6px 12px #ffffff;
   &:hover{
