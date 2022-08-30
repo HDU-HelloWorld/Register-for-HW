@@ -247,7 +247,7 @@ export default {
         selfIntroduction: [
           { required: true, message: '请输入自我介绍', trigger: 'blur' },
           { min: 0, max: 120, message: '长度在 0 到 120 个字符', trigger: 'blur' }
-          //看见这行可以删掉
+          // 看见这行可以删掉
         ]
       },
       options1: [{
