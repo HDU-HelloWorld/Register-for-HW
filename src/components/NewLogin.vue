@@ -231,6 +231,10 @@ export default {
         email: [
           { required: true, message: '请输入邮箱地址', trigger: 'blur' },
           { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+        ],
+        selfIntroduction: [
+          { required: true, message: '请输入自我介绍', trigger: 'blur' },
+          { min: 0, max: 120, message: '长度在 0 到 120 个字符', trigger: 'blur' }
         ]
       },
       options1: [{
