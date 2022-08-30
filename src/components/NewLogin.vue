@@ -724,7 +724,7 @@ html{
   border-radius: 16px;
   box-sizing: border-box;
   background: #e9e9e9;
-  margin-top: 1px;
+  margin-top: 2px;
   box-shadow:  6px 6px 12px #c6c6c6,
               -6px -6px 12px #ffffff;
   &:hover{
