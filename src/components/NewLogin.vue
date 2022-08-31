@@ -171,7 +171,7 @@
         </div>
       </div>
       <div class="button" @click="showForm" v-show="showButton">
-        <a href="#" class="shuai"
+        <a href="/#/home" class="shuai"
           ><span></span>
           <span></span>
           <span></span>
