@@ -7,6 +7,7 @@ import IndexPage from '@/components/IndexPage'
 import LoadingPage from '@/components/LoadingPage'
 import AuthPage from '@/components/AuthPage'
 import NotFound from '@/components/404Page'
+import ConfirmPage from '@/pages/ConfirmPage'
 Vue.use(Router)
 
 export default new Router({
@@ -35,6 +36,11 @@ export default new Router({
       path: '/auth',
       name: 'AuthPage',
       component: AuthPage
+    },
+    {
+      path: '/confirm',
+      name: 'ConfirmPage',
+      component: ConfirmPage
     },
     {
       path: '*',
