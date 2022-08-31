@@ -21,7 +21,7 @@
           <p class="shuoming">let's join us</p>
           <p class="derect">
             Quickly fill out the form to join us, welcome mengxin, welcome to
-            the dalao
+            the dalao！！！
           </p>
           <p></p>
           <p></p>
