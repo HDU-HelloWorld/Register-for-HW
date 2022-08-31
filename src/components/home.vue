@@ -43,6 +43,10 @@
       <template #page2>
         <div class="page page2">
           <div class="componentBox">
+            <div class="card active"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
             <div class="card"></div>
             <!-- <WelcomePage></WelcomePage> -->
           </div>
@@ -236,18 +240,23 @@ export default {
   }
 }
 .page2 {
-  // background-color: #333333;
+  background-color: #fff;
   .componentBox {
     height: 100vh;
-    width: 50%;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     .card {
-      position: absolute;
-      width: 20%;
-      height: 50%;
-      background: rgba(255, 255, 255, 0.7);
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
+      width: 4vw;
+      height: 45vh;
+      margin: 0.5vw;
+      border-radius: 3vw;
+      background-color: rgb(168, 168, 168);
+    }
+    .active {
+      width: 30vw;
     }
   }
 }

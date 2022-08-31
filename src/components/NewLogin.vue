@@ -184,10 +184,12 @@
 </template>
 
 <script>
+import server from '@/assets/data/server.json'
 export default {
   name: 'NewLogin',
   data () {
     return {
+      mode: 0, // 模式，0代表开发模式，1代表生产模式
       showButton: true,
       AuthCode: '-1',
       userAuthCode: '',
@@ -301,7 +303,12 @@ export default {
           }
           // 将表单提交到3000端口的/api/register接口
           // http://localhost:3000/api/register 居然直接提交到了本地，而不是服务器的3000端口
-          this.$axios.post('http://localhost:3000/api/register', this.form).then(function (response, code) {
+          // 判断开发模式还是生产模式
+          let url = 'http://localhost:3000/api/register'
+          if (this.mode === 1) {
+            url = server.baseUrl + '/api/register'
+          }
+          this.$axios.post(url, this.form).then(function (response, code) {
             if (response.status === 200) {
               message({
                 message: '提交成功',
@@ -383,7 +390,12 @@ export default {
       let that = this
       // 这里http://localhost:3000/api/getAuthCode 居然是发送到本地的3000端口，而不是发送到服务器的3000端口
       // 发送到服务器的3000端口
-      this.$axios.post('http://localhost:3000/api/getAuthCode', data).then(function (response, code) {
+      // 判断开发模式还是生产模式
+      let url = 'http://localhost:3000/api/getAuthCode'
+      if (this.mode === 1) {
+        url = server.baseUrl + '/api/getAuthCode'
+      }
+      this.$axios.post(url, data).then(function (response, code) {
         if (response.status === 200) {
           console.log(response.data)
           // 禁用按钮60秒
@@ -782,9 +794,8 @@ html {
   box-sizing: border-box;
   background: #e9e9e9;
   margin-top: 2px;
-  box-shadow:  6px 6px 12px #c6c6c6,
-              -6px -6px 12px #ffffff;
-  &:hover{
+  box-shadow: 6px 6px 12px #c6c6c6, -6px -6px 12px #ffffff;
+  &:hover {
     background: #e9e9e9;
     box-shadow: inset 5px 5px 10px #c6c6c6, inset -5px -5px 10px #ffffff;
     color: #fea8a9;
