@@ -108,10 +108,10 @@ export default {
             console.log(this.userInfo)
             this.isShowInfo = 1
             moResi.style.display = 'none'
-            if (panduan === 'block') {
+            if (panduan === 'flex') {
               moSuu.style.display = 'none'
             } else {
-              moSuu.style.display = 'block'
+              moSuu.style.display = 'flex'
             }
           } else {
             this.$message({
@@ -127,7 +127,7 @@ export default {
       let moSuu = document.querySelector('.mo-diff')
       moSuu.style.display = 'none'
       let moResi = document.querySelector('.mo-confirm')
-      moResi.style.display = 'block'
+      moResi.style.display = 'flex'
     }
   },
   mounted () {
@@ -446,6 +446,8 @@ export default {
         width: 25%;
         margin-top: 10px;
         margin-left: 20px;
+        left: 0px;
+        bottom: 50px;
         position: absolute;
         img{
           width: 100%;
