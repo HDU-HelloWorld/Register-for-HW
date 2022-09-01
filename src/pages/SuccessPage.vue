@@ -5,8 +5,8 @@
       <h1>HW全体成员欢迎你的加入！</h1>
     </div>
     <div class="btnBox">
-      <el-button type="primary">查询报名信息</el-button>
-      <el-button>回到首页 ({{ countTime }})</el-button>
+      <el-button @click="goQuery" type="primary">查询报名信息</el-button>
+      <el-button @click="goHome">回到首页 ({{ countTime }})</el-button>
     </div>
   </div>
 </template>
@@ -31,6 +31,12 @@ export default {
           this.$router.push('/home')
         }
       }, 1000)
+    },
+    goQuery () {
+      this.$router.push('/confirm')
+    },
+    goHome () {
+      this.$router.push('/home')
     }
   }
 }
