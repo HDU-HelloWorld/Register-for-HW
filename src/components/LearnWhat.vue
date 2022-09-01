@@ -8,7 +8,7 @@
         'Java',
         'Python',
         'AI',
-        'Whaterver YOU Want'
+        'Whaterver U Want'
       ]"
       :typeSpeed="100"
       :loop="true"

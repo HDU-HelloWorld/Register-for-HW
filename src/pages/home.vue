@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <LittleObjects v-show="currentPage - 1" @goRegister="goRegister"></LittleObjects>
+    <LittleObjects @goRegister="goRegister" :page="currentPage"></LittleObjects>
     <!-- 使用fullpage制作 -->
     <mv-full-page
       :isPointer="showPointer"
@@ -57,7 +57,7 @@
       <template #page3>
         <!-- 部门介绍展示 -->
         <div class="page">
-          <dep-intro></dep-intro>
+          <dep-intro style="width: 80%"></dep-intro>
         </div>
       </template>
       <template #page4>
