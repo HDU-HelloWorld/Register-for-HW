@@ -18,6 +18,7 @@
         </div>
       </div>
     </div>
+    <LittleObjects v-show="currentPage - 1"></LittleObjects>
     <!-- 使用fullpage制作 -->
     <mv-full-page
       :isPointer="showPointer"
@@ -82,8 +83,9 @@ import DepIntro from './DepIntro.vue'
 import NewLogin from './NewLogin.vue'
 import WelcomePage from './WelcomePage.vue'
 import LearnWhat from './LearnWhat.vue'
+import LittleObjects from './LittleObjects.vue' // 引入四周的小零件0
 export default {
-  components: { DepIntro, Ccfintro, NewLogin, WelcomePage, StartPage, LearnWhat },
+  components: { DepIntro, Ccfintro, NewLogin, WelcomePage, StartPage, LearnWhat, LittleObjects },
   name: 'Home',
   data () {
     return {

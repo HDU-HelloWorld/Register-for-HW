@@ -26,3 +26,7 @@
   src: url('./汉仪良品线简.ttf');
   font-weight: 600;
 }
+@font-face {
+  font-family: helloworld;
+  src: url('./字魂朋克黑.ttf');
+}
