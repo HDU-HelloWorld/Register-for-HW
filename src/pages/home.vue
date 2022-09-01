@@ -77,11 +77,13 @@
 </template>
 
 <script>
-import StartPage from './StartPage.vue'
-import Ccfintro from './Ccfintro.vue'
-import DepIntro from './DepIntro.vue'
-import NewLogin from './NewLogin.vue'
-import WelcomePage from './WelcomePage.vue'
+import StartPage from '@/components/StartPage.vue'
+import Ccfintro from '@/components/Ccfintro.vue'
+import DepIntro from '@/components/DepIntro.vue'
+import NewLogin from '@/components/NewLogin.vue'
+import WelcomePage from '@/components/WelcomePage.vue'
+import LearnWhat from '@/components/LearnWhat.vue'
+import LittleObjects from '@/components/LittleObjects'
 export default {
   components: { DepIntro, Ccfintro, NewLogin, WelcomePage, StartPage, LearnWhat, LittleObjects },
   name: 'Home',
