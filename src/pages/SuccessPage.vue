@@ -20,7 +20,7 @@ export default {
     }
   },
   mounted () {
-    this.countDown()
+    // this.countDown()
   },
   methods: {
     countDown () {

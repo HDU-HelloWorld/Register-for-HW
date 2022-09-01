@@ -281,17 +281,6 @@ export default {
   methods: {
     submitForm (formName) {
       let message = this.$message
-      // 测试数据
-      // this.form.name = '张三'
-      // this.form.gender = '男'
-      // this.form.stuNum = '20182124'
-      // this.form.phone = '13000000002'
-      // this.form.qqnumber = '123456789'
-      // this.form.college = '计算机学院'
-      // this.form.department = '人工智能部门'
-      // this.form.email = 'test@qq.com'
-      // this.form.selfIntroduction = '这是一个测试'
-      // this.form.honor = '这是一个测试'
       this.$refs[formName].validate((valid) => {
         if (valid) {
           console.log(this.form)
