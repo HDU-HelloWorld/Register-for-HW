@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Demo from '@/components/Demo'
-import home from '@/components/home'
-// import WelcomePage from '@/components/WelcomePage'
-import IndexPage from '@/components/IndexPage'
-import LoadingPage from '@/components/LoadingPage'
-import AuthPage from '@/components/AuthPage'
-import NotFound from '@/components/404Page'
+import home from '@/pages/home'
+import IndexPage from '@/pages/IndexPage'
+import LoadingPage from '@/pages/LoadingPage'
+import AuthPage from '@/pages/AuthPage'
+import NotFound from '@/pages/404Page'
 import ConfirmPage from '@/pages/ConfirmPage'
 import SuccessPage from '@/pages/SuccessPage'
 Vue.use(Router)
@@ -22,11 +20,6 @@ export default new Router({
       path: '/loading',
       name: 'LoadingPage',
       component: LoadingPage
-    },
-    {
-      path: '/demo',
-      name: 'Demo',
-      component: Demo
     },
     {
       path: '/home',
