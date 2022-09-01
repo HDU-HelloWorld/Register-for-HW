@@ -239,6 +239,9 @@ export default {
 .page {
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .test {
     width: 100%;
   }
