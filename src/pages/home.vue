@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <LittleObjects v-show="currentPage - 1"></LittleObjects>
+    <LittleObjects v-show="currentPage - 1" @goRegister="goRegister"></LittleObjects>
     <!-- 使用fullpage制作 -->
     <mv-full-page
       :isPointer="showPointer"
@@ -133,6 +133,9 @@ export default {
       if (info === '加入我们') {
         this.currentPage = 5
       }
+    },
+    goRegister () {
+      this.currentPage = 5
     }
   },
   mounted () {
