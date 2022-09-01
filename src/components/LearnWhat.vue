@@ -24,12 +24,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 .body {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+// 打字效果加下划线
+.typing {
+  border-bottom: 0.3rem solid #000;
 }
 </style>
