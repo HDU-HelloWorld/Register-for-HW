@@ -18,6 +18,7 @@
         </div>
       </div>
     </div>
+    <LittleObjects v-show="currentPage - 1"></LittleObjects>
     <!-- 使用fullpage制作 -->
     <mv-full-page
       :isPointer="showPointer"
@@ -42,14 +43,15 @@
       </template>
       <template #page2>
         <div class="page page2">
-          <div class="componentBox">
+          <!-- <div class="componentBox">
             <div class="card active"></div>
             <div class="card"></div>
             <div class="card"></div>
             <div class="card"></div>
             <div class="card"></div>
-            <!-- <WelcomePage></WelcomePage> -->
-          </div>
+          </div> -->
+          <!-- <WelcomePage></WelcomePage> -->
+          <LearnWhat></LearnWhat>
         </div>
       </template>
       <template #page3>
@@ -75,13 +77,13 @@
 </template>
 
 <script>
-import StartPage from '../components/StartPage.vue'
-import Ccfintro from '../components/Ccfintro.vue'
-import DepIntro from '../components/DepIntro.vue'
-import NewLogin from '../components/NewLogin.vue'
-import WelcomePage from '../components/WelcomePage.vue'
+import StartPage from './StartPage.vue'
+import Ccfintro from './Ccfintro.vue'
+import DepIntro from './DepIntro.vue'
+import NewLogin from './NewLogin.vue'
+import WelcomePage from './WelcomePage.vue'
 export default {
-  components: { DepIntro, Ccfintro, NewLogin, WelcomePage, StartPage },
+  components: { DepIntro, Ccfintro, NewLogin, WelcomePage, StartPage, LearnWhat, LittleObjects },
   name: 'Home',
   data () {
     return {
