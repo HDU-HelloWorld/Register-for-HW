@@ -189,7 +189,7 @@ export default {
   name: 'NewLogin',
   data () {
     return {
-      mode: 0, // 模式，0代表开发模式，1代表生产模式
+      mode: 1, // 模式，0代表开发模式，1代表生产模式
       showButton: true,
       AuthCode: '-1',
       userAuthCode: '',
