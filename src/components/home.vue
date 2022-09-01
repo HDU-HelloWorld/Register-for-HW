@@ -42,14 +42,15 @@
       </template>
       <template #page2>
         <div class="page page2">
-          <div class="componentBox">
+          <!-- <div class="componentBox">
             <div class="card active"></div>
             <div class="card"></div>
             <div class="card"></div>
             <div class="card"></div>
             <div class="card"></div>
-            <!-- <WelcomePage></WelcomePage> -->
-          </div>
+          </div> -->
+          <!-- <WelcomePage></WelcomePage> -->
+          <LearnWhat></LearnWhat>
         </div>
       </template>
       <template #page3>
@@ -80,8 +81,9 @@ import Ccfintro from './Ccfintro.vue'
 import DepIntro from './DepIntro.vue'
 import NewLogin from './NewLogin.vue'
 import WelcomePage from './WelcomePage.vue'
+import LearnWhat from './LearnWhat.vue'
 export default {
-  components: { DepIntro, Ccfintro, NewLogin, WelcomePage, StartPage },
+  components: { DepIntro, Ccfintro, NewLogin, WelcomePage, StartPage, LearnWhat },
   name: 'Home',
   data () {
     return {

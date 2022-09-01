@@ -14,8 +14,10 @@ import './utils/rem.js'
 import VuePrlx from 'vue-prlx'
 import axios from 'axios'
 import 'animate.css' // 引入animate.css
+import VueTypedJs from 'vue-typed-js'
 
 Vue.prototype.$axios = axios // 全局注册，使用方法为:this.$axios
+Vue.use(VueTypedJs)
 Vue.use(VuePrlx)
 Vue.use(MvFullPage)
 Vue.config.productionTip = false
