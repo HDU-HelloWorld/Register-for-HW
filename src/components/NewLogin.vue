@@ -699,17 +699,17 @@ html {
     font-size: 24px;
     width: 100%;
     height: 100%;
-    z-index: 99999;
-    display: inline-block;
+    line-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 25px 30px;
-    margin: 40px 0;
     color: #ab5555;
     text-decoration: none;
     text-transform: uppercase;
     transition: 0.5s;
     letter-spacing: 4px;
     overflow: hidden;
-    margin-right: 50px;
     &:hover {
       background: #c968ed;
       color: #050801;

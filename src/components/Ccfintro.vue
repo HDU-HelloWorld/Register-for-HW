@@ -35,15 +35,15 @@
       </div>
       <div class="shuoming">
         <div class="item">
-          <p class="item-title">网址/web</p><br>
+          <div class="item-title">网址/web</div>
           <div class="content">http://www.ccf.org.cn</div>
         </div>
         <div class="item">
-          <p class="item-title">竞赛/contest</p><br>
+          <div class="item-title">竞赛/contest</div>
           <div class="content">NOI/CCSP/CCF TEC</div>
         </div>
         <div class="item">
-          <p class="item-title">数字图书馆/Digital Library</p><br>
+          <div class="item-title">数字图书馆/Digital Library</div>
           <div class="content">文章/视频/音频</div>
         </div>
       </div>
@@ -65,8 +65,8 @@ export default {
 
 <style scoped lang="less">
   .whole{
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -81,6 +81,7 @@ export default {
         width: 100%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         .big{
           width: 30%;
           height: 100%;
@@ -112,7 +113,8 @@ export default {
                       -28px -28px 56px #ffffff;
           box-sizing: border-box;
           padding: 25px;
-          font-size: 19px;
+          font-size: 20px;
+          overflow: auto;
         }
       }
       .left-bottom{
@@ -135,6 +137,7 @@ export default {
           .title{
             box-sizing: border-box;
             padding: 8px;
+            height: 10%;
             background-color: #1A507E;
             display: inline;
             color: #ffffff;
@@ -143,6 +146,8 @@ export default {
           .item{
             font-size: 16px;
             position: relative;
+            height: 20%;
+            // margin-left: 12px;
             &::before{
               content: '';
               position: absolute;
@@ -169,6 +174,7 @@ export default {
           .item{
             font-size: 16px;
             position: relative;
+            height: 20%;
             &::before{
               content: '';
               position: absolute;
@@ -198,11 +204,15 @@ export default {
       flex-direction: column;
       justify-content: space-between;
       .imgs{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
         width: 100%;
+        height: 38%;
         .imgs-cover{
-          width: 150px;
-          height: 150px;
-          margin-left: 30%;
+          width: 120px;
+          height: 120px;
           border-radius: 50%;
           background: #e9e9e9;
           box-shadow:  24px 24px 48px #c6c6c6,
@@ -224,29 +234,42 @@ export default {
           font-family: commondesc;
           width: 100%;
           text-align: center;
+          font-size: 20px;
         }
       }
       .shuoming{
-        margin-top: -20px;
+        margin-top: 10%;
+        width: 100%;
+        height: 58%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         .item{
-          margin-top: -10px;
+          height: 31%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
           .item-title{
             background-color: #DB5A6C;
+            height: 45%;
             font-size: 20px;
-            display: inline-block;
             padding: 8px;
             box-sizing: border-box;
             border-radius: 10px;
+            display: flex;
+            align-items: center;
           }
           .content{
-            margin-top: -12px;
+            height: 30%;
             margin-left: 10%;
             border-radius: 5px;
-            font-size: 18px;
+            font-size: 16px;
             padding: 5px;
             color: #fff;
-            display: inline-block;
             background-color: #1A507E;
+            display: flex;
+            align-items: center;
           }
         }
       }
