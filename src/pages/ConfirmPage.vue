@@ -99,20 +99,11 @@ export default {
           type: 'warning'
         })
       } else {
-        let moResi = document.querySelector('.mo-confirm')
-        let moSuu = document.querySelector('.mo-diff')
-        let panduan = moSuu.style.display
         this.$axios.get(url, {params: this.form}).then(res => {
           if (res.data !== '' && res.status === 200) {
             this.userInfo = res.data
-            console.log(this.userInfo)
             this.isShowInfo = 1
-            moResi.style.display = 'none'
-            if (panduan === 'flex') {
-              moSuu.style.display = 'none'
-            } else {
-              moSuu.style.display = 'flex'
-            }
+            this.luoji()
           } else {
             this.$message({
               message: '查询失败，请确认您填写的信息是否正确',
@@ -128,6 +119,18 @@ export default {
       moSuu.style.display = 'none'
       let moResi = document.querySelector('.mo-confirm')
       moResi.style.display = 'flex'
+    },
+    //  封装一下代码变成方法函数
+    luoji () {
+      let moResi = document.querySelector('.mo-confirm')
+      let moSuu = document.querySelector('.mo-diff')
+      let panduan = moSuu.style.display
+      moResi.style.display = 'none'
+      if (panduan === 'flex') {
+        moSuu.style.display = 'none'
+      } else {
+        moSuu.style.display = 'flex'
+      }
     }
   },
   mounted () {
@@ -161,21 +164,14 @@ export default {
   html {
       font-size: 10px;
   }
-
-  html::before {
-      content: ' ';
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      z-index: -1;
-      background: linear-gradient(120deg, #e0c3f3 0%, #8ec5fc 100%) no-repeat;
-  }
-
   ::selection {
       color: #fff;
       background-color: rgb(144, 129, 241);
   }
   .pc {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     width: 100vw;
     height: 100vh;
     display: flex !important;
@@ -315,6 +311,7 @@ export default {
           position: relative;
           left: -50%;
           transform: translateX(70%);
+          bottom: 10px;
           img{
             width: 100%;
           }
@@ -335,6 +332,14 @@ export default {
           color: rgb(20, 2, 2);
         }
       }
+    }
+    &::before{
+      content: ' ';
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      z-index: -1;
+      background: linear-gradient(120deg, #e0c3f3 0%, #8ec5fc 100%) no-repeat;
     }
 
   }
