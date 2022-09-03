@@ -137,11 +137,17 @@ export default {
           .title{
             box-sizing: border-box;
             padding: 8px;
+            width: 40%;
+            margin-left: 30%;
             height: 10%;
             background-color: #1A507E;
-            display: inline;
+            // display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: #ffffff;
             border-radius: 15px;
+            font-size: 18px;
           }
           .item{
             font-size: 16px;
