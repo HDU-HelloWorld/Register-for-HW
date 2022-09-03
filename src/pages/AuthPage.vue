@@ -115,6 +115,7 @@ export default {
     }
   },
   mounted () {
+    // 测试下git链接
     console.clear()
   }
 }
