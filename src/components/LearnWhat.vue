@@ -8,12 +8,13 @@
         'Java',
         'Python',
         'AI',
+        'Machine Learning',
         'Whaterver U Want'
       ]"
       :typeSpeed="100"
       :loop="true"
     >
-      <h1>Learn <span class="typing"></span> Togather With US!</h1>
+      <h1>Learn <span class="typing"></span> Together With us!</h1>
     </vue-typed-js>
   </div>
 </template>

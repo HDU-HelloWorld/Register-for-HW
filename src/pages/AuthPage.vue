@@ -97,7 +97,7 @@ export default {
             }, 800)
             setTimeout(() => {
               // 跳转到loading页面，并销毁当前页面
-              this.$router.push('/loading')
+              this.$router.push('/home')
               this.$destroy()
             }, 3000)
           }
