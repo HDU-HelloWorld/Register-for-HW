@@ -7,6 +7,7 @@ import AuthPage from '@/pages/AuthPage'
 import NotFound from '@/pages/404Page'
 import ConfirmPage from '@/pages/ConfirmPage'
 import SuccessPage from '@/pages/SuccessPage'
+import Sakana from '@/components/Sakana.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -15,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'IndexPage',
       component: IndexPage
+    },
+    {
+      path: '/sakana',
+      name: 'sakana',
+      component: Sakana
     },
     {
       path: '/loading',

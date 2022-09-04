@@ -20,7 +20,6 @@
 </template>
 
 <script>
-// import Sakana from '@/assets/Sakala/sakala.js'
 export default {
   name: 'SuccessPage',
   data () {

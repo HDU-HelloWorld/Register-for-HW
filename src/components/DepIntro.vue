@@ -32,6 +32,7 @@
       <Peoplesmart v-if="introIndex == 3"></Peoplesmart>
       <Admin v-if="introIndex == 4"></Admin>
     </div>
+    <Sakana/>
   </div>
 </template>
 <script>
@@ -39,6 +40,7 @@ import Admin from '@/components/DepartIntro/Admin'
 import Back from '@/components/DepartIntro/Back'
 import Front from '@/components/DepartIntro/Front'
 import Peoplesmart from '@/components/DepartIntro/Peoplesmart'
+import Sakana from '@/components/Sakana.vue'
 export default {
   name: 'DepIntro',
   data () {
@@ -50,7 +52,8 @@ export default {
     Admin,
     Back,
     Front,
-    Peoplesmart
+    Peoplesmart,
+    Sakana
   },
   methods: {
     changeIntro (targetNode, index) {
@@ -129,5 +132,11 @@ export default {
     width: 100%;
     position: relative;
   }
+}
+#sakana-widget{
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
 }
 </style>

@@ -23,6 +23,7 @@
     "mv-full-page": "^1.4.0",
     "postcss-px2rem": "^0.3.0",
     "px2rem-loader": "^0.1.9",
+    "sakana-widget": "^2.3.0",
     "stats.js": "^0.17.0",
     "vue": "^2.5.2",
     "vue-pixi": "^0.1.1",
