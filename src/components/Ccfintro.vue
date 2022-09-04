@@ -133,20 +133,28 @@ export default {
           box-shadow:  28px 28px 56px #959595,
                       -28px -28px 56px #ffffff;
           box-sizing: border-box;
-          padding: 25px;
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
           .title{
             box-sizing: border-box;
             padding: 8px;
+            width: 40%;
+            margin-left: 30%;
             height: 10%;
             background-color: #1A507E;
-            display: inline;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: #ffffff;
             border-radius: 15px;
+            font-size: 16px;
           }
           .item{
-            font-size: 16px;
+            font-size: 12px;
             position: relative;
-            height: 20%;
+            height: 15%;
             // margin-left: 12px;
             &::before{
               content: '';

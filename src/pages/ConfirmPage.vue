@@ -35,6 +35,7 @@
           <div class="pc-speic">若有信息错误，请联系管理员（QQ群:436862917)</div>
         </div>
       </div>
+      <Sakana></Sakana>
     </div>
     <!-- MObile -->
     <div class="mobile">
@@ -76,8 +77,12 @@
 
 <script>
 import server from '@/assets/data/server.json'
+import Sakana from '@/components/Sakana.vue'
 export default {
   name: 'ConfirmPage',
+  components: {
+    Sakana
+  },
   data () {
     return {
       form: {
@@ -136,6 +141,8 @@ export default {
   mounted () {
     let moSuu = document.querySelector('.mo-diff')
     moSuu.style.display = 'none'
+    // const inint = new SakanaWidget()
+    // inint.mount('#sakana-widget')
   },
   watch: {
     isShowInfo: {
@@ -341,7 +348,11 @@ export default {
       z-index: -1;
       background: linear-gradient(120deg, #e0c3f3 0%, #8ec5fc 100%) no-repeat;
     }
-
+    #sakana-widget{
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
   }
   .mobile {
     display: none !important;
