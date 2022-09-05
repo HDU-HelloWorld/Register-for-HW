@@ -1,4 +1,3 @@
-
 function addScript (url) {
   let script = document.createElement('script')
   script.setAttribute('type', 'text/javascript')
