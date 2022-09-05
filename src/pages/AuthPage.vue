@@ -10,6 +10,17 @@
       <div class="output authMessage" v-if="success">
         Successfully Authorized
       </div>
+      <div class="branch">
+        <!-- 选择分支按钮（两个） -->
+        <div
+          class="branchButton"
+          v-for="branch in branches"
+          :key="branch"
+          @click="selectBranch(branch)"
+        >
+          {{ branch }}
+        </div>
+      </div>
       <input
         class="input"
         type="text"
@@ -37,7 +48,8 @@ export default {
       outputString: '',
       showDuplicates: false,
       duplicates: [],
-      success: false
+      success: false,
+      branches: ['手机端报名表', 'PC端报名表']
     }
   },
   watch: {
