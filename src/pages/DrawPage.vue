@@ -37,6 +37,7 @@
           </svg>
         </div>
       </div>
+      <div class="button">button</div>
     </div>
     <div class="ShowWardInfo">
       <div class="block">
@@ -162,6 +163,48 @@ export default {
             margin-top: 15%;
           }
         }
+      }
+      .button {
+        width: 130px;
+        height: 40px;
+        background: linear-gradient(to bottom, #1A507E 0%,#1A507E 100%); /* W3C */
+        border: none;
+        border-radius: 5px;
+        position: relative;
+        // border-bottom: 4px solid #2b8bc6;
+        color: #fbfbfb;
+        font-weight: 600;
+        font-family: 'Open Sans', sans-serif;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+        font-size: 15px;
+        text-align: left;
+        text-indent: 5px;
+        box-shadow: 0px 4px 4px 4px rgba(0,0,0,.2);
+        cursor: pointer;
+
+      /* Just for presentation */
+        display: block;
+        margin: 0 0 0 12px;
+      }
+      .button:active {
+        box-shadow: 0px 2px 2px 2px rgba(0,0,0,.2);
+        top: 1px;
+      }
+
+      .button:after {
+        content: "";
+        width: 0;
+        height: 0;
+        display: block;
+        border-top: 20px solid #DB5A6C;
+        border-bottom: 20px solid #DB5A6C;
+        border-left: 16px solid transparent;
+        border-right: 20px solid #DB5A6C;
+        position: absolute;
+        // opacity: 0.6;
+        right: 0;
+        top: 0;
+        border-radius: 0 5px 5px 0;
       }
     }
     .ShowWardInfo{
