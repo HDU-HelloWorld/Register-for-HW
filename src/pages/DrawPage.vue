@@ -48,8 +48,8 @@
         <p class="show-title">奖品信息</p>
     </div>
     </div>
+    <button class="btn" @click="get_prize">开盒!!!</button>
   </div>
-  <div class="usershow">111</div>
 </div>
 </template>
 
@@ -79,6 +79,44 @@ export default {
       this.$nextTick(() => {
         this.bannerHeight = this.$refs.bannerHeight[0].height
       })
+    },
+    //  选中样式函数
+    prize_style (index) {
+      let content = document.querySelectorAll('.content')
+      content[index - 1].style.border = '5px solid mediumvioletred'
+    },
+    //  清除样式函数
+    style_init (index) {
+      let content = document.querySelectorAll('.content')
+      content[index - 1].style.border = '5px solid transparent'
+    },
+    //  抽奖函数
+    get_prize () {
+      // 生成随机数
+      let a = Math.floor((Math.random() * 6) + 1)
+      //  动画循环
+      let that = this
+      for (let i = 1; i <= 6; i++) {
+        (function (k) {
+          setTimeout(() => {
+            if (k === 1) {
+              // console.log(this)
+              that.prize_style(k)
+              that.style_init(6)
+            } else {
+              that.prize_style(k)
+              that.style_init(k - 1)
+            }
+          }, 200 * i)
+        })(i)
+      }
+      //  之后随机生成奖品
+      (function () {
+        setTimeout(() => {
+          that.style_init(6)
+          that.prize_style(a)
+        }, 200 * 6 + 100)
+      })()
     }
   },
   mounted () {
@@ -137,6 +175,8 @@ export default {
         display: flex;
         justify-content: space-between;
         .content{
+          width: 100px;
+          height: 100px;
           .icon{
             width:100px ;
             height: 100px;
@@ -153,6 +193,8 @@ export default {
         display: flex;
         justify-content: space-between;
         .content{
+          width: 100px;
+          height: 100px;
           .icon{
             width:100px ;
             height: 100px;
@@ -198,6 +240,15 @@ export default {
           align-items: center;
         }
       }
+    }
+    .btn{
+      width: 100px;
+      height: 30px;
+      position: fixed;
+      left: 50%;
+      // transition: x;
+      transform: translateX(-50%);
+      bottom: 30px;
     }
   }
 }
