@@ -280,12 +280,13 @@ export default {
   },
   methods: {
     submitForm (formName) {
+      let that = this
       let message = this.$message
       this.$refs[formName].validate((valid) => {
         if (valid) {
           console.log(this.form)
           // 判断验证码是否正确
-          if (this.AuthCode !== this.userAuthCode) {
+          if (String(this.AuthCode) !== String(this.userAuthCode)) {
             message.error('验证码错误')
             console.log(this.AuthCode, this.userAuthCode)
             return
@@ -303,9 +304,10 @@ export default {
                 message: '提交成功',
                 type: 'success'
               })
-              this.$router.push('/success')
+              that.$router.push('/success')
             }
           }).catch((err) => {
+            console.log(err)
             console.log(err.response)
             let data = err.response.data
             if (data.name === 'SequelizeUniqueConstraintError') {
@@ -385,8 +387,10 @@ export default {
         url = server.baseUrl + '/api/getAuthCode'
       }
       this.$axios.post(url, data).then(function (response, code) {
+        console.log(response)
         if (response.status === 200) {
-          console.log(response.data)
+          console.log('验证码发送成功')
+          that.AuthCode = response.data
           // 禁用按钮60秒
           let time = 60
           let timer = setInterval(() => {
@@ -402,7 +406,7 @@ export default {
           }, 1000)
         }
       }).catch((err) => {
-        console.log(err.response)
+        console.log(err)
       })
     }
   }
