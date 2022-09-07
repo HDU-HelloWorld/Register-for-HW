@@ -37,7 +37,7 @@
           </svg>
         </div>
       </div>
-      <div class="button">button</div>
+      <div class="button" @click="get_prize">开抽！！</div>
     </div>
     <div class="ShowWardInfo">
       <div class="block">
@@ -49,7 +49,6 @@
         <p class="show-title">奖品信息</p>
     </div>
     </div>
-    <button class="btn" @click="get_prize">开盒!!!</button>
   </div>
 </div>
 </template>
@@ -84,12 +83,14 @@ export default {
     //  选中样式函数
     prize_style (index) {
       let content = document.querySelectorAll('.content')
-      content[index - 1].style.border = '5px solid mediumvioletred'
+      content[index - 1].style.border = '3px solid #1A507E'
+      content[index - 1].style.background = '#db5a6bc7'
     },
     //  清除样式函数
     style_init (index) {
       let content = document.querySelectorAll('.content')
-      content[index - 1].style.border = '5px solid transparent'
+      content[index - 1].style.border = '3px solid transparent'
+      content[index - 1].style.background = ''
     },
     //  抽奖函数
     get_prize () {
@@ -110,14 +111,22 @@ export default {
             }
           }, 200 * i)
         })(i)
+        // that.style_init(i)
       }
       //  之后随机生成奖品
       (function () {
         setTimeout(() => {
           that.style_init(6)
           that.prize_style(a)
-        }, 200 * 6 + 100)
+        }, 200 * 6 + 200)
       })()
+      setTimeout(() => {
+        alert('有一吗？')
+      }, 200 * 6 + 400)
+      //  清除样式
+      for (let index = 1; index <= 6; index++) {
+        that.style_init(index)
+      }
     }
   },
   mounted () {
@@ -148,8 +157,16 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  width: 100vw;
+  height: 100vh;
+  background: url("../assets/img/draw.jpg");
+}
 .Draw{
   width: 100vw;
+  background-image: url("../assets/img/draw.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   .cover{
     width: 100vw;
     height: 100vh;
@@ -165,14 +182,12 @@ export default {
     }
     .banner{
       border: 1px solid #1A507E;
-      background: rgb(249,210,228);
+      background: rgba(233,233,233,0.3);
       width: 30%;
       height: 70%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 5px 5px 5px 5px rgba(0,0,0,.2);
-      border-radius: 15px;
       .banner-top{
         width: 100%;
         height: 40%;
@@ -181,13 +196,19 @@ export default {
         .content{
           width: 100px;
           height: 100px;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 18px;
+          // background: #db5a6bc7;
           .icon{
-            width:100px ;
-            height: 100px;
+            width:80px ;
+            height: 80px;
             cursor: pointer;
           }
           &:nth-child(2){
-            margin-top: 20%;
+            margin-top: 15%;
           }
         }
       }
@@ -199,9 +220,13 @@ export default {
         .content{
           width: 100px;
           height: 100px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 18px;
           .icon{
-            width:100px ;
-            height: 100px;
+            width:80px ;
+            height: 80px;
             cursor: pointer;
           }
           &:nth-child(2){
@@ -216,26 +241,28 @@ export default {
         border: none;
         border-radius: 5px;
         position: relative;
-        // border-bottom: 4px solid #2b8bc6;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 10px;
         color: #fbfbfb;
         font-weight: 600;
         font-family: 'Open Sans', sans-serif;
-        text-shadow: 1px 1px 1px rgba(0,0,0,.4);
-        font-size: 15px;
-        text-align: left;
-        text-indent: 5px;
-        box-shadow: 0px 4px 4px 4px rgba(0,0,0,.2);
+        text-shadow: 2px 2px 2px rgba(0,0,0,.4);
+        font-size: 18px;
+        box-shadow: 4px 4px 4px 4px rgba(0,0,0,.2);
+        border-radius: 10px;
         cursor: pointer;
-
       /* Just for presentation */
-        display: block;
-        margin: 0 0 0 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.25s;
+        text-shadow: 0 0 5px red,0 0 10px red,0 0 15px red,0 0 20px red;
       }
       .button:active {
         box-shadow: 0px 2px 2px 2px rgba(0,0,0,.2);
         top: 1px;
       }
-
       .button:after {
         content: "";
         width: 0;
@@ -287,15 +314,6 @@ export default {
           align-items: center;
         }
       }
-    }
-    .btn{
-      width: 100px;
-      height: 30px;
-      position: fixed;
-      left: 50%;
-      // transition: x;
-      transform: translateX(-50%);
-      bottom: 30px;
     }
   }
 }

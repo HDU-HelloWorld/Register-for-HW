@@ -24,7 +24,8 @@ export default {
   name: 'SuccessPage',
   data () {
     return {
-      countTime: 5
+      countTime: 5,
+      isGo: false
     }
   },
   mounted () {
@@ -38,10 +39,14 @@ export default {
           clearInterval(timer)
           this.$router.push('/home')
         }
+        if (this.isGo === true) {
+          clearInterval(timer)
+        }
       }, 1000)
     },
     goQuery () {
       this.$router.push('/confirm')
+      this.isGo = true
     },
     goHome () {
       this.$router.push('/home')
