@@ -156,6 +156,7 @@ export default {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    background-color: rgb(228,217,212);
     #sakana-widget{
       position: fixed;
       right: 20px;
@@ -164,12 +165,14 @@ export default {
     }
     .banner{
       border: 1px solid #1A507E;
-      background: rgba(233,233,233,0.3);
+      background: rgb(249,210,228);
       width: 30%;
       height: 70%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-shadow: 5px 5px 5px 5px rgba(0,0,0,.2);
+      border-radius: 15px;
       .banner-top{
         width: 100%;
         height: 40%;
@@ -255,7 +258,8 @@ export default {
       border-radius: 15px;
       // box-sizing: border-box;
       // padding: 30px;
-      background-color: rgb(141, 177, 174);
+      background-color: rgb(17, 208, 202);
+      box-shadow: 5px 5px 5px 5px rgba(0,0,0,.2);
       .block{
         width: 100%;
         .el-carousel{
