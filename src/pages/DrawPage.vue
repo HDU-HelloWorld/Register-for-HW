@@ -98,7 +98,7 @@ export default {
       let a = Math.floor((Math.random() * 6) + 1)
       //  动画循环
       let that = this
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 1; i <= 27; i++) {
         (function (k) {
           setTimeout(() => {
             if (k === 1) {
@@ -110,7 +110,7 @@ export default {
               that.style_init(k - 1)
             }
           }, 200 * i)
-        })(i)
+        })(i % 7)
         // that.style_init(i)
       }
       //  之后随机生成奖品
@@ -118,11 +118,11 @@ export default {
         setTimeout(() => {
           that.style_init(6)
           that.prize_style(a)
-        }, 200 * 6 + 200)
+        }, 200 * 27 + 200)
       })()
       setTimeout(() => {
         alert('有一吗？')
-      }, 200 * 6 + 400)
+      }, 200 * 27 + 400)
       //  清除样式
       for (let index = 1; index <= 6; index++) {
         that.style_init(index)
@@ -160,7 +160,7 @@ export default {
 body{
   width: 100vw;
   height: 100vh;
-  background: url("../assets/img/draw.jpg");
+  // background: url("../assets/img/draw.jpg");
 }
 .Draw{
   width: 100vw;
