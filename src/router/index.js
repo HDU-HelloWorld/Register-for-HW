@@ -8,6 +8,7 @@ import NotFound from '@/pages/404Page'
 import ConfirmPage from '@/pages/ConfirmPage'
 import SuccessPage from '@/pages/SuccessPage'
 import DrawPage from '@/pages/DrawPage.vue'
+import MobilePage from '@/pages/MobilePage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -46,6 +47,11 @@ export default new Router({
       path: '/success',
       name: 'SuccessPage',
       component: SuccessPage
+    },
+    {
+      path: '/mobile',
+      name: 'MobilePage',
+      component: MobilePage
     },
     {
       path: '*',
