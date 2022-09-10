@@ -3,22 +3,22 @@
     <div class="contro">
       <!-- 部门介绍导航栏 -->
       <div class="imgs-icon">
-        <li @click="changeIntro($event, 1)">
+        <li @click="changeIntro($event, 1)" @mouseover="mouseOver" @mouseleave="mouseLeave">
           <div class="navList borderBlue">
             <img src="@/assets/front.png" />
           </div>
         </li>
-        <li @click="changeIntro($event, 2)">
+        <li @click="changeIntro($event, 2)" @mouseover="mouseOver" @mouseleave="mouseLeave">
           <div class="navList">
             <img src="@/assets/back.jpg" />
           </div>
         </li>
-        <li @click="changeIntro($event, 3)">
+        <li @click="changeIntro($event, 3)" @mouseover="mouseOver" @mouseleave="mouseLeave">
           <div class="navList">
             <img src="@/assets/peoplesmart.png" />
           </div>
         </li>
-        <li @click="changeIntro($event, 4)">
+        <li @click="changeIntro($event, 4)" @mouseover="mouseOver" @mouseleave="mouseLeave">
           <div class="navList">
             <img src="@/assets/admin.png" />
           </div>
@@ -45,7 +45,8 @@ export default {
   name: 'DepIntro',
   data () {
     return {
-      introIndex: '1'
+      introIndex: '1',
+      timer: ''
     }
   },
   components: {
@@ -66,7 +67,33 @@ export default {
         navList[i].classList.remove('borderBlue')
       }
       targetNode.target.parentNode.classList.add('borderBlue')
+    },
+    //  定时器展示组件信息
+    changeComInfo () {
+      let navList = document.querySelectorAll('.navList')
+      if (this.introIndex === 4) {
+        this.introIndex = 1
+      } else {
+        this.introIndex++
+      }
+      for (let i = 0; i < 4; i++) {
+        navList[i].classList.remove('borderBlue')
+      }
+      navList[this.introIndex - 1].classList.add('borderBlue')
+      console.log(this.introIndex)
+    },
+    mouseOver () {
+      clearInterval(this.timer)
+    },
+    mouseLeave () {
+      this.timer = setInterval(this.changeComInfo, 1500)
     }
+  },
+  mounted () {
+    this.timer = setInterval(this.changeComInfo, 1500)
+  },
+  beforeDestroy () {
+    clearInterval(this.timer)
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="barrer">
-    <img src="@/assets/img/4.jpg">
+    <img src="@/assets/img/pix/2.jpg">
     <div class="desc">
       <h1>前端部门</h1>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;
