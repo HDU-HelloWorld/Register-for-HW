@@ -100,7 +100,7 @@ export default {
         },
         {
           isBg: true,
-          src: require('@/assets/bgcimg/4.png')
+          src: require('@/assets/bgcimg/4.jpg')
         },
         {
           isBg: true,

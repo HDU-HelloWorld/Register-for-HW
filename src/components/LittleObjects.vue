@@ -123,7 +123,6 @@ export default {
     },
     changeVisibility (visibility) {
       this.showLine = visibility
-      console.log('changeVisibility', visibility)
     }
   },
   props: ['page'],

@@ -80,7 +80,6 @@ export default {
         navList[i].classList.remove('borderBlue')
       }
       navList[this.introIndex - 1].classList.add('borderBlue')
-      console.log(this.introIndex)
     },
     mouseOver () {
       clearInterval(this.timer)
