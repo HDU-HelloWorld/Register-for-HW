@@ -1,6 +1,6 @@
 <template>
   <div class="barrer">
-    <img src="@/assets/img/1.jpeg">
+    <img src="@/assets/img/pix/3.jpg">
     <div class="desc">
       <h1>后端部门</h1>
     <pre>New_Student 屏幕前的你 = new New_Student();

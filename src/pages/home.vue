@@ -43,14 +43,6 @@
       </template>
       <template #page2>
         <div class="page page2">
-          <!-- <div class="componentBox">
-            <div class="card active"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-          </div> -->
-          <!-- <WelcomePage></WelcomePage> -->
           <LearnWhat></LearnWhat>
         </div>
       </template>
@@ -97,14 +89,22 @@ export default {
         height: '100%',
         width: '100%'
       },
-      bgArr: ['#fff', 'rgba(0, 0, 0, 0)', '#FAFAFA',
+      bgArr: ['#fff',
         {
           isBg: true,
-          src: require('@/assets/bgcimg/4.png')
+          src: require('@/assets/bgcimg/1.jpg')
         },
         {
           isBg: true,
-          src: require('@/assets/bgcimg/1.png')
+          src: require('@/assets/bgcimg/3.jpg')
+        },
+        {
+          isBg: true,
+          src: require('@/assets/bgcimg/4.jpg')
+        },
+        {
+          isBg: true,
+          src: require('@/assets/bgcimg/5.png')
         }]
     }
   },
@@ -250,7 +250,6 @@ export default {
   }
 }
 .page2 {
-  background-color: #fff;
   .componentBox {
     height: 100vh;
     width: 100vw;

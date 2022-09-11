@@ -12,14 +12,14 @@
       </div>
       <div class="branch">
         <!-- 选择分支按钮（两个） -->
-        <div
+        <!-- <div
           class="branchButton"
           v-for="branch in branches"
           :key="branch"
           @click="selectBranch(branch)"
         >
           {{ branch }}
-        </div>
+        </div> -->
       </div>
       <input
         class="input"
@@ -108,8 +108,14 @@ export default {
               this.success = true
             }, 800)
             setTimeout(() => {
-              // 跳转到loading页面，并销毁当前页面
-              this.$router.push('/home')
+              // 判断是否为手机端
+              if (/(iPhone|iPad|iPod|iOS|Android)/i.test(navigator.userAgent)) {
+                // 手机端
+                this.$router.push('/mobile')
+              } else {
+                // PC端
+                this.$router.push('/home')
+              }
               this.$destroy()
             }, 3000)
           }

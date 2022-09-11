@@ -284,11 +284,11 @@ export default {
       let message = this.$message
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log(this.form)
+          // console.log(this.form)
           // 判断验证码是否正确
           if (String(this.AuthCode) !== String(this.userAuthCode)) {
             message.error('验证码错误')
-            console.log(this.AuthCode, this.userAuthCode)
+            // console.log(this.AuthCode, this.userAuthCode)
             return
           }
           // 将表单提交到3000端口的/api/register接口
@@ -307,8 +307,8 @@ export default {
               that.$router.push('/success')
             }
           }).catch((err) => {
-            console.log(err)
-            console.log(err.response)
+            // console.log(err)
+            // console.log(err.response)
             let data = err.response.data
             if (data.name === 'SequelizeUniqueConstraintError') {
               if (data.msg.indexOf('stuNum') !== -1) {
@@ -330,7 +330,7 @@ export default {
             }
           })
         } else {
-          console.log('error submit!!')
+          // console.log('error submit!!')
           return false
         }
       })
@@ -387,9 +387,9 @@ export default {
         url = server.baseUrl + '/api/getAuthCode'
       }
       this.$axios.post(url, data).then(function (response, code) {
-        console.log(response)
+        // console.log(response)
         if (response.status === 200) {
-          console.log('验证码发送成功')
+          // console.log('验证码发送成功')
           that.AuthCode = response.data
           // 禁用按钮60秒
           let time = 60
