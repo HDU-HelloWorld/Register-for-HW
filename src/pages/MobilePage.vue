@@ -13,19 +13,25 @@
           欢迎报名加入HelloWorld大家庭，但在此之前我们需要收集一些您的信息
         </div>
       </span>
-      <span class="line"
-        ><el-input
+      <el-form>
+      <span class="line">
+        <el-form-item prop = "name">
+        <el-input
           placeholder="姓名"
           class="input"
-          v-model="form.name"
-        ></el-input></span
-      ><span class="line"
-        ><el-input
-          placeholder="学号"
-          class="input"
-          v-model="form.studentId"
-        ></el-input
-      ></span>
+          v-model="form.name"></el-input>
+        </el-form-item>
+        </span>
+      <span class="line">
+        <el-form-item prop="studentId">
+          <el-input
+            placeholder="学号"
+            class="input"
+            v-model="form.studentId"
+          ></el-input>
+        </el-form-item>
+      </span>
+      </el-form>
     </div>
     <div class="page2 page">
       <div class="line topLine"></div>
@@ -40,19 +46,20 @@
           欢迎报名加入HelloWorld大家庭，但在此之前我们需要收集一些您的信息
         </div>
       </span>
-      <span class="line"
-        ><el-input
+      <!-- <span class="line">
+        <el-input
           placeholder="姓名"
           class="input"
           v-model="form.name"
-        ></el-input></span
-      ><span class="line"
-        ><el-input
-          placeholder="学号"
-          class="input"
-          v-model="form.studentId"
-        ></el-input
-      ></span>
+        ></el-input>
+      </span>
+      <span class="line">
+          <el-input
+            placeholder="学号"
+            class="input"
+            v-model="form.studentId"
+          ></el-input>
+      </span> -->
     </div>
     <button class="nextPage" @click="turnPage">继续</button>
   </div>
@@ -67,6 +74,17 @@ export default {
       form: {
         name: '',
         studentId: ''
+      },
+      rules: {
+        studentId: [
+          { required: true, message: '请输入学号', trigger: 'blur' },
+          { pattern: /^[0-9]*$/, message: '学号应为数字', trigger: 'blur' },
+          { min: 8, max: 8, message: '学号格式不正确', trigger: 'blur' }
+        ],
+        name: [
+          { required: true, message: '请输入姓名', trigger: 'blur' },
+          { min: 0, max: 15, message: '长度在 0 到 15 个字符', trigger: 'blur' }
+        ]
       }
     }
   },
@@ -114,10 +132,19 @@ export default {
         // 文字居中
         text-align: center;
       }
-      .input {
+      .el-form-item{
+        padding: 0px;
+        margin:0px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .input {
         // 输入框
-        width: 80%;
+        width: 85%;
         margin: 1vh 0;
+        margin-left: 5vw;
         // border-color: #000;
         & /deep/ .el-input__inner {
           // 修改el-input的样式
@@ -133,6 +160,7 @@ export default {
               background-color: #fff;
             }
           }
+        }
         }
       }
     }
