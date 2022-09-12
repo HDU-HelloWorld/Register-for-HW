@@ -66,7 +66,15 @@ export default {
       currentPage: 1,
       form: {
         name: '',
-        studentId: ''
+        gender: '',
+        stuNum: '',
+        phone: '',
+        qqnumber: '',
+        college: '',
+        department: '',
+        email: '',
+        selfIntroduction: '',
+        honor: ''
       }
     }
   },
@@ -119,21 +127,22 @@ export default {
         width: 80%;
         margin: 1vh 0;
         // border-color: #000;
-        & /deep/ .el-input__inner {
-          // 修改el-input的样式
-          &:focus {
-            border-color: #000;
-            transition: all 0.2s;
-            &::placeholder {
-              z-index: 999;
-              font-size: 5px;
-              transition: all 0.2s ease-in-out;
-              // 向上移动
-              transform: translateY(-130%);
-              background-color: #fff;
-            }
-          }
-        }
+        // 已弃用的placeholder动画效果方案
+        // & /deep/ .el-input__inner {
+        //   // 修改el-input的样式
+        //   &:focus {
+        //     border-color: #000;
+        //     transition: all 0.2s;
+        //     &::placeholder {
+        //       z-index: 999;
+        //       font-size: 5px;
+        //       transition: all 0.2s ease-in-out;
+        //       // 向上移动
+        //       transform: translateY(-130%);
+        //       background-color: #fff;
+        //     }
+        //   }
+        // }
       }
     }
   }
