@@ -1,6 +1,6 @@
 <template>
   <div class="barrer">
-    <img src="@/assets/img/3.png">
+    <img src="@/assets/img/pix/6.jpg">
     <div class="desc">
       <h1>人工智能部门</h1>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;

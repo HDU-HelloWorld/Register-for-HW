@@ -1,6 +1,6 @@
 <template>
   <div class="barrer">
-    <img src="@/assets/img/2.jpeg" alt="">
+    <img src="@/assets/img/pix/1.jpg" alt="">
     <div class="desc">
       <h1>行政部门</h1>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;HelloWorld行政部门是一个友爱团结的大家庭。
