@@ -14,23 +14,24 @@
         </div>
       </span>
       <el-form>
-      <span class="line">
-        <el-form-item prop = "name">
-        <el-input
-          placeholder="姓名"
-          class="input"
-          v-model="form.name"></el-input>
-        </el-form-item>
+        <span class="line">
+          <el-form-item prop="name">
+            <el-input
+              placeholder="姓名"
+              class="input"
+              v-model="form.name"
+            ></el-input>
+          </el-form-item>
         </span>
-      <span class="line">
-        <el-form-item prop="studentId">
-          <el-input
-            placeholder="学号"
-            class="input"
-            v-model="form.studentId"
-          ></el-input>
-        </el-form-item>
-      </span>
+        <span class="line">
+          <el-form-item prop="studentId">
+            <el-input
+              placeholder="学号"
+              class="input"
+              v-model="form.stuNum"
+            ></el-input>
+          </el-form-item>
+        </span>
       </el-form>
     </div>
     <div class="page2 page">
@@ -129,35 +130,36 @@ export default {
         // 文字居中
         text-align: center;
       }
-      .el-form-item{
+      .el-form-item {
         padding: 0px;
-        margin:0px;
+        margin: 0px;
         height: 100%;
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         .input {
-        // 输入框
-        width: 85%;
-        margin: 1vh 0;
-        // border-color: #000;
-        // 已弃用的placeholder动画效果方案
-        // & /deep/ .el-input__inner {
-        //   // 修改el-input的样式
-        //   &:focus {
-        //     border-color: #000;
-        //     transition: all 0.2s;
-        //     &::placeholder {
-        //       z-index: 999;
-        //       font-size: 5px;
-        //       transition: all 0.2s ease-in-out;
-        //       // 向上移动
-        //       transform: translateY(-130%);
-        //       background-color: #fff;
-        //     }
-        //   }
-        // }
+          // 输入框
+          width: 85%;
+          margin: 1vh 0;
+          // border-color: #000;
+          // 已弃用的placeholder动画效果方案
+          // & /deep/ .el-input__inner {
+          //   // 修改el-input的样式
+          //   &:focus {
+          //     border-color: #000;
+          //     transition: all 0.2s;
+          //     &::placeholder {
+          //       z-index: 999;
+          //       font-size: 5px;
+          //       transition: all 0.2s ease-in-out;
+          //       // 向上移动
+          //       transform: translateY(-130%);
+          //       background-color: #fff;
+          //     }
+          //   }
+          // }
+        }
       }
     }
   }
