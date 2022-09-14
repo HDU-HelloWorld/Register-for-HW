@@ -13,26 +13,29 @@
           欢迎报名加入HelloWorld大家庭，但在此之前我们需要收集一些您的信息
         </div>
       </span>
-      <el-form>
-        <span class="line">
-          <el-form-item prop="name">
+      <div class="input-box">
+        <el-form>
+          <span class="line">
             <el-input
               placeholder="姓名"
               class="input"
               v-model="form.name"
             ></el-input>
-          </el-form-item>
-        </span>
-        <span class="line">
-          <el-form-item prop="studentId">
+          </span>
+          <span class="line">
             <el-input
               placeholder="学号"
-              class="input"
+              class="input inline-input"
               v-model="form.stuNum"
             ></el-input>
-          </el-form-item>
-        </span>
-      </el-form>
+            <el-input
+              placeholder="性别"
+              class="input inline-input"
+              v-model="form.gender"
+            ></el-input>
+          </span>
+        </el-form>
+      </div>
     </div>
     <div class="page2 page">
       <div class="line topLine"></div>
@@ -109,7 +112,7 @@ export default {
       height: 5vh;
     }
     .line {
-      width: 100%;
+      width: 100vw;
       display: flex;
       justify-content: center;
       .logo {
@@ -130,36 +133,32 @@ export default {
         // 文字居中
         text-align: center;
       }
-      .el-form-item {
-        padding: 0px;
-        margin: 0px;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .input {
-          // 输入框
-          width: 85%;
-          margin: 1vh 0;
-          // border-color: #000;
-          // 已弃用的placeholder动画效果方案
-          // & /deep/ .el-input__inner {
-          //   // 修改el-input的样式
-          //   &:focus {
-          //     border-color: #000;
-          //     transition: all 0.2s;
-          //     &::placeholder {
-          //       z-index: 999;
-          //       font-size: 5px;
-          //       transition: all 0.2s ease-in-out;
-          //       // 向上移动
-          //       transform: translateY(-130%);
-          //       background-color: #fff;
-          //     }
-          //   }
-          // }
-        }
+      .input {
+        // 输入框
+        width: 80%;
+        margin: 1vh 0;
+        // border-color: #000;
+        // 已弃用的placeholder动画效果方案
+        // & /deep/ .el-input__inner {
+        //   // 修改el-input的样式
+        //   &:focus {
+        //     border-color: #000;
+        //     transition: all 0.2s;
+        //     &::placeholder {
+        //       z-index: 999;
+        //       font-size: 5px;
+        //       transition: all 0.2s ease-in-out;
+        //       // 向上移动
+        //       transform: translateY(-130%);
+        //       background-color: #fff;
+        //     }
+        //   }
+        // }
+      }
+
+      .inline-input {
+        width: 36%;
+        margin: 1vw 4%;
       }
     }
   }

@@ -112,6 +112,65 @@
 
 <script>
 import sakana from '@/assets/Sakala/sakana.js'
+// 新创alert函数来修改alert框样式
+window.alert = alert
+function alert (data) {
+  var a = document.createElement('div')
+  var p = document.createElement('p')
+  var btn = document.createElement('div')
+  var textNode = document.createTextNode(data)
+  var btnText = document.createTextNode('好的')
+  // 控制样式  样式实在是不会写捏
+  css(a, {
+    'position': 'fixed',
+    'left': '0',
+    'right': '0',
+    'top': '20%',
+    'width': '30%',
+    'height': '30%',
+    'margin': '0 auto',
+    'background': 'rgba(162,226,199,.95)',
+    'font-size': '20px',
+    'text-align': 'center',
+    'z-index': '999999999',
+    'box-shadow': '5px 5px 5px 5px rgba(0,0,0,.4)',
+    'border-radius': '18px'
+  })
+  css(btn, {
+    'position': 'relative',
+    'top': '45%',
+    'left': '35%',
+    'width': '30%',
+    'height': '20%',
+    'background': 'rgba(252,177,171,.9)',
+    'border-radius': '10px',
+    'font-size': '20px',
+    'font-family': '微软雅黑',
+    'color': '#1A507E',
+    'display': 'flex',
+    'justify-content': 'center',
+    'align-items': 'center'
+  })
+  // 内部结构套入
+  p.appendChild(textNode)
+  btn.appendChild(btnText)
+  a.appendChild(p)
+  a.appendChild(btn)
+  // 整体显示到页面内
+  document.getElementsByTagName('body')[0].appendChild(a)
+
+  // 确定绑定点击事件删除标签
+  btn.onclick = function () {
+    a.parentNode.removeChild(a)
+  }
+}
+function css (targetObj, cssObj) {
+  var str = targetObj.getAttribute('style') ? targetObj.getAttribute('style') : ''
+  for (var i in cssObj) {
+    str += i + ':' + cssObj[i] + ';'
+  }
+  targetObj.style.cssText = str
+}
 export default {
   name: 'DrawPage',
   data () {
@@ -137,6 +196,12 @@ export default {
     sakana () {
       sakana.initSakanaWidget()
     },
+<<<<<<< HEAD
+=======
+    Test () {
+      alert('xz吃屁')
+    },
+>>>>>>> 24b43133bc013a618f6e7c0a7676dbf90a5b47ef
     //  图片自适应
     imgload () {
       this.$nextTick(() => {
@@ -190,7 +255,7 @@ export default {
         }, 200 * 27 + 200)
       })()
       setTimeout(() => {
-        alert('有一吗？')
+        alert('xz太强啦！')
       }, 200 * 27 + 400)
       //  清除样式
       for (let index = 1; index <= 6; index++) {
@@ -374,7 +439,7 @@ export default {
       border-radius: 15px;
       // box-sizing: border-box;
       // padding: 30px;
-      background-color: rgb(17, 208, 202);
+      background: rgb(17, 208, 202);
       box-shadow: 5px 5px 5px 5px rgba(0,0,0,.2);
       .block{
         width: 100%;
