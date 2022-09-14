@@ -141,8 +141,6 @@ export default {
   mounted () {
     let moSuu = document.querySelector('.mo-diff')
     moSuu.style.display = 'none'
-    // const inint = new SakanaWidget()
-    // inint.mount('#sakana-widget')
   },
   watch: {
     isShowInfo: {
@@ -162,7 +160,7 @@ export default {
 <style lang="less">
 //  pc
 @media only screen and (min-width: 768px) {
-    * {
+  * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;

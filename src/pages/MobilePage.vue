@@ -47,7 +47,7 @@
           欢迎报名加入HelloWorld大家庭，但在此之前我们需要收集一些您的信息
         </div>
       </span>
-      <!-- <span class="line">
+      <span class="line">
         <el-input
           placeholder="姓名"
           class="input"
@@ -60,7 +60,7 @@
             class="input"
             v-model="form.studentId"
           ></el-input>
-      </span> -->
+      </span>
     </div>
     <button class="nextPage" @click="turnPage">继续</button>
   </div>

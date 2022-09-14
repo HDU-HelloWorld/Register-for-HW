@@ -1,37 +1,39 @@
 <template>
-<div class="Draw">
+<div>
+  <!-- PC -->
+<div class="PcDraw">
   <div class="cover">
     <div id="sakana-widget"></div>
     <div class="banner">
       <div class="banner-top">
-        <div class="content" @click="Test">
+        <div class="content">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-color_gift"></use>
         </svg>
           </div>
-        <div class="content" @click="Test">
+        <div class="content">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon--gift"></use>
         </svg>
         </div>
-        <div class="content" @click="Test">
+        <div class="content">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-gifts"></use>
         </svg>
         </div>
       </div>
       <div class="banner-bottom">
-        <div class="content" @click="Test">
+        <div class="content">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-gift2"></use>
           </svg>
         </div>
-        <div class="content" @click="Test">
+        <div class="content">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-gift"></use>
           </svg>
         </div>
-        <div class="content" @click="Test">
+        <div class="content">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-gift1"></use>
           </svg>
@@ -51,6 +53,61 @@
     </div>
   </div>
 </div>
+<!-- 手机 -->
+<div class="MoDraw">
+  <div class="Motitle">
+    奖品信息！！
+  </div>
+  <div class="Moswiper">
+    <div class="Mocontain" v-for="item in imgs" :key="item.id">
+      <img :src="item.image">
+    </div>
+  </div>
+  <div class="Mo-control">
+    <li class="control-li active"></li>
+    <li class="control-li"></li>
+    <li class="control-li"></li>
+    <li class="control-li"></li>
+  </div>
+  <div class="Mo-banner">
+    <div class="banner-top">
+      <div class="Mocontent">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-color_gift"></use>
+      </svg>
+        </div>
+      <div class="Mocontent">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon--gift"></use>
+      </svg>
+      </div>
+      <div class="Mocontent">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-gifts"></use>
+      </svg>
+      </div>
+    </div>
+    <div class="banner-bottom">
+      <div class="Mocontent">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-gift2"></use>
+        </svg>
+      </div>
+      <div class="Mocontent">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-gift"></use>
+        </svg>
+      </div>
+      <div class="Mocontent">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-gift1"></use>
+        </svg>
+      </div>
+    </div>
+      <div class="button" @click="get_prize">开抽！！</div>
+  </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -64,15 +121,21 @@ export default {
         {image: '2.png', id: 2},
         {image: '3.png', id: 3},
         {image: '4.jpeg', id: 4}],
-      bannerHeight: ' '
+      bannerHeight: ' ',
+      //  抽奖和概率的数组
+      Prize: [
+        {grade: '一等奖', weight: 1},
+        {garde: '二等奖', weight: 5},
+        {garde: '三等奖', weight: 20},
+        {garde: '未中奖', weight: 74}
+      ],
+      timer: ' ',
+      index: 0
     }
   },
   methods: {
     sakana () {
       sakana.initSakanaWidget()
-    },
-    Test () {
-      alert('没有中奖捏')
     },
     //  图片自适应
     imgload () {
@@ -83,14 +146,20 @@ export default {
     //  选中样式函数
     prize_style (index) {
       let content = document.querySelectorAll('.content')
+      let Mocontent = document.querySelectorAll('.Mocontent')
       content[index - 1].style.border = '3px solid #1A507E'
       content[index - 1].style.background = '#db5a6bc7'
+      Mocontent[index - 1].style.border = '3px solid #1A507E'
+      Mocontent[index - 1].style.background = '#db5a6bc7'
     },
     //  清除样式函数
     style_init (index) {
       let content = document.querySelectorAll('.content')
       content[index - 1].style.border = '3px solid transparent'
       content[index - 1].style.background = ''
+      let Mocontent = document.querySelectorAll('.Mocontent')
+      Mocontent[index - 1].style.border = '3px solid transparent'
+      Mocontent[index - 1].style.background = ''
     },
     //  抽奖函数
     get_prize () {
@@ -127,6 +196,29 @@ export default {
       for (let index = 1; index <= 6; index++) {
         that.style_init(index)
       }
+    },
+    //  手机端轮播图定时器
+    Moswiper () {
+      let Moswiper = document.querySelector('.Moswiper')
+      let control = document.querySelectorAll('.control-li')
+      for (let i = 0; i < 4; i++) {
+        control[i].classList.remove('active')
+      }
+      control[this.index].classList.add('active')
+      Moswiper.style.left = '-' + 100 * this.index + 'vw'
+      this.index++
+      if (this.index === 4) {
+        this.index = 0
+      }
+    }
+  },
+  computed: {
+    weightSum () {
+      let weightsum = 0
+      for (let i = 0; i < this.Prize.length; i++) {
+        weightsum += this.Prize[i].weight
+      }
+      return weightsum
     }
   },
   mounted () {
@@ -147,24 +239,21 @@ export default {
       },
       false
     )
+    this.timer = setInterval(this.Moswiper, 1500)
   }
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less">
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+// PC端
+@media only screen and(min-width: 768px) {
+  .PcDraw{
   width: 100vw;
-  height: 100vh;
-  // background: url("../assets/img/draw.jpg");
-}
-.Draw{
-  width: 100vw;
-  background-image: url("../assets/img/draw.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   .cover{
@@ -313,6 +402,149 @@ body{
           justify-content: center;
           align-items: center;
         }
+      }
+    }
+  }
+  }
+  .MoDraw{
+    display: none !important;
+    touch-action: auto !important;
+  }
+}
+//手机端
+@media only screen and (max-width: 767px) {
+  body{
+  width: 100vw;
+  height: 150vh;
+}
+  .PcDraw{
+    display: none !important;
+  }
+  .MoDraw{
+    overflow: scroll;
+    width: 100vw;
+    height: 120vh;
+    .Motitle{
+      height: 3vh;
+      text-align: center;
+      font-size: 24px;
+      margin: 1vh 0;
+      font-family: 'bigtitle';
+    }
+    width: 100vw;
+    .Moswiper{
+      width: 400vw;
+      border-radius: 12px;
+      position: relative;
+      left:0vw;
+      transition: 0.5s;
+      .Mocontain{
+        overflow: hidden;
+        width: 100vw;
+        border-radius: 12px;
+        float: left;
+        margin-top: 3vh;
+        img{
+          border-radius: 12px;
+          margin-left: 2.5%;
+          width: 95%;
+        }
+      }
+    }
+    .Mo-control{
+      margin-left: 25vw;
+      width: 50vw;
+      height: 2vh;
+      display: flex;
+      justify-content: space-between;
+      justify-content: space-between;
+      .control-li{
+        width: 22%;
+        list-style: none;
+        height: 1.8vh;
+        background-color:#1A507E;
+      }
+      .control-li.active{
+        background-color: #DB5A6C;
+      }
+    }
+    .Mo-banner{
+      width: 100vw;
+      margin: 5vh 0;
+      .banner-top{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .Mocontent{
+          width: 30%;
+          font-size: 22vw;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &:nth-child(2){
+            margin-top: 5vh;
+          }
+        }
+      }
+      .banner-bottom{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .Mocontent{
+          width: 30%;
+          font-size: 22vw;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &:nth-child(2){
+            margin-top: 5vh;
+          }
+        }
+      }
+      .button{
+        margin-top: 4vh;
+        width: 130px;
+        height: 40px;
+        background: linear-gradient(to bottom, #1A507E 0%,#1A507E 100%); /* W3C */
+        border: none;
+        border-radius: 5px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 10px;
+        color: #fbfbfb;
+        font-weight: 600;
+        font-family: 'Open Sans', sans-serif;
+        text-shadow: 2px 2px 2px rgba(0,0,0,.4);
+        font-size: 18px;
+        box-shadow: 4px 4px 4px 4px rgba(0,0,0,.2);
+        border-radius: 10px;
+        cursor: pointer;
+      /* Just for presentation */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.25s;
+        text-shadow: 0 0 5px red,0 0 10px red,0 0 15px red,0 0 20px red;
+      }
+      .button:active {
+        box-shadow: 0px 2px 2px 2px rgba(0,0,0,.2);
+        top: 1px;
+      }
+      .button:after {
+        content: "";
+        width: 0;
+        height: 0;
+        display: block;
+        border-top: 20px solid #DB5A6C;
+        border-bottom: 20px solid #DB5A6C;
+        border-left: 16px solid transparent;
+        border-right: 20px solid #DB5A6C;
+        position: absolute;
+        // opacity: 0.6;
+        right: 0;
+        top: 0;
+        border-radius: 0 5px 5px 0;
       }
     }
   }
