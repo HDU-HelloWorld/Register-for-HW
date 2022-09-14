@@ -13,22 +13,29 @@
           欢迎报名加入HelloWorld大家庭，但在此之前我们需要收集一些您的信息
         </div>
       </span>
-      <el-form>
-        <span class="line">
-          <el-input
-            placeholder="姓名"
-            class="input"
-            v-model="form.name"
-          ></el-input>
-        </span>
-        <span class="line">
-          <el-input
-            placeholder="学号"
-            class="input"
-            v-model="form.stuNum"
-          ></el-input>
-        </span>
-      </el-form>
+      <div class="input-box">
+        <el-form>
+          <span class="line">
+            <el-input
+              placeholder="姓名"
+              class="input"
+              v-model="form.name"
+            ></el-input>
+          </span>
+          <span class="line">
+            <el-input
+              placeholder="学号"
+              class="input inline-input"
+              v-model="form.stuNum"
+            ></el-input>
+            <el-input
+              placeholder="性别"
+              class="input inline-input"
+              v-model="form.gender"
+            ></el-input>
+          </span>
+        </el-form>
+      </div>
     </div>
     <div class="page2 page">
       <div class="line topLine"></div>
@@ -147,6 +154,11 @@ export default {
         //     }
         //   }
         // }
+      }
+
+      .inline-input {
+        width: 36%;
+        margin: 1vw 4%;
       }
     }
   }
