@@ -196,12 +196,6 @@ export default {
     sakana () {
       sakana.initSakanaWidget()
     },
-<<<<<<< HEAD
-=======
-    Test () {
-      alert('xz吃屁')
-    },
->>>>>>> 24b43133bc013a618f6e7c0a7676dbf90a5b47ef
     //  图片自适应
     imgload () {
       this.$nextTick(() => {
