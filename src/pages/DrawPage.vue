@@ -52,6 +52,9 @@
     </div>
     </div>
   </div>
+  <div class="Login">
+    <input type="text" name="" id="">
+  </div>
 </div>
 <!-- 手机 -->
 <div class="MoDraw">
@@ -115,55 +118,77 @@ import sakana from '@/assets/Sakala/sakana.js'
 // 新创alert函数来修改alert框样式
 window.alert = alert
 function alert (data) {
-  var a = document.createElement('div')
-  var p = document.createElement('p')
-  var btn = document.createElement('div')
-  var textNode = document.createTextNode(data)
-  var btnText = document.createTextNode('好的')
+  let cover = document.createElement('div')
+  let p = document.createElement('p')
+  let btn = document.createElement('div')
+  let textNode = document.createTextNode(data.grade)
+  let btnText = document.createTextNode(data.sure)
+  let img = document.createElement('img')
+  img.id = 'showgif'
   // 控制样式  样式实在是不会写捏
-  css(a, {
+  css(cover, {
     'position': 'fixed',
     'left': '0',
     'right': '0',
     'top': '20%',
-    'width': '30%',
-    'height': '30%',
+    'width': '40%',
+    'height': '40%',
     'margin': '0 auto',
     'background': 'rgba(162,226,199,.95)',
     'font-size': '20px',
     'text-align': 'center',
     'z-index': '999999999',
     'box-shadow': '5px 5px 5px 5px rgba(0,0,0,.4)',
-    'border-radius': '18px'
+    'border-radius': '20px'
   })
   css(btn, {
     'position': 'relative',
-    'top': '45%',
+    'top': '65%',
     'left': '35%',
     'width': '30%',
     'height': '20%',
     'background': 'rgba(252,177,171,.9)',
-    'border-radius': '10px',
+    'border-radius': '15px',
     'font-size': '20px',
     'font-family': '微软雅黑',
     'color': '#1A507E',
     'display': 'flex',
     'justify-content': 'center',
-    'align-items': 'center'
+    'align-items': 'center',
+    'cursor': 'pointer'
+  })
+  css(p, {
+    'position': 'relative',
+    'top': '2%',
+    'left': '40%',
+    'width': '20%',
+    'height': '8%'
+  })
+  css(img, {
+    'width': '40%',
+    'margin-top': '-6%',
+    'border-radius': '20px'
   })
   // 内部结构套入
   p.appendChild(textNode)
   btn.appendChild(btnText)
-  a.appendChild(p)
-  a.appendChild(btn)
+  cover.appendChild(p)
+  cover.appendChild(btn)
+  cover.appendChild(img)
   // 整体显示到页面内
-  document.getElementsByTagName('body')[0].appendChild(a)
+  document.getElementsByTagName('body')[0].appendChild(cover)
 
   // 确定绑定点击事件删除标签
   btn.onclick = function () {
-    a.parentNode.removeChild(a)
+    cover.parentNode.removeChild(cover)
+  }
+  if (data.success === 1) {
+    document.querySelector('#showgif').src = require('../assets/img/draw/success.gif')
+  } else {
+    document.querySelector('#showgif').src = require('../assets/img/draw/defeat.gif')
   }
 }
+//  添加CSS函数
 function css (targetObj, cssObj) {
   var str = targetObj.getAttribute('style') ? targetObj.getAttribute('style') : ''
   for (var i in cssObj) {
@@ -183,10 +208,10 @@ export default {
       bannerHeight: ' ',
       //  抽奖和概率的数组
       Prize: [
-        {grade: '一等奖', weight: 1},
-        {garde: '二等奖', weight: 5},
-        {garde: '三等奖', weight: 20},
-        {garde: '未中奖', weight: 74}
+        {grade: '一等奖!!!', weight: 1, sure: '好耶！！', success: 1},
+        {garde: '二等奖!!!', weight: 5, sure: '好耶！！', success: 1},
+        {garde: '三等奖!!!', weight: 20, sure: '好耶！！', success: 1},
+        {garde: '未中奖呜呜呜', weight: 74, sure: '坏耶！！', success: 0}
       ],
       timer: ' ',
       index: 0
@@ -230,7 +255,6 @@ export default {
         (function (k) {
           setTimeout(() => {
             if (k === 1) {
-              // console.log(this)
               that.prize_style(k)
               that.style_init(6)
             } else {
@@ -249,7 +273,7 @@ export default {
         }, 200 * 27 + 200)
       })()
       setTimeout(() => {
-        alert('xz太强啦！')
+        alert(this.Prize[3])
       }, 200 * 27 + 400)
       //  清除样式
       for (let index = 1; index <= 6; index++) {

@@ -6,7 +6,8 @@
         <img src="@/assets/logo.png" alt="LOGO" class="logo" />
       </span>
       <span class="line">
-        <div class="title text">欢迎报名</div>
+        <div class="title text">欢迎报名
+        </div>
       </span>
       <span class="line">
         <div class="subTitle text">
@@ -27,6 +28,7 @@
               placeholder="学号"
               class="input inline-input"
               v-model="form.stuNum"
+              @input="inputFn($event)"
             ></el-input>
             <el-input
               placeholder="性别"
@@ -110,6 +112,7 @@
         </el-form>
       </div>
     </div>
+    <div class="warming">{{this.warning}}</div>
     <button class="lastPage btn" @click="turnBack">上一步</button>
     <button class="nextPage btn" @click="turnPage">继续</button>
   </div>
@@ -124,6 +127,7 @@ export default {
       currentPage: 1,
       authCodeButtonText: '获取验证码',
       authCodeButton: true,
+      turnPageStatu: '',
       form: {
         name: '',
         gender: '',
@@ -137,11 +141,18 @@ export default {
         honor: ''
       },
       authCode: '',
-      AuthCode: '-1'
+      AuthCode: '-1',
+      warning: '111'
     }
   },
   methods: {
     turnPage () {
+      if (this.currentPage === 1) {
+        if (this.turnPageStatu === 0) {
+          this.warning = '请输入正确的学号后在点击！！'
+          return
+        }
+      }
       if (this.currentPage === 2) {
         // 验证手机验证码
         if (String(this.authCode) === String(this.AuthCode)) {
@@ -269,6 +280,21 @@ export default {
           })
         }
       })
+    },
+    inputFn (event) {
+      const MyReg = new RegExp('^[0-9]{8}$')
+      console.log(this.form.stuNum)
+      console.log(MyReg.test(this.form.stuNum))
+      if (this.form.stuNum === '') {
+        this.warning = '请输入学号！！'
+        this.turnPageStatu = 0
+      } else if (MyReg.test(this.form.stuNum) === false) {
+        this.warning = '输入学号的格式不正确！！'
+        this.turnPageStatu = 0
+      } else {
+        this.warning = ''
+        this.turnPageStatu = 1
+      }
     }
   },
   watch: {
@@ -398,5 +424,11 @@ export default {
   .nextPage {
     left: 55%;
   }
+}
+.warming{
+  width: 100vw;
+  height: 10vh;
+  position: fixed;
+  top: 0;
 }
 </style>
