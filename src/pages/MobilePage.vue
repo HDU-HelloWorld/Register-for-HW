@@ -46,14 +46,17 @@
           <span class="line">
             <el-input
               placeholder="手机号"
-              class="input inline-input"
+              class="input"
               v-model="form.phone"
             ></el-input>
+          </span>
+          <span class="line auth-line">
             <el-input
               placeholder="验证码"
-              class="input inline-input"
+              class="input auth-code"
               v-model="authCode"
             ></el-input>
+            <button class="get-authcode">获取验证码</button>
           </span>
         </el-form>
         <el-form>
@@ -97,7 +100,8 @@
         </el-form>
       </div>
     </div>
-    <button class="nextPage" @click="turnPage">继续</button>
+    <button class="lastPage btn" @click="turnBack">上一步</button>
+    <button class="nextPage btn" @click="turnPage">继续</button>
   </div>
 </template>
 
@@ -128,6 +132,10 @@ export default {
       if (this.currentPage > 4) {
         this.currentPage = 1
       }
+    },
+    turnBack () {
+      if (this.currentPage === 1) return
+      this.currentPage--
     }
   },
   watch: {
@@ -197,11 +205,33 @@ export default {
         //   }
         // }
       }
+      .get-authcode {
+        width: 30%;
+        height: 5vh;
+        background-color: rgba(78, 184, 255, 1);
+        border: 1px solid #fff;
+        border-radius: 5px;
+        color: #fff;
+        transition: all 0.5s;
+        &:active {
+          background-color: rgba(78, 184, 255, 0.8);
+        }
+      }
+      .auth-code {
+        width: 45%;
+        margin-right: 5%;
+      }
 
       .inline-input {
         width: 36%;
         margin: 1vw 4%;
       }
+    }
+
+    // 验证码行
+    .auth-line {
+      display: flex;
+      align-items: center;
     }
 
     // 放置所有input的盒子
@@ -214,23 +244,26 @@ export default {
     }
   }
   // 下一页按钮
-  .nextPage {
+  .btn {
     position: fixed;
     width: 80px;
     height: 35px;
-    bottom: 40vh;
+    bottom: 20vh;
     background-color: rgba(78, 184, 255, 1);
     border: 1px solid #fff;
     border-radius: 5px;
     color: #fff;
-    // 居中
-    left: 50%;
-    transform: translateX(-50%);
     transition: all 0.5s;
     &:active {
       background-color: rgba(78, 184, 255, 0.8);
       // transition: all 0.5s;
     }
+  }
+  .lastPage {
+    right: 55%;
+  }
+  .nextPage {
+    left: 55%;
   }
 }
 </style>
