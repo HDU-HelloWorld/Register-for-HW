@@ -35,35 +35,67 @@
             ></el-input>
           </span>
         </el-form>
+        <el-form>
+          <span class="line">
+            <el-input
+              placeholder="QQ号"
+              class="input"
+              v-model="form.qqnumber"
+            ></el-input>
+          </span>
+          <span class="line">
+            <el-input
+              placeholder="手机号"
+              class="input inline-input"
+              v-model="form.phone"
+            ></el-input>
+            <el-input
+              placeholder="验证码"
+              class="input inline-input"
+              v-model="authCode"
+            ></el-input>
+          </span>
+        </el-form>
+        <el-form>
+          <span class="line">
+            <el-input
+              placeholder="学院"
+              class="input"
+              v-model="form.college"
+            ></el-input>
+          </span>
+          <span class="line">
+            <el-input
+              placeholder="志愿部门"
+              class="input"
+              v-model="form.department"
+            ></el-input>
+          </span>
+          <span class="line">
+            <el-input
+              placeholder="邮箱"
+              class="input"
+              v-model="form.email"
+            ></el-input>
+          </span>
+        </el-form>
+        <el-form>
+          <span class="line">
+            <el-input
+              placeholder="自我介绍"
+              class="input"
+              v-model="form.selfIntroduction"
+            ></el-input>
+          </span>
+          <span class="line">
+            <el-input
+              placeholder="获奖（荣誉）经历"
+              class="input"
+              v-model="form.honor"
+            ></el-input>
+          </span>
+        </el-form>
       </div>
-    </div>
-    <div class="page2 page">
-      <div class="line topLine"></div>
-      <span class="line">
-        <img src="@/assets/logo.png" alt="LOGO" class="logo" />
-      </span>
-      <span class="line">
-        <div class="title text">欢迎报名</div>
-      </span>
-      <span class="line">
-        <div class="subTitle text">
-          欢迎报名加入HelloWorld大家庭，但在此之前我们需要收集一些您的信息
-        </div>
-      </span>
-      <span class="line">
-        <el-input
-          placeholder="姓名"
-          class="input"
-          v-model="form.name"
-        ></el-input>
-      </span>
-      <span class="line">
-          <el-input
-            placeholder="学号"
-            class="input"
-            v-model="form.studentId"
-          ></el-input>
-      </span>
     </div>
     <button class="nextPage" @click="turnPage">继续</button>
   </div>
@@ -86,12 +118,22 @@ export default {
         email: '',
         selfIntroduction: '',
         honor: ''
-      }
+      },
+      authCode: ''
     }
   },
   methods: {
     turnPage () {
       this.currentPage++
+      if (this.currentPage > 4) {
+        this.currentPage = 1
+      }
+    }
+  },
+  watch: {
+    currentPage: (val) => {
+      let inputBox = document.querySelector('.input-box')
+      inputBox.style.left = `${250 - val * 100}vw`
     }
   }
 }
@@ -160,6 +202,15 @@ export default {
         width: 36%;
         margin: 1vw 4%;
       }
+    }
+
+    // 放置所有input的盒子
+    .input-box {
+      position: relative;
+      left: 150vw;
+      width: 400vw;
+      display: flex;
+      transition: all 1s;
     }
   }
   // 下一页按钮
