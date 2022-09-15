@@ -92,6 +92,8 @@
           <span class="line">
             <el-input
               placeholder="自我介绍"
+              type="textarea"
+              autosize
               class="input"
               v-model="form.selfIntroduction"
             ></el-input>
@@ -99,6 +101,8 @@
           <span class="line">
             <el-input
               placeholder="获奖（荣誉）经历"
+              type="textarea"
+              autosize
               class="input"
               v-model="form.honor"
             ></el-input>
