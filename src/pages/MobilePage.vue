@@ -6,7 +6,8 @@
         <img src="@/assets/logo.png" alt="LOGO" class="logo" />
       </span>
       <span class="line">
-        <div class="title text">欢迎报名</div>
+        <div class="title text">欢迎报名
+        </div>
       </span>
       <span class="line">
         <div class="subTitle text">
@@ -44,18 +45,25 @@
             ></el-input>
             <span :class="[{'focusBlur , bottomClassTwo':theClass.stuNum == 1 },{'focusBlurTwo , bottomClassThree':theClass.stuNum == 2},{'classOne':theClass.stuNum == 0 }]"
                    class="left bottom">学号</span>
-            <el-input
+            <div class="warming">{{this.warning}}</div>
+            <!-- <el-input
               placeholder="gender"
               class="input inline-input"
               v-model="form.gender"
-              @focus="download($event)"
-              @blur="unfocused"
-              @clear="empty"
-              @input="inputText($event)"
-              clearable
-            ></el-input>
-            <span :class="[{'focusBlur , bottomClassTwo':theClass.gender == 1 },{'focusBlurTwo , bottomClassThree':theClass.gender == 2},{'classOne':theClass.gender == 0 }]"
-                   class="right bottom">性别</span>
+            ></el-input> -->
+            <el-select
+            v-model="form.gender"
+            class="input inline-input"
+            placeholder="性别"
+            popper-class="eloption"
+            :popper-append-to-body="true">
+              <el-option
+              v-for="item in options1"
+              :key="item.value"
+              :label="item.label"
+              :value="item.label">
+              </el-option>
+            </el-select>
           </span>
         </el-form>
         <el-form>
@@ -126,17 +134,25 @@
           </span>
           <span class="line">
             <el-input
-              placeholder="department"
+              placeholder="志愿部门"
               class="input"
               v-model="form.department"
-              @focus="download($event)"
-              @blur="unfocused"
-              @clear="empty"
-              @input="inputText($event)"
-              clearable
-            ></el-input>
-            <span :class="[{'focusBlur , classTwo':theClass.department == 1 },{'focusBlurTwo , classThree':theClass.department == 2},{'classOne':theClass.department == 0 }]"
-                   class="left">志愿部门</span>
+            ></el-input> -->
+            <el-select
+            v-model="form.department"
+            class="input"
+            placeholder="志愿部门"
+            popper-class="eloption"
+            :popper-append-to-body="true"
+            >
+            <el-option
+              v-for="item in options2"
+              :key="item.value"
+              :label="item.label"
+              :value="item.label"
+            >
+            </el-option>
+            </el-select>
           </span>
           <span class="line">
             <el-input
@@ -218,6 +234,7 @@ export default {
       currentPage: 1,
       authCodeButtonText: '获取验证码',
       authCodeButton: true,
+      turnPageStatu: '',
       form: {
         name: '',
         gender: '',
@@ -231,26 +248,53 @@ export default {
         honor: ''
       },
       authCode: '',
-      AuthCode: '-1'
+      AuthCode: '-1',
+      warning: '',
+      options1: [{
+        value: 'man',
+        label: '男'
+      }, {
+        value: 'woman',
+        label: '女'
+      }],
+      options2: [{
+        value: '选项1',
+        label: '人工智能部门'
+      }, {
+        value: '选项2',
+        label: '行政部门'
+      }, {
+        value: '选项3',
+        label: '前端部门'
+      }, {
+        value: '选项4',
+        label: '后端部门'
+      }]
     }
   },
   methods: {
     turnPage () {
-      // if (this.currentPage === 2) {
-      //   // 验证手机验证码
-      //   if (String(this.authCode) === String(this.AuthCode)) {
-      //     this.$message({
-      //       message: '验证成功',
-      //       type: 'success'
-      //     })
-      //   } else {
-      //     this.$message({
-      //       message: '验证码错误',
-      //       type: 'error'
-      //     })
-      //     return
-      //   }
-      // }
+      if (this.currentPage === 1) {
+        if (this.turnPageStatu === 0) {
+          this.warning = '请输入正确的学号后在点击！！'
+          return
+        }
+      }
+      if (this.currentPage === 2) {
+        // 验证手机验证码
+        if (String(this.authCode) === String(this.AuthCode)) {
+          this.$message({
+            message: '验证成功',
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: '验证码错误',
+            type: 'error'
+          })
+          return
+        }
+      }
       if (this.currentPage >= 4) {
         // 提交表单
         this.submitForm()
@@ -363,6 +407,19 @@ export default {
           })
         }
       })
+    },
+    inputFn (event) {
+      const MyReg = new RegExp('^[0-9]{8}$')
+      if (this.form.stuNum === '') {
+        this.warning = '请输入学号！！'
+        this.turnPageStatu = 0
+      } else if (MyReg.test(this.form.stuNum) === false) {
+        this.warning = '输入学号的格式不正确！！'
+        this.turnPageStatu = 0
+      } else {
+        this.warning = ''
+        this.turnPageStatu = 1
+      }
     },
     // 获得焦点事件
     download (e) {
@@ -584,4 +641,18 @@ export default {
     left: 55%;
   }
 }
+.warming{
+  width: 100vw;
+  height: 10vh;
+  position: absolute;
+  top: 15vh;
+  left:10vw;
+  font-size: 1vw;
+  color: #DB5A6C;
+}
+.eloption .el-select-dropdown__wrap {
+  background-color: bisque !important;
+  max-height: 350px !important;
+}
+
 </style>
