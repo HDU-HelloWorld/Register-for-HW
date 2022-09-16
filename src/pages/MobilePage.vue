@@ -30,11 +30,25 @@
               v-model="form.stuNum"
               @input="inputFn($event)"
             ></el-input>
-            <el-input
+            <div class="warming">{{this.warning}}</div>
+            <!-- <el-input
               placeholder="性别"
               class="input inline-input"
               v-model="form.gender"
-            ></el-input>
+            ></el-input> -->
+            <el-select
+            v-model="form.gender"
+            class="input inline-input"
+            placeholder="性别"
+            popper-class="eloption"
+            :popper-append-to-body="true">
+              <el-option
+              v-for="item in options1"
+              :key="item.value"
+              :label="item.label"
+              :value="item.label">
+              </el-option>
+            </el-select>
           </span>
         </el-form>
         <el-form>
@@ -76,11 +90,26 @@
             ></el-input>
           </span>
           <span class="line">
-            <el-input
+            <!-- <el-input
               placeholder="志愿部门"
               class="input"
               v-model="form.department"
-            ></el-input>
+            ></el-input> -->
+            <el-select
+            v-model="form.department"
+            class="input"
+            placeholder="志愿部门"
+            popper-class="eloption"
+            :popper-append-to-body="true"
+            >
+            <el-option
+              v-for="item in options2"
+              :key="item.value"
+              :label="item.label"
+              :value="item.label"
+            >
+            </el-option>
+            </el-select>
           </span>
           <span class="line">
             <el-input
@@ -112,7 +141,6 @@
         </el-form>
       </div>
     </div>
-    <div class="warming">{{this.warning}}</div>
     <button class="lastPage btn" @click="turnBack">上一步</button>
     <button class="nextPage btn" @click="turnPage">继续</button>
   </div>
@@ -142,7 +170,27 @@ export default {
       },
       authCode: '',
       AuthCode: '-1',
-      warning: '111'
+      warning: '',
+      options1: [{
+        value: 'man',
+        label: '男'
+      }, {
+        value: 'woman',
+        label: '女'
+      }],
+      options2: [{
+        value: '选项1',
+        label: '人工智能部门'
+      }, {
+        value: '选项2',
+        label: '行政部门'
+      }, {
+        value: '选项3',
+        label: '前端部门'
+      }, {
+        value: '选项4',
+        label: '后端部门'
+      }]
     }
   },
   methods: {
@@ -283,8 +331,6 @@ export default {
     },
     inputFn (event) {
       const MyReg = new RegExp('^[0-9]{8}$')
-      console.log(this.form.stuNum)
-      console.log(MyReg.test(this.form.stuNum))
       if (this.form.stuNum === '') {
         this.warning = '请输入学号！！'
         this.turnPageStatu = 0
@@ -346,23 +392,6 @@ export default {
         // 输入框
         width: 80%;
         margin: 1vh 0;
-        // border-color: #000;
-        // 已弃用的placeholder动画效果方案
-        // & /deep/ .el-input__inner {
-        //   // 修改el-input的样式
-        //   &:focus {
-        //     border-color: #000;
-        //     transition: all 0.2s;
-        //     &::placeholder {
-        //       z-index: 999;
-        //       font-size: 5px;
-        //       transition: all 0.2s ease-in-out;
-        //       // 向上移动
-        //       transform: translateY(-130%);
-        //       background-color: #fff;
-        //     }
-        //   }
-        // }
       }
       .get-authcode {
         width: 30%;
@@ -428,7 +457,15 @@ export default {
 .warming{
   width: 100vw;
   height: 10vh;
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 15vh;
+  left:10vw;
+  font-size: 1vw;
+  color: #DB5A6C;
 }
+.eloption .el-select-dropdown__wrap {
+  background-color: bisque !important;
+  max-height: 350px !important;
+}
+
 </style>
