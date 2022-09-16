@@ -53,8 +53,9 @@
             ></el-input> -->
             <el-select
             v-model="form.gender"
-            class="input inline-input"
+            class="input inline-input selectInput"
             placeholder="性别"
+            id = "selectInput"
             popper-class="eloption"
             :popper-append-to-body="true">
               <el-option
@@ -133,14 +134,10 @@
                    class="left">学院</span>
           </span>
           <span class="line">
-            <el-input
-              placeholder="志愿部门"
-              class="input"
-              v-model="form.department"
-            ></el-input> -->
             <el-select
             v-model="form.department"
-            class="input"
+            class="input selectInput"
+            id="selectInput"
             placeholder="志愿部门"
             popper-class="eloption"
             :popper-append-to-body="true"
@@ -219,12 +216,10 @@ export default {
       input: '',
       theClass: {
         name: 0,
-        gender: 0,
         stuNum: 0,
         phone: 0,
         qqnumber: 0,
         college: 0,
-        department: 0,
         email: 0,
         selfIntroduction: 0,
         honor: 0,
@@ -280,21 +275,21 @@ export default {
           return
         }
       }
-      if (this.currentPage === 2) {
-        // 验证手机验证码
-        if (String(this.authCode) === String(this.AuthCode)) {
-          this.$message({
-            message: '验证成功',
-            type: 'success'
-          })
-        } else {
-          this.$message({
-            message: '验证码错误',
-            type: 'error'
-          })
-          return
-        }
-      }
+      // if (this.currentPage === 2) {
+      //   // 验证手机验证码
+      //   if (String(this.authCode) === String(this.AuthCode)) {
+      //     this.$message({
+      //       message: '验证成功',
+      //       type: 'success'
+      //     })
+      //   } else {
+      //     this.$message({
+      //       message: '验证码错误',
+      //       type: 'error'
+      //     })
+      //     return
+      //   }
+      // }
       if (this.currentPage >= 4) {
         // 提交表单
         this.submitForm()
@@ -653,6 +648,23 @@ export default {
 .eloption .el-select-dropdown__wrap {
   background-color: bisque !important;
   max-height: 350px !important;
+}
+/deep/ textarea::-webkit-input-placeholder {
+  -webkit-text-fill-color: white;
+}
+/deep/ textarea::-moz-input-placeholder {
+  -webkit-text-fill-color: white;
+}
+/deep/ textarea::-ms-input-placeholder {
+  -webkit-text-fill-color: white;
+}
+.selectInput{
+  /deep/ .el-input__inner{
+    &::placeholder {
+      color: #9e9e9e !important;
+      font-size: 14px !important;
+    }
+  }
 }
 
 </style>
