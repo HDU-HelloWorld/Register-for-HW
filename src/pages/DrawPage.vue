@@ -39,7 +39,8 @@
           </svg>
         </div>
       </div>
-      <div class="button" @click="get_prize">开抽！！</div>
+      <div class="button" @click="queryUser">开抽！！</div>
+      <!-- <div class="button" @click="queryUser">测试</div> -->
     </div>
     <div class="ShowWardInfo">
       <div class="block">
@@ -117,12 +118,14 @@
 import sakana from '@/assets/Sakala/sakana.js'
 // 新创alert函数来修改alert框样式
 window.alert = alert
-function alert (data) {
+function alert (result) {
   let cover = document.createElement('div')
-  let p = document.createElement('p')
+  let p1 = document.createElement('p')
+  let p2 = document.createElement('p')
   let btn = document.createElement('div')
-  let textNode = document.createTextNode(data.grade)
-  let btnText = document.createTextNode(data.sure)
+  let textNode = document.createTextNode(result.level)
+  let btnText = document.createTextNode(result.sure)
+  let pText = document.createTextNode('你获得的奖品是：' + result.name)
   let img = document.createElement('img')
   let deviceWidth = document.documentElement.clientWidth || window.innerWidth
   img.id = 'showgif'
@@ -159,7 +162,7 @@ function alert (data) {
       'align-items': 'center',
       'cursor': 'pointer'
     })
-    css(p, {
+    css(p1, p2, {
       'position': 'relative',
       'top': '2%',
       'left': '40%',
@@ -169,6 +172,7 @@ function alert (data) {
     css(img, {
       'width': '40%',
       'margin-top': '-5%',
+      'margin-left': '30%',
       'border-radius': '20px',
       'display': 'flex',
       'justify-content': 'center',
@@ -209,12 +213,13 @@ function alert (data) {
     css(img, {
       'width': '80%',
       'margin-top': '-5%',
+      'margin-left': '30%',
       'border-radius': '20px',
       'display': 'flex',
       'justify-content': 'center',
       'align-items': 'center'
     })
-    css(p, {
+    css(p1, p2, {
       'position': 'relative',
       'top': '5%',
       'left': '0%',
@@ -227,11 +232,13 @@ function alert (data) {
     })
   }
   // 内部结构套入
-  p.appendChild(textNode)
+  p1.appendChild(textNode)
+  p2.appendChild(pText)
   btn.appendChild(btnText)
-  cover.appendChild(p)
+  cover.appendChild(p1)
   cover.appendChild(btn)
   cover.appendChild(img)
+  cover.appendChild(p2)
   // 整体显示到页面内
   document.getElementsByTagName('body')[0].appendChild(cover)
 
@@ -239,7 +246,7 @@ function alert (data) {
   btn.onclick = function () {
     cover.parentNode.removeChild(cover)
   }
-  if (data.success === 1) {
+  if (result.success === 1) {
     document.querySelector('#showgif').src = require('../assets/img/draw/success.gif')
   } else {
     document.querySelector('#showgif').src = require('../assets/img/draw/defeat.gif')
@@ -257,6 +264,16 @@ export default {
   name: 'DrawPage',
   data () {
     return {
+      form: {
+        stuNum: '1',
+        name: '1'
+      },
+      result: {
+        name: '',
+        level: '',
+        sure: '',
+        success: 0
+      },
       imgs: [
         {image: '1.png', id: 1},
         {image: '2.png', id: 2},
@@ -275,6 +292,37 @@ export default {
     }
   },
   methods: {
+    queryUser () {
+      let url = 'http://helloworld-hdu.com:3000/api/draw'
+      // url = 'http://helloworld-hdu.com:3000/api/draw'
+      // 判断输入是否为空
+      if (this.form.stuNum === '' || this.form.name === '') {
+        this.$message({
+          message: '请输入学号与姓名',
+          type: 'warning'
+        })
+      } else {
+        this.$axios.post(url, {params: this.form}).then(res => {
+          if (res.data !== '' && res.status === 200) {
+            this.result = res.data.result
+            if (res.data.result.level === '感谢参与') {
+              this.result.sure = '坏耶！！'
+              this.result.success = 0
+            } else {
+              this.result.sure = '好耶！！'
+              this.result.success = 1
+            }
+            alert(this.result)
+            // console.log(this.result.level)
+          } else {
+            this.$message({
+              message: '查询失败，学号匹配失败',
+              type: 'error'
+            })
+          }
+        })
+      }
+    },
     sakana () {
       sakana.initSakanaWidget()
     },
