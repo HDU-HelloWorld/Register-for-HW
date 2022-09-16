@@ -18,28 +18,44 @@
         <el-form>
           <span class="line">
             <el-input
-              placeholder="姓名"
+              placeholder="name"
               class="input"
               v-model="form.name"
+              data-num = 0
+              @focus="download($event)"
+              @blur="unfocused"
+              @clear="empty"
+              @input="inputText($event)"
+              clearable
             ></el-input>
+            <span :class="[{'focusBlur , classTwo':theClass.name == 1 },{'focusBlurTwo , classThree':theClass.name == 2},{'classOne':theClass.name == 0 }]"
+                   class="left">姓名</span>
           </span>
           <span class="line">
             <el-input
-              placeholder="学号"
+              placeholder="stuNum"
+              data-num = 2
               class="input inline-input"
               v-model="form.stuNum"
-              @input="inputFn($event)"
+              @focus="download($event)"
+              @blur="unfocused"
+              @clear="empty"
+              @input="inputText($event)"
+              clearable
             ></el-input>
+            <span :class="[{'focusBlur , bottomClassTwo':theClass.stuNum == 1 },{'focusBlurTwo , bottomClassThree':theClass.stuNum == 2},{'classOne':theClass.stuNum == 0 }]"
+                   class="left bottom">学号</span>
             <div class="warming">{{this.warning}}</div>
             <!-- <el-input
-              placeholder="性别"
+              placeholder="gender"
               class="input inline-input"
               v-model="form.gender"
             ></el-input> -->
             <el-select
             v-model="form.gender"
-            class="input inline-input"
+            class="input inline-input selectInput"
             placeholder="性别"
+            id = "selectInput"
             popper-class="eloption"
             :popper-append-to-body="true">
               <el-option
@@ -54,24 +70,45 @@
         <el-form>
           <span class="line">
             <el-input
-              placeholder="QQ号"
+              placeholder="qqnumber"
               class="input"
               v-model="form.qqnumber"
+              @focus="download($event)"
+              @blur="unfocused"
+              @clear="empty"
+              @input="inputText($event)"
+              clearable
             ></el-input>
+            <span :class="[{'focusBlur , classTwo':theClass.qqnumber == 1 },{'focusBlurTwo , classThree':theClass.qqnumber == 2},{'classOne':theClass.qqnumber == 0 }]"
+                   class="left">QQ号</span>
           </span>
           <span class="line">
             <el-input
-              placeholder="手机号"
+              placeholder="phone"
               class="input"
               v-model="form.phone"
+              @focus="download($event)"
+              @blur="unfocused"
+              @clear="empty"
+              @input="inputText($event)"
+              clearable
             ></el-input>
+            <span :class="[{'focusBlur , classTwo':theClass.phone == 1 },{'focusBlurTwo , classThree':theClass.phone == 2},{'classOne':theClass.phone == 0 }]"
+                   class="left">手机号</span>
           </span>
           <span class="line auth-line">
             <el-input
-              placeholder="验证码"
+              placeholder="authCode"
               class="input auth-code"
               v-model="authCode"
+              @focus="download($event)"
+              @blur="unfocused"
+              @clear="empty"
+              @input="inputText($event)"
+              clearable
             ></el-input>
+            <span :class="[{'focusBlur , classTwo':theClass.authCode == 1 },{'focusBlurTwo , classThree':theClass.authCode == 2},{'classOne':theClass.authCode == 0 }]"
+                   class="left authCode">验证码</span>
             <button
               class="get-authcode"
               @click.prevent="getAuthCode"
@@ -84,20 +121,23 @@
         <el-form>
           <span class="line">
             <el-input
-              placeholder="学院"
+              placeholder="college"
               class="input"
               v-model="form.college"
+              @focus="download($event)"
+              @blur="unfocused"
+              @clear="empty"
+              @input="inputText($event)"
+              clearable
             ></el-input>
+            <span :class="[{'focusBlur , classTwo':theClass.college == 1 },{'focusBlurTwo , classThree':theClass.college == 2},{'classOne':theClass.college == 0 }]"
+                   class="left">学院</span>
           </span>
           <span class="line">
-            <!-- <el-input
-              placeholder="志愿部门"
-              class="input"
-              v-model="form.department"
-            ></el-input> -->
             <el-select
             v-model="form.department"
-            class="input"
+            class="input selectInput"
+            id="selectInput"
             placeholder="志愿部门"
             popper-class="eloption"
             :popper-append-to-body="true"
@@ -113,30 +153,51 @@
           </span>
           <span class="line">
             <el-input
-              placeholder="邮箱"
+              placeholder="email"
               class="input"
               v-model="form.email"
+              @focus="download($event)"
+              @blur="unfocused"
+              @clear="empty"
+              @input="inputText($event)"
+              clearable
             ></el-input>
+            <span :class="[{'focusBlur , classTwo':theClass.email == 1 },{'focusBlurTwo , classThree':theClass.email == 2},{'classOne':theClass.email == 0 }]"
+                   class="left">邮箱</span>
           </span>
         </el-form>
         <el-form>
           <span class="line">
             <el-input
-              placeholder="自我介绍"
+              placeholder="selfIntroduction"
               type="textarea"
               autosize
               class="input"
               v-model="form.selfIntroduction"
+              @focus="download($event)"
+              @blur="unfocused"
+              @clear="empty"
+              @input="inputText($event)"
+              clearable
             ></el-input>
+            <span :class="[{'focusBlur , classTwo':theClass.selfIntroduction == 1 },{'focusBlurTwo , classThree':theClass.selfIntroduction == 2},{'classOne':theClass.selfIntroduction == 0 }]"
+                   class="left">自我介绍</span>
           </span>
           <span class="line">
             <el-input
-              placeholder="获奖（荣誉）经历"
+              placeholder="honor"
               type="textarea"
               autosize
               class="input"
               v-model="form.honor"
+              @focus="download($event)"
+              @blur="unfocused"
+              @clear="empty"
+              @input="inputText($event)"
+              clearable
             ></el-input>
+            <span :class="[{'focusBlur , classTwo':theClass.honor == 1 },{'focusBlurTwo , classThree':theClass.honor == 2},{'classOne':theClass.honor == 0 }]"
+                   class="left">获奖（荣誉）经历</span>
           </span>
         </el-form>
       </div>
@@ -151,6 +212,19 @@ export default {
   name: 'MobilePage',
   data () {
     return {
+      placeHolder: '',
+      input: '',
+      theClass: {
+        name: 0,
+        stuNum: 0,
+        phone: 0,
+        qqnumber: 0,
+        college: 0,
+        email: 0,
+        selfIntroduction: 0,
+        honor: 0,
+        authCode: 0
+      },
       mode: 1,
       currentPage: 1,
       authCodeButtonText: '获取验证码',
@@ -201,21 +275,21 @@ export default {
           return
         }
       }
-      if (this.currentPage === 2) {
-        // 验证手机验证码
-        if (String(this.authCode) === String(this.AuthCode)) {
-          this.$message({
-            message: '验证成功',
-            type: 'success'
-          })
-        } else {
-          this.$message({
-            message: '验证码错误',
-            type: 'error'
-          })
-          return
-        }
-      }
+      // if (this.currentPage === 2) {
+      //   // 验证手机验证码
+      //   if (String(this.authCode) === String(this.AuthCode)) {
+      //     this.$message({
+      //       message: '验证成功',
+      //       type: 'success'
+      //     })
+      //   } else {
+      //     this.$message({
+      //       message: '验证码错误',
+      //       type: 'error'
+      //     })
+      //     return
+      //   }
+      // }
       if (this.currentPage >= 4) {
         // 提交表单
         this.submitForm()
@@ -341,8 +415,31 @@ export default {
         this.warning = ''
         this.turnPageStatu = 1
       }
+    },
+    // 获得焦点事件
+    download (e) {
+      this.placeHoder = e.target.placeholder
+      this.num = e.target.dataset.num
+      this.theClass[this.placeHoder] = 1 // 获取焦点等于1，展示第二套样式，文字提示平移到input框上面
+      this.input = e.target.value
+    },
+    inputText (e) {
+      this.input = e // 当input值改变时，展示第二套样式，文字提示平移到input框上面
+    },
+    // 清空事件
+    empty () {
+      this.theClass[this.placeHoder] = 0 // 失焦等于 0,展示默认样式
+    },
+    // 失去焦点事件
+    unfocused () {
+      if (this.input !== '') {
+        this.theClass[this.placeHoder] = 2 // 如果框中有值,展示第三套样式
+      } else if (this.input === '') {
+        this.theClass[this.placeHoder] = 0 // 失焦等于 0,展示默认样式
+      }
     }
   },
+
   watch: {
     currentPage: (val) => {
       let inputBox = document.querySelector('.input-box')
@@ -367,6 +464,7 @@ export default {
       height: 5vh;
     }
     .line {
+      position: relative;
       width: 100vw;
       display: flex;
       justify-content: center;
@@ -392,6 +490,90 @@ export default {
         // 输入框
         width: 80%;
         margin: 1vh 0;
+        /deep/ .el-input__inner{
+          &::placeholder {
+            color: white;
+          }
+        }
+        // border-color: #000;
+        // 已弃用的placeholder动画效果方案
+        // & /deep/ .el-input__inner {
+        //   // 修改el-input的样式
+        //   &:focus {
+        //     border-color: #000;
+        //     transition: all 0.2s;
+        //     &::placeholder {
+        //       z-index: 999;
+        //       font-size: 5px;
+        //       transition: all 0.2s ease-in-out;
+        //       // 向上移动
+        //       transform: translateY(-130%);
+        //       background-color: #fff;
+        //     }
+        //   }
+        // }
+      }
+      span {
+        /* 默认情况下的样式 */
+        position: absolute;
+        background: #fff;
+        left: 2.8%;
+        padding: 0px 7px;
+        display: inline-block;
+        color: #9e9e9e;
+        font-size: 14px;
+        pointer-events: none;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s;
+      }
+      /* 获取焦点后的第一种样式 */
+      .focusBlur {
+        position: absolute;
+        font-size: 12px;
+        height: 16px;
+        background-color: white;
+      }
+      /* 如果框中有值顶部文字颜色展示为黑色，第二种样式 */
+      .focusBlurTwo {
+        position: absolute;
+        font-size: 12px;
+        height: 16px;
+        background-color: white;
+      }
+      .classOne{
+        transform: translateY(90%);
+      }
+      .classTwo{
+        transform: translateY(20%);
+        transform: translateX(10%);
+        color: rgb(49, 148, 247);
+      }
+      .classThree{
+        transform: translateY(20%);
+        transform: translateX(10%);
+      }
+      .left{
+        left: 11%;
+      }
+      .right{
+        left: 55.5%;
+      }
+      .bottom{
+        bottom: 66%;
+      }
+      .bottomClassTwo{
+        bottom: 73%;
+        transform: translateX(10%);
+        color: rgb(49, 148, 247);
+      }
+      .bottomClassThree{
+        bottom: 73%;
+        transform: translateX(10%);
+      }
+      .authCode{
+        bottom: 65%;
       }
       .get-authcode {
         width: 30%;
@@ -466,6 +648,23 @@ export default {
 .eloption .el-select-dropdown__wrap {
   background-color: bisque !important;
   max-height: 350px !important;
+}
+/deep/ textarea::-webkit-input-placeholder {
+  -webkit-text-fill-color: white;
+}
+/deep/ textarea::-moz-input-placeholder {
+  -webkit-text-fill-color: white;
+}
+/deep/ textarea::-ms-input-placeholder {
+  -webkit-text-fill-color: white;
+}
+.selectInput{
+  /deep/ .el-input__inner{
+    &::placeholder {
+      color: #9e9e9e !important;
+      font-size: 14px !important;
+    }
+  }
 }
 
 </style>
