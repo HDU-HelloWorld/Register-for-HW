@@ -124,51 +124,108 @@ function alert (data) {
   let textNode = document.createTextNode(data.grade)
   let btnText = document.createTextNode(data.sure)
   let img = document.createElement('img')
+  let deviceWidth = document.documentElement.clientWidth || window.innerWidth
   img.id = 'showgif'
-  // 控制样式  样式实在是不会写捏
-  css(cover, {
-    'position': 'fixed',
-    'left': '0',
-    'right': '0',
-    'top': '20%',
-    'width': '40%',
-    'height': '40%',
-    'margin': '0 auto',
-    'background': 'rgba(162,226,199,.95)',
-    'font-size': '20px',
-    'text-align': 'center',
-    'z-index': '999999999',
-    'box-shadow': '5px 5px 5px 5px rgba(0,0,0,.4)',
-    'border-radius': '20px'
-  })
-  css(btn, {
-    'position': 'relative',
-    'top': '65%',
-    'left': '35%',
-    'width': '30%',
-    'height': '20%',
-    'background': 'rgba(252,177,171,.9)',
-    'border-radius': '15px',
-    'font-size': '20px',
-    'font-family': '微软雅黑',
-    'color': '#1A507E',
-    'display': 'flex',
-    'justify-content': 'center',
-    'align-items': 'center',
-    'cursor': 'pointer'
-  })
-  css(p, {
-    'position': 'relative',
-    'top': '2%',
-    'left': '40%',
-    'width': '20%',
-    'height': '8%'
-  })
-  css(img, {
-    'width': '40%',
-    'margin-top': '-6%',
-    'border-radius': '20px'
-  })
+  // 控制样式  样式实在是不会写捏手机端也要考虑捏
+  if (deviceWidth > 768) {
+    css(cover, {
+      'position': 'fixed',
+      'left': '0',
+      'right': '0',
+      'top': '20%',
+      'width': '40%',
+      'height': '40%',
+      'margin': '0 auto',
+      'background': 'rgba(162,226,199,.95)',
+      'font-size': '20px',
+      'text-align': 'center',
+      'z-index': '999999999',
+      'box-shadow': '5px 5px 5px 5px rgba(0,0,0,.4)',
+      'border-radius': '20px'
+    })
+    css(btn, {
+      'position': 'relative',
+      'top': '65%',
+      'left': '35%',
+      'width': '30%',
+      'height': '20%',
+      'background': 'rgba(252,177,171,.9)',
+      'border-radius': '15px',
+      'font-size': '20px',
+      'font-family': '微软雅黑',
+      'color': '#1A507E',
+      'display': 'flex',
+      'justify-content': 'center',
+      'align-items': 'center',
+      'cursor': 'pointer'
+    })
+    css(p, {
+      'position': 'relative',
+      'top': '2%',
+      'left': '40%',
+      'width': '20%',
+      'height': '8%'
+    })
+    css(img, {
+      'width': '40%',
+      'margin-top': '-5%',
+      'border-radius': '20px',
+      'display': 'flex',
+      'justify-content': 'center',
+      'align-items': 'center'
+    })
+  } else {
+    css(cover, {
+      'position': 'fixed',
+      'left': '0',
+      'right': '0',
+      'top': '10vh',
+      'width': '70vw',
+      'height': '65vh',
+      'margin': '0 auto',
+      'background': 'rgba(162,226,199,.95)',
+      'font-size': '20px',
+      'text-align': 'center',
+      'z-index': '999999999',
+      'box-shadow': '5px 5px 5px 5px rgba(0,0,0,.4)',
+      'border-radius': '20px'
+    })
+    css(btn, {
+      'position': 'relative',
+      'top': '65%',
+      'left': '15%',
+      'width': '70%',
+      'height': '20%',
+      'background': 'rgba(252,177,171,.9)',
+      'border-radius': '15px',
+      'font-size': '20px',
+      'font-family': '微软雅黑',
+      'color': '#1A507E',
+      'display': 'flex',
+      'justify-content': 'center',
+      'align-items': 'center',
+      'cursor': 'pointer'
+    })
+    css(img, {
+      'width': '80%',
+      'margin-top': '-5%',
+      'border-radius': '20px',
+      'display': 'flex',
+      'justify-content': 'center',
+      'align-items': 'center'
+    })
+    css(p, {
+      'position': 'relative',
+      'top': '5%',
+      'left': '0%',
+      'width': '100%',
+      'font-size': '25                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        px',
+      'font-weight': 'bold',
+      'color': '#DB5A6C',
+      'height': '10%',
+      'text-align': 'center'
+    })
+  }
   // 内部结构套入
   p.appendChild(textNode)
   btn.appendChild(btnText)
@@ -263,7 +320,6 @@ export default {
             }
           }, 200 * i)
         })(i % 7)
-        // that.style_init(i)
       }
       //  之后随机生成奖品
       (function () {
@@ -323,6 +379,12 @@ export default {
       false
     )
     this.timer = setInterval(this.Moswiper, 1500)
+    let deviceWidth = document.documentElement.clientWidth || window.innerWidth
+    if (deviceWidth > 768) {
+      this.IsMo = 0
+    } else {
+      this.IsMo = 1
+    }
   }
 }
 </script>
