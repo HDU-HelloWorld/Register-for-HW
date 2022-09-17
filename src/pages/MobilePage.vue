@@ -275,21 +275,21 @@ export default {
           return
         }
       }
-      // if (this.currentPage === 2) {
-      //   // 验证手机验证码
-      //   if (String(this.authCode) === String(this.AuthCode)) {
-      //     this.$message({
-      //       message: '验证成功',
-      //       type: 'success'
-      //     })
-      //   } else {
-      //     this.$message({
-      //       message: '验证码错误',
-      //       type: 'error'
-      //     })
-      //     return
-      //   }
-      // }
+      if (this.currentPage === 2) {
+        // 验证手机验证码
+        if (String(this.authCode) === String(this.AuthCode)) {
+          this.$message({
+            message: '验证成功',
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: '验证码错误',
+            type: 'error'
+          })
+          return
+        }
+      }
       if (this.currentPage >= 4) {
         // 提交表单
         this.submitForm()

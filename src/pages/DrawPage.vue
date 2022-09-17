@@ -4,44 +4,63 @@
 <div class="PcDraw">
   <div class="cover">
     <div id="sakana-widget"></div>
-    <div class="banner">
-      <div class="banner-top">
-        <div class="content">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-color_gift"></use>
-        </svg>
+    <div class="left">
+      <div class="banner">
+        <div class="banner-top">
+          <div class="content">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-color_gift"></use>
+          </svg>
+            </div>
+          <div class="content">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon--gift"></use>
+          </svg>
           </div>
-        <div class="content">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon--gift"></use>
-        </svg>
+          <div class="content">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-gifts"></use>
+          </svg>
+          </div>
         </div>
-        <div class="content">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-gifts"></use>
-        </svg>
+        <div class="banner-bottom">
+          <div class="content">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-gift2"></use>
+            </svg>
+          </div>
+          <div class="content">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-gift"></use>
+            </svg>
+          </div>
+          <div class="content">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-gift1"></use>
+            </svg>
+          </div>
         </div>
+        <div class="">
+        </div>
+        <div class="button" @click="queryUser">开抽！！</div>
+        <!-- <div class="button" @click="queryUser">测试</div> -->
       </div>
-      <div class="banner-bottom">
-        <div class="content">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-gift2"></use>
-          </svg>
-        </div>
-        <div class="content">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-gift"></use>
-          </svg>
-        </div>
-        <div class="content">
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-gift1"></use>
-          </svg>
-        </div>
-      </div>
-      <div class="button" @click="queryUser">开抽！！</div>
-      <!-- <div class="button" @click="queryUser">测试</div> -->
+    <div class="form">
+      <el-input
+        v-model="form.name"
+        class="input"
+        required=""
+        placeholder="姓名"
+      ></el-input>
+      <el-input
+        v-model="form.stuNum"
+        class="input"
+        required=""
+        placeholder="学号"
+      ></el-input>
     </div>
+    </div>
+
     <div class="ShowWardInfo">
       <div class="block">
         <el-carousel :height="bannerHeight + 'px'">
@@ -111,6 +130,7 @@
       <div class="button" @click="get_prize">开抽！！</div>
   </div>
 </div>
+<div></div>
 </div>
 </template>
 
@@ -265,8 +285,8 @@ export default {
   data () {
     return {
       form: {
-        stuNum: '1',
-        name: '1'
+        stuNum: '',
+        name: ''
       },
       result: {
         name: '',
@@ -465,7 +485,7 @@ export default {
     .banner{
       border: 1px solid #1A507E;
       background: rgba(233,233,233,0.3);
-      width: 30%;
+      width: 100%;
       height: 70%;
       display: flex;
       flex-direction: column;
@@ -741,5 +761,16 @@ export default {
       }
     }
   }
+}
+.input{
+  position: relative;
+  left: 20%;
+  margin: 2% 3%;
+  width: 50%;
+  top: 2%;
+}
+.left{
+  width: 30vw;
+  height: 80vh;
 }
 </style>
