@@ -286,6 +286,7 @@ export default {
   name: 'DrawPage',
   data () {
     return {
+      // message: '',
       form: {
         stuNum: '',
         name: ''
@@ -325,7 +326,12 @@ export default {
         })
       } else {
         this.$axios.post(url, {params: this.form}).then(res => {
-          if (res.data !== '' && res.status === 200) {
+          if (res.data === '' || res.status === 500) {
+            this.$message({
+              message: '查询失败，学号匹配失败',
+              type: 'error'
+            })
+          } else {
             this.result.level = res.data.result.level
             this.result.name = res.data.result.name
             if (res.data.result.level === '感谢参与') {
@@ -336,13 +342,13 @@ export default {
               this.result.success = 1
             }
             alert(this.result)
-            console.log(res)
-          } else {
-            this.$message({
-              message: '查询失败，学号匹配失败',
-              type: 'error'
-            })
+            // console.log(res)
           }
+        }).catch(() => {
+          this.$message({
+            message: '查询失败，学号匹配失败，请先填写报名表',
+            type: 'error'
+          })
         })
       }
     },
@@ -355,58 +361,58 @@ export default {
         this.bannerHeight = this.$refs.bannerHeight[0].height
       })
     },
-    //  选中样式函数
-    prize_style (index) {
-      let content = document.querySelectorAll('.content')
-      let Mocontent = document.querySelectorAll('.Mocontent')
-      content[index - 1].style.border = '3px solid #1A507E'
-      content[index - 1].style.background = '#db5a6bc7'
-      Mocontent[index - 1].style.border = '3px solid #1A507E'
-      Mocontent[index - 1].style.background = '#db5a6bc7'
-    },
-    //  清除样式函数
-    style_init (index) {
-      let content = document.querySelectorAll('.content')
-      content[index - 1].style.border = '3px solid transparent'
-      content[index - 1].style.background = ''
-      let Mocontent = document.querySelectorAll('.Mocontent')
-      Mocontent[index - 1].style.border = '3px solid transparent'
-      Mocontent[index - 1].style.background = ''
-    },
-    //  抽奖函数
-    get_prize () {
-      // 生成随机数
-      let a = Math.floor((Math.random() * 6) + 1)
-      //  动画循环
-      let that = this
-      for (let i = 1; i <= 27; i++) {
-        (function (k) {
-          setTimeout(() => {
-            if (k === 1) {
-              that.prize_style(k)
-              that.style_init(6)
-            } else {
-              that.prize_style(k)
-              that.style_init(k - 1)
-            }
-          }, 200 * i)
-        })(i % 7)
-      }
-      //  之后随机生成奖品
-      (function () {
-        setTimeout(() => {
-          that.style_init(6)
-          that.prize_style(a)
-        }, 200 * 27 + 200)
-      })()
-      setTimeout(() => {
-        alert(this.Prize[3])
-      }, 200 * 27 + 400)
-      //  清除样式
-      for (let index = 1; index <= 6; index++) {
-        that.style_init(index)
-      }
-    },
+    // //  选中样式函数
+    // prize_style (index) {
+    //   let content = document.querySelectorAll('.content')
+    //   let Mocontent = document.querySelectorAll('.Mocontent')
+    //   content[index - 1].style.border = '3px solid #1A507E'
+    //   content[index - 1].style.background = '#db5a6bc7'
+    //   Mocontent[index - 1].style.border = '3px solid #1A507E'
+    //   Mocontent[index - 1].style.background = '#db5a6bc7'
+    // },
+    // //  清除样式函数
+    // style_init (index) {
+    //   let content = document.querySelectorAll('.content')
+    //   content[index - 1].style.border = '3px solid transparent'
+    //   content[index - 1].style.background = ''
+    //   let Mocontent = document.querySelectorAll('.Mocontent')
+    //   Mocontent[index - 1].style.border = '3px solid transparent'
+    //   Mocontent[index - 1].style.background = ''
+    // },
+    // //  抽奖函数
+    // get_prize () {
+    //   // 生成随机数
+    //   let a = Math.floor((Math.random() * 6) + 1)
+    //   //  动画循环
+    //   let that = this
+    //   for (let i = 1; i <= 27; i++) {
+    //     (function (k) {
+    //       setTimeout(() => {
+    //         if (k === 1) {
+    //           that.prize_style(k)
+    //           that.style_init(6)
+    //         } else {
+    //           that.prize_style(k)
+    //           that.style_init(k - 1)
+    //         }
+    //       }, 200 * i)
+    //     })(i % 7)
+    //   }
+    //   //  之后随机生成奖品
+    //   (function () {
+    //     setTimeout(() => {
+    //       that.style_init(6)
+    //       that.prize_style(a)
+    //     }, 200 * 27 + 200)
+    //   })()
+    //   setTimeout(() => {
+    //     alert(this.Prize[3])
+    //   }, 200 * 27 + 400)
+    //   //  清除样式
+    //   for (let index = 1; index <= 6; index++) {
+    //     that.style_init(index)
+    //   }
+    // },
     //  手机端轮播图定时器
     Moswiper () {
       let Moswiper = document.querySelector('.Moswiper')
