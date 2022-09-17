@@ -6,7 +6,22 @@
     <div id="sakana-widget"></div>
     <div class="left">
       <div class="banner">
-        <div class="banner-top">
+        <div class="banner-top">抽奖通道</div>
+        <div class="banner-bottom">
+          <el-input
+            v-model="form.name"
+            class="input"
+            required=""
+            placeholder="姓名"
+          ></el-input>
+          <el-input
+            v-model="form.stuNum"
+            class="input"
+            required=""
+            placeholder="学号"
+          ></el-input>
+    </div>
+        <!-- <div class="banner-top">
           <div class="content">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-color_gift"></use>
@@ -39,28 +54,12 @@
               <use xlink:href="#icon-gift1"></use>
             </svg>
           </div>
-        </div>
-        <div class="">
-        </div>
+        </div> -->
         <div class="button" @click="queryUser">开抽！！</div>
         <!-- <div class="button" @click="queryUser">测试</div> -->
       </div>
-    <div class="form">
-      <el-input
-        v-model="form.name"
-        class="input"
-        required=""
-        placeholder="姓名"
-      ></el-input>
-      <el-input
-        v-model="form.stuNum"
-        class="input"
-        required=""
-        placeholder="学号"
-      ></el-input>
-    </div>
-    </div>
 
+    </div>
     <div class="ShowWardInfo">
       <div class="block">
         <el-carousel :height="bannerHeight + 'px'">
@@ -71,9 +70,6 @@
         <p class="show-title">奖品信息</p>
     </div>
     </div>
-  </div>
-  <div class="Login">
-    <input type="text" name="" id="">
   </div>
 </div>
 <!-- 手机 -->
@@ -128,10 +124,6 @@
     </div>
       <div class="button" @click="queryUser">开抽！！</div>
   </div>
-  <div class="Mo-input">
-  </div>
-</div>
-<div>
 </div>
 </div>
 </template>
@@ -493,6 +485,7 @@ export default {
       z-index: 999;
     }
     .banner{
+      margin-top: 10vh;
       border: 1px solid #1A507E;
       background: rgba(233,233,233,0.3);
       width: 100%;
@@ -501,49 +494,64 @@ export default {
       flex-direction: column;
       justify-content: space-between;
       .banner-top{
+        margin-top: 5vh;
+        font-family: 'helloworld';
+        font-size: 50px;
+        text-align: center;
+        text-shadow: 2px 2px 2px rgba(0,0,0,.4);
+        // font-weight: 100;
+        // writing-mode: vertical-lr;
         width: 100%;
-        height: 40%;
-        display: flex;
+        // height: 10%;
+        // display: flex;
         justify-content: space-between;
-        .content{
-          width: 100px;
-          height: 100px;
-          box-sizing: border-box;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 18px;
-          // background: #db5a6bc7;
-          .icon{
-            width:80px ;
-            height: 80px;
-            cursor: pointer;
-          }
-          &:nth-child(2){
-            margin-top: 15%;
-          }
-        }
+        // .content{
+        //   width: 100px;
+        //   height: 100px;
+        //   box-sizing: border-box;
+        //   display: flex;
+        //   justify-content: center;
+        //   align-items: center;
+        //   border-radius: 18px;
+        //   // background: #db5a6bc7;
+        //   .icon{
+        //     width:80px ;
+        //     height: 80px;
+        //     cursor: pointer;
+        //   }
+        //   &:nth-child(2){
+        //     margin-top: 15%;
+        //   }
+        // }
       }
       .banner-bottom{
+        position: relative;
         width: 100%;
-        height: 40%;
-        display: flex;
+        height: 20%;
+        // display: flex;
         justify-content: space-between;
-        .content{
-          width: 100px;
-          height: 100px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 18px;
-          .icon{
-            width:80px ;
-            height: 80px;
-            cursor: pointer;
-          }
-          &:nth-child(2){
-            margin-top: 15%;
-          }
+        flex-direction: column;
+        bottom: 15%;
+        // .content{
+        //   width: 100px;
+        //   height: 100px;
+        //   display: flex;
+        //   justify-content: center;
+        //   align-items: center;
+        //   border-radius: 18px;
+        //   .icon{
+        //     width:80px ;
+        //     height: 80px;
+        //     cursor: pointer;
+        //   }
+        //   &:nth-child(2){
+        //     margin-top: 15%;
+        //   }
+        // }
+        .input{
+          position: relative;
+          box-shadow: 4px 4px 4px 4px rgba(0,0,0,.2);
+          // width: 10%;
         }
       }
       .button {
@@ -555,7 +563,7 @@ export default {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-        bottom: 10px;
+        bottom: 15vh;
         color: #fbfbfb;
         font-weight: 600;
         font-family: 'Open Sans', sans-serif;
@@ -725,7 +733,7 @@ export default {
         }
       }
       .button{
-        margin-top: 4vh;
+        // margin-top: 4vh;
         width: 130px;
         height: 40px;
         background: linear-gradient(to bottom, #1A507E 0%,#1A507E 100%); /* W3C */
@@ -734,7 +742,7 @@ export default {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-        bottom: 10px;
+        bottom: -20px;
         color: #fbfbfb;
         font-weight: 600;
         font-family: 'Open Sans', sans-serif;
@@ -783,4 +791,10 @@ export default {
   width: 30vw;
   height: 80vh;
 }
+// .form{
+//   margin-top: 10vh;
+//   .input{
+//     margin-top: 3vh;
+//   }
+// }
 </style>
