@@ -561,8 +561,8 @@ export default {
         border: none;
         border-radius: 5px;
         position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 35%;
+        // transform: translateX(-50%);
         bottom: 15vh;
         color: #fbfbfb;
         font-weight: 600;
@@ -581,7 +581,7 @@ export default {
       }
       .button:active {
         box-shadow: 0px 2px 2px 2px rgba(0,0,0,.2);
-        top: 1px;
+        transform: translateY(-5%);
       }
       .button:after {
         content: "";
