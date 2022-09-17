@@ -93,7 +93,7 @@
     <li class="control-li"></li>
   </div>
   <div class="Mo-banner">
-    <div class="banner-top">
+    <!-- <div class="banner-top">
       <div class="Mocontent">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-color_gift"></use>
@@ -109,28 +109,30 @@
         <use xlink:href="#icon-gifts"></use>
       </svg>
       </div>
-    </div>
+    </div> -->
     <div class="banner-bottom">
-      <div class="Mocontent">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-gift2"></use>
-        </svg>
-      </div>
-      <div class="Mocontent">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-gift"></use>
-        </svg>
-      </div>
-      <div class="Mocontent">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-gift1"></use>
-        </svg>
+      <div class="Mo-input">
+        <el-input
+        v-model="form.name"
+        class="input"
+        required=""
+        placeholder="姓名"
+      ></el-input>
+      <el-input
+        v-model="form.stuNum"
+        class="input"
+        required=""
+        placeholder="学号"
+      ></el-input>
       </div>
     </div>
-      <div class="button" @click="get_prize">开抽！！</div>
+      <div class="button" @click="queryUser">开抽！！</div>
+  </div>
+  <div class="Mo-input">
   </div>
 </div>
-<div></div>
+<div>
+</div>
 </div>
 </template>
 
@@ -324,7 +326,8 @@ export default {
       } else {
         this.$axios.post(url, {params: this.form}).then(res => {
           if (res.data !== '' && res.status === 200) {
-            this.result = res.data.result
+            this.result.level = res.data.result.level
+            this.result.name = res.data.result.name
             if (res.data.result.level === '感谢参与') {
               this.result.sure = '坏耶！！'
               this.result.success = 0
@@ -333,7 +336,7 @@ export default {
               this.result.success = 1
             }
             alert(this.result)
-            // console.log(this.result.level)
+            console.log(res)
           } else {
             this.$message({
               message: '查询失败，学号匹配失败',
@@ -467,11 +470,12 @@ export default {
 @media only screen and(min-width: 768px) {
   .PcDraw{
   width: 100vw;
+  // height: 200vh;
   background-size: cover;
   background-repeat: no-repeat;
   .cover{
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
