@@ -166,7 +166,6 @@ export default {
   align-content: center;
   justify-content: center;
   width: 100%;
-  padding: 2em;
   overflow: hidden;
 }
 
@@ -221,7 +220,7 @@ export default {
 }
 .count p {
   color: var(--text-color);
-  font-size: 1rem;
+  font-size: 5rem;
   line-height: 1rem;
   word-spacing: 0.2em;
 }
