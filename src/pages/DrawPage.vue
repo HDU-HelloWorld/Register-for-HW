@@ -6,7 +6,22 @@
     <div id="sakana-widget"></div>
     <div class="left">
       <div class="banner">
-        <div class="banner-top">
+        <div class="banner-top">抽奖通道</div>
+        <div class="banner-bottom">
+          <el-input
+            v-model="form.name"
+            class="input"
+            required=""
+            placeholder="姓名"
+          ></el-input>
+          <el-input
+            v-model="form.stuNum"
+            class="input"
+            required=""
+            placeholder="学号"
+          ></el-input>
+    </div>
+        <!-- <div class="banner-top">
           <div class="content">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-color_gift"></use>
@@ -39,28 +54,12 @@
               <use xlink:href="#icon-gift1"></use>
             </svg>
           </div>
-        </div>
-        <div class="">
-        </div>
+        </div> -->
         <div class="button" @click="queryUser">开抽！！</div>
         <!-- <div class="button" @click="queryUser">测试</div> -->
       </div>
-    <div class="form">
-      <el-input
-        v-model="form.name"
-        class="input"
-        required=""
-        placeholder="姓名"
-      ></el-input>
-      <el-input
-        v-model="form.stuNum"
-        class="input"
-        required=""
-        placeholder="学号"
-      ></el-input>
-    </div>
-    </div>
 
+    </div>
     <div class="ShowWardInfo">
       <div class="block">
         <el-carousel :height="bannerHeight + 'px'">
@@ -71,9 +70,6 @@
         <p class="show-title">奖品信息</p>
     </div>
     </div>
-  </div>
-  <div class="Login">
-    <input type="text" name="" id="">
   </div>
 </div>
 <!-- 手机 -->
@@ -128,10 +124,6 @@
     </div>
       <div class="button" @click="queryUser">开抽！！</div>
   </div>
-  <div class="Mo-input">
-  </div>
-</div>
-<div>
 </div>
 </div>
 </template>
@@ -286,6 +278,7 @@ export default {
   name: 'DrawPage',
   data () {
     return {
+      // message: '',
       form: {
         stuNum: '',
         name: ''
@@ -325,7 +318,12 @@ export default {
         })
       } else {
         this.$axios.post(url, {params: this.form}).then(res => {
-          if (res.data !== '' && res.status === 200) {
+          if (res.data === '' || res.status === 500) {
+            this.$message({
+              message: '查询失败，学号匹配失败',
+              type: 'error'
+            })
+          } else {
             this.result.level = res.data.result.level
             this.result.name = res.data.result.name
             if (res.data.result.level === '感谢参与') {
@@ -336,13 +334,13 @@ export default {
               this.result.success = 1
             }
             alert(this.result)
-            console.log(res)
-          } else {
-            this.$message({
-              message: '查询失败，学号匹配失败',
-              type: 'error'
-            })
+            // console.log(res)
           }
+        }).catch(() => {
+          this.$message({
+            message: '查询失败，学号匹配失败，请先填写报名表',
+            type: 'error'
+          })
         })
       }
     },
@@ -355,58 +353,58 @@ export default {
         this.bannerHeight = this.$refs.bannerHeight[0].height
       })
     },
-    //  选中样式函数
-    prize_style (index) {
-      let content = document.querySelectorAll('.content')
-      let Mocontent = document.querySelectorAll('.Mocontent')
-      content[index - 1].style.border = '3px solid #1A507E'
-      content[index - 1].style.background = '#db5a6bc7'
-      Mocontent[index - 1].style.border = '3px solid #1A507E'
-      Mocontent[index - 1].style.background = '#db5a6bc7'
-    },
-    //  清除样式函数
-    style_init (index) {
-      let content = document.querySelectorAll('.content')
-      content[index - 1].style.border = '3px solid transparent'
-      content[index - 1].style.background = ''
-      let Mocontent = document.querySelectorAll('.Mocontent')
-      Mocontent[index - 1].style.border = '3px solid transparent'
-      Mocontent[index - 1].style.background = ''
-    },
-    //  抽奖函数
-    get_prize () {
-      // 生成随机数
-      let a = Math.floor((Math.random() * 6) + 1)
-      //  动画循环
-      let that = this
-      for (let i = 1; i <= 27; i++) {
-        (function (k) {
-          setTimeout(() => {
-            if (k === 1) {
-              that.prize_style(k)
-              that.style_init(6)
-            } else {
-              that.prize_style(k)
-              that.style_init(k - 1)
-            }
-          }, 200 * i)
-        })(i % 7)
-      }
-      //  之后随机生成奖品
-      (function () {
-        setTimeout(() => {
-          that.style_init(6)
-          that.prize_style(a)
-        }, 200 * 27 + 200)
-      })()
-      setTimeout(() => {
-        alert(this.Prize[3])
-      }, 200 * 27 + 400)
-      //  清除样式
-      for (let index = 1; index <= 6; index++) {
-        that.style_init(index)
-      }
-    },
+    // //  选中样式函数
+    // prize_style (index) {
+    //   let content = document.querySelectorAll('.content')
+    //   let Mocontent = document.querySelectorAll('.Mocontent')
+    //   content[index - 1].style.border = '3px solid #1A507E'
+    //   content[index - 1].style.background = '#db5a6bc7'
+    //   Mocontent[index - 1].style.border = '3px solid #1A507E'
+    //   Mocontent[index - 1].style.background = '#db5a6bc7'
+    // },
+    // //  清除样式函数
+    // style_init (index) {
+    //   let content = document.querySelectorAll('.content')
+    //   content[index - 1].style.border = '3px solid transparent'
+    //   content[index - 1].style.background = ''
+    //   let Mocontent = document.querySelectorAll('.Mocontent')
+    //   Mocontent[index - 1].style.border = '3px solid transparent'
+    //   Mocontent[index - 1].style.background = ''
+    // },
+    // //  抽奖函数
+    // get_prize () {
+    //   // 生成随机数
+    //   let a = Math.floor((Math.random() * 6) + 1)
+    //   //  动画循环
+    //   let that = this
+    //   for (let i = 1; i <= 27; i++) {
+    //     (function (k) {
+    //       setTimeout(() => {
+    //         if (k === 1) {
+    //           that.prize_style(k)
+    //           that.style_init(6)
+    //         } else {
+    //           that.prize_style(k)
+    //           that.style_init(k - 1)
+    //         }
+    //       }, 200 * i)
+    //     })(i % 7)
+    //   }
+    //   //  之后随机生成奖品
+    //   (function () {
+    //     setTimeout(() => {
+    //       that.style_init(6)
+    //       that.prize_style(a)
+    //     }, 200 * 27 + 200)
+    //   })()
+    //   setTimeout(() => {
+    //     alert(this.Prize[3])
+    //   }, 200 * 27 + 400)
+    //   //  清除样式
+    //   for (let index = 1; index <= 6; index++) {
+    //     that.style_init(index)
+    //   }
+    // },
     //  手机端轮播图定时器
     Moswiper () {
       let Moswiper = document.querySelector('.Moswiper')
@@ -487,6 +485,7 @@ export default {
       z-index: 999;
     }
     .banner{
+      margin-top: 10vh;
       border: 1px solid #1A507E;
       background: rgba(233,233,233,0.3);
       width: 100%;
@@ -495,49 +494,64 @@ export default {
       flex-direction: column;
       justify-content: space-between;
       .banner-top{
+        margin-top: 5vh;
+        font-family: 'helloworld';
+        font-size: 50px;
+        text-align: center;
+        text-shadow: 2px 2px 2px rgba(0,0,0,.4);
+        // font-weight: 100;
+        // writing-mode: vertical-lr;
         width: 100%;
-        height: 40%;
-        display: flex;
+        // height: 10%;
+        // display: flex;
         justify-content: space-between;
-        .content{
-          width: 100px;
-          height: 100px;
-          box-sizing: border-box;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 18px;
-          // background: #db5a6bc7;
-          .icon{
-            width:80px ;
-            height: 80px;
-            cursor: pointer;
-          }
-          &:nth-child(2){
-            margin-top: 15%;
-          }
-        }
+        // .content{
+        //   width: 100px;
+        //   height: 100px;
+        //   box-sizing: border-box;
+        //   display: flex;
+        //   justify-content: center;
+        //   align-items: center;
+        //   border-radius: 18px;
+        //   // background: #db5a6bc7;
+        //   .icon{
+        //     width:80px ;
+        //     height: 80px;
+        //     cursor: pointer;
+        //   }
+        //   &:nth-child(2){
+        //     margin-top: 15%;
+        //   }
+        // }
       }
       .banner-bottom{
+        position: relative;
         width: 100%;
-        height: 40%;
-        display: flex;
+        height: 20%;
+        // display: flex;
         justify-content: space-between;
-        .content{
-          width: 100px;
-          height: 100px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 18px;
-          .icon{
-            width:80px ;
-            height: 80px;
-            cursor: pointer;
-          }
-          &:nth-child(2){
-            margin-top: 15%;
-          }
+        flex-direction: column;
+        bottom: 15%;
+        // .content{
+        //   width: 100px;
+        //   height: 100px;
+        //   display: flex;
+        //   justify-content: center;
+        //   align-items: center;
+        //   border-radius: 18px;
+        //   .icon{
+        //     width:80px ;
+        //     height: 80px;
+        //     cursor: pointer;
+        //   }
+        //   &:nth-child(2){
+        //     margin-top: 15%;
+        //   }
+        // }
+        .input{
+          position: relative;
+          box-shadow: 4px 4px 4px 4px rgba(0,0,0,.2);
+          // width: 10%;
         }
       }
       .button {
@@ -547,9 +561,9 @@ export default {
         border: none;
         border-radius: 5px;
         position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 10px;
+        left: 35%;
+        // transform: translateX(-50%);
+        bottom: 15vh;
         color: #fbfbfb;
         font-weight: 600;
         font-family: 'Open Sans', sans-serif;
@@ -567,7 +581,7 @@ export default {
       }
       .button:active {
         box-shadow: 0px 2px 2px 2px rgba(0,0,0,.2);
-        top: 1px;
+        transform: translateY(-5%);
       }
       .button:after {
         content: "";
@@ -719,7 +733,7 @@ export default {
         }
       }
       .button{
-        margin-top: 4vh;
+        // margin-top: 4vh;
         width: 130px;
         height: 40px;
         background: linear-gradient(to bottom, #1A507E 0%,#1A507E 100%); /* W3C */
@@ -728,7 +742,7 @@ export default {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-        bottom: 10px;
+        bottom: -20px;
         color: #fbfbfb;
         font-weight: 600;
         font-family: 'Open Sans', sans-serif;
@@ -777,4 +791,10 @@ export default {
   width: 30vw;
   height: 80vh;
 }
+// .form{
+//   margin-top: 10vh;
+//   .input{
+//     margin-top: 3vh;
+//   }
+// }
 </style>
