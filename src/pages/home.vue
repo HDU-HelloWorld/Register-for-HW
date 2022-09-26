@@ -89,11 +89,7 @@ export default {
         height: '100%',
         width: '100%'
       },
-      bgArr: ['#fff',
-        {
-          isBg: true,
-          src: require('@/assets/bgcimg/1.jpg')
-        },
+      bgArr: ['#fff', '#fff',
         {
           isBg: true,
           src: require('@/assets/bgcimg/3.jpg')
