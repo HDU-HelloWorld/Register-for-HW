@@ -9,6 +9,7 @@ import ConfirmPage from '@/pages/ConfirmPage'
 import SuccessPage from '@/pages/SuccessPage'
 import DrawPage from '@/pages/DrawPage.vue'
 import MobilePage from '@/pages/MobilePage.vue'
+import DemoPage from '@/pages/DemoPage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -52,6 +53,11 @@ export default new Router({
       path: '/mobile',
       name: 'MobilePage',
       component: MobilePage
+    },
+    {
+      path: '/demo',
+      name: 'DemoPage',
+      component: DemoPage
     },
     {
       path: '*',
