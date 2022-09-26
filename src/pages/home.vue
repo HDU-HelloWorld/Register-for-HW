@@ -89,11 +89,7 @@ export default {
         height: '100%',
         width: '100%'
       },
-      bgArr: ['#fff',
-        {
-          isBg: true,
-          src: require('@/assets/bgcimg/1.jpg')
-        },
+      bgArr: ['#fff', '#fff',
         {
           isBg: true,
           src: require('@/assets/bgcimg/3.jpg')
@@ -139,6 +135,11 @@ export default {
     }
   },
   mounted () {
+    // 判断是否为手机端访问
+    const isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)
+    if (isMobile) {
+      this.$router.push('/error')
+    }
     console.log('mounted')
     let navshows = document.querySelectorAll('.navshow')
     let index = this.currentPage - 1

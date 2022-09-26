@@ -10,6 +10,7 @@ import SuccessPage from '@/pages/SuccessPage'
 import DrawPage from '@/pages/DrawPage.vue'
 import MobilePage from '@/pages/MobilePage.vue'
 import DemoPage from '@/pages/DemoPage.vue'
+import ErrorPage from '@/pages/Error.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -58,6 +59,11 @@ export default new Router({
       path: '/demo',
       name: 'DemoPage',
       component: DemoPage
+    },
+    {
+      path: '/error',
+      name: 'ErrorPage',
+      component: ErrorPage
     },
     {
       path: '*',
